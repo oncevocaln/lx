@@ -1,0 +1,427 @@
+"use strict";
+
+var resJson = {};
+
+var rtypeName = {
+  vip: "VIP",
+  pass: "자율",
+  rent: "대여",
+  admin: "관리자",
+};
+
+var pkgName = {
+  no: "없음",
+  mo: "새벽",
+  am: "오전",
+  da: "낮",
+  pm: "오후",
+  di: "저녁",
+  ni: "밤",
+  up4: "4시간이상",
+  up10: "10시간이상",
+  nu: "신규이벤트",
+};
+
+function getParam(sname) {
+  var params = location.search.substr(location.search.indexOf("?") + 1);
+
+  console.log(params);
+  var sval = "";
+
+  params = params.split("&");
+
+  for (var i = 0; i < params.length; i++) {
+    var temp = params[i].split("=");
+
+    if ([temp[0]] == sname) {
+      sval = temp[1];
+    }
+  }
+
+  return sval;
+}
+
+Date.prototype.format = function (f) {
+  if (!this.valueOf()) return " ";
+
+  var weekKorName = [
+    "일요일",
+    "월요일",
+    "화요일",
+    "수요일",
+    "목요일",
+    "금요일",
+    "토요일",
+  ];
+
+  var weekKorShortName = ["일", "월", "화", "수", "목", "금", "토"];
+
+  var weekEngName = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  var weekEngShortName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  var d = this;
+
+  return f.replace(/(yyyy|yy|MM|dd|KS|KL|ES|EL|HH|hh|mm|ss|a\/p)/gi, function (
+    $1
+  ) {
+    switch ($1) {
+      case "yyyy":
+        return d.getFullYear(); // 년 (4자리)
+
+      case "yy":
+        return (d.getFullYear() % 1000).zf(2); // 년 (2자리)
+
+      case "MM":
+        return (d.getMonth() + 1).zf(2); // 월 (2자리)
+
+      case "dd":
+        return d.getDate().zf(2); // 일 (2자리)
+
+      case "KS":
+        return weekKorShortName[d.getDay()]; // 요일 (짧은 한글)
+
+      case "KL":
+        return weekKorName[d.getDay()]; // 요일 (긴 한글)
+
+      case "ES":
+        return weekEngShortName[d.getDay()]; // 요일 (짧은 영어)
+
+      case "EL":
+        return weekEngName[d.getDay()]; // 요일 (긴 영어)
+
+      case "HH":
+        return d.getHours().zf(2); // 시간 (24시간 기준, 2자리)
+
+      case "hh":
+        return ((h = d.getHours() % 12) ? h : 12).zf(2); // 시간 (12시간 기준, 2자리)
+
+      case "mm":
+        return d.getMinutes().zf(2); // 분 (2자리)
+
+      case "ss":
+        return d.getSeconds().zf(2); // 초 (2자리)
+
+      case "a/p":
+        return d.getHours() < 12 ? "오전" : "오후"; // 오전/오후 구분
+
+      default:
+        return $1;
+    }
+  });
+};
+
+String.prototype.string = function (len) {
+  var s = "",
+    i = 0;
+  while (i++ < len) {
+    s += this;
+  }
+  return s;
+};
+
+String.prototype.zf = function (len) {
+  return "0".string(len - this.length) + this;
+};
+
+Number.prototype.zf = function (len) {
+  return this.toString().zf(len);
+};
+
+function init_date() {
+  var nowJson = {};
+  var now = new Date();
+
+  var ts = now.format("yyyyMMddHHmm");
+  console.log(ts.substring(6, 4));
+  document.querySelector('select[name="yy_sw"]').value = ts.substring(4, 0);
+  document.querySelector('select[name="mm_sw"]').value = ts.substring(6, 4);
+  document.querySelector('select[name="dd_sw"]').value = ts.substring(8, 6);
+  document.querySelector('select[name="hh_sw"]').value = ts.substring(10, 8);
+}
+
+function make_data() {
+  var checkData = {};
+  //stype 공간 유형
+  checkData.stype = document.querySelector('input[name="stype"]:checked').value;
+  checkData.rtype = document.querySelector('input[name="rtype"]:checked').value;
+  checkData.username = document.querySelector('input[name="username"]').value;
+  checkData.mobile = document.querySelector('input[name="mobile"]').value;
+  checkData.yy_sw = document.querySelector('select[name="yy_sw"]').value;
+  checkData.mm_sw = document.querySelector('select[name="mm_sw"]').value;
+  checkData.dd_sw = document.querySelector('select[name="dd_sw"]').value;
+  checkData.hh_sw = document.querySelector('select[name="hh_sw"]').value;
+  checkData.mi_sw = document.querySelector('select[name="mi_sw"]').value;
+  checkData.bl_sw = document.querySelector('select[name="bl_sw"]').value;
+  checkData.sp_sw = document.querySelector('select[name="sp_sw"]').value;
+  checkData.he_sw = document.querySelector('select[name="he_sw"]').value;
+  checkData.au_sw = document.querySelector('select[name="au_sw"]').value;
+  checkData.mc_sw = document.querySelector('select[name="mc_sw"]').value;
+  checkData.st_sw = document.querySelector('select[name="st_sw"]').value;
+  checkData.cu_sw = document.querySelector('select[name="cu_sw"]').value;
+  checkData.sd_sw = document.querySelector('select[name="sd_sw"]').value;
+  checkData.bo_sw = document.querySelector('select[name="bo_sw"]').value;
+  checkData.gi_sw = document.querySelector('select[name="gi_sw"]').value;
+  checkData.el_sw = document.querySelector('select[name="el_sw"]').value;
+  checkData.ds_sw = document.querySelector('select[name="ds_sw"]').value;
+  checkData.ch_sw = document.querySelector('select[name="ch_sw"]').value;
+  checkData.ta_sw = document.querySelector('select[name="ta_sw"]').value;
+  checkData.yo_sw = document.querySelector('select[name="yo_sw"]').value;
+  checkData.dp_sw = document.querySelector('select[name="dp_sw"]').value;
+  checkData.dk_sw = document.querySelector('select[name="dk_sw"]').value;
+
+  checkData.dm_sw = document.querySelector('select[name="dm_sw"]').value;
+  checkData.rn_sw = document.querySelector('select[name="rn_sw"]').value;
+  checkData.pkg = document.querySelector('select[name="pkg"]').value;
+
+  checkData.price = document.querySelector('input[name="price"]').value;
+
+  checkData.os = make_os(checkData);
+  checkData.v = getParam("v");
+
+  return checkData;
+}
+
+function check_possible() {
+  document.querySelector('input[name="price"]').value = "-----loading-----";
+  document.querySelector('input[name="possible"]').value = "-----loading-----";
+
+  var checkData = make_data();
+
+  fetch("/calendar/checkpossible", {
+    method: "POST",
+    body: JSON.stringify(checkData),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      document.getElementById("price").value = json.price;
+      document.querySelector('select[name="dm_sw"]').value = json.dm_sw;
+
+      document.querySelector('select[name="hh_sw"]').value = json.hh_sw;
+      document.querySelector('select[name="pkg"]').value = json.pkg;
+      document.querySelector('select[name="rn_sw"]').value = json.rn_sw;
+
+      document.querySelector('input[name="possible"]').value = json.possible;
+
+      console.log(json);
+      // document.querySelector('input[name="possible"]').value = json.possible;
+
+      if (json.possible == "NO") {
+        document.querySelector('input[name="request_text"]').value =
+          json.reason;
+        alert("[예약불가] - " + json.reason);
+      } else {
+        var rtext = make_rtext(json);
+        document.querySelector('textarea[id="request_text"]').value = rtext;
+      }
+    });
+}
+
+function request_reserve() {
+  // document.querySelector('input[name="price"]').value = "-----loading-----";
+  // document.querySelector('input[name="possible"]').value = "-----loading-----";
+
+  var checkData = make_data();
+  console.log(checkData);
+  fetch("/calendar/request", {
+    method: "POST",
+    body: JSON.stringify(checkData),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      document.getElementById("price").value = json.price;
+      document.querySelector('select[name="dm_sw"]').value = json.dm_sw;
+
+      document.querySelector('select[name="hh_sw"]').value = json.hh_sw;
+      document.querySelector('select[name="pkg"]').value = json.pkg;
+      document.querySelector('select[name="rn_sw"]').value = json.rn_sw;
+
+      document.querySelector('input[name="possible"]').value = json.possible;
+
+      console.log(json);
+      // document.querySelector('input[name="possible"]').value = json.possible;
+
+      if (json.possible == "NO") {
+        // document.querySelector('input[name="request_text"]').value =json.reason;
+
+        alert("" + json.reason);
+      } else {
+        var rtext = make_rtext(json);
+        rtext = rtext + "\n[요청완료-카톡으로 이체내역을 보내주세요]";
+        document.querySelector('textarea[id="request_text"]').value = rtext;
+      }
+    });
+}
+
+function make_os(json) {
+  var os = "";
+
+  if (parseInt(json.mc_sw) > 0) {
+    os = os + " 마이크" + json.mc_sw;
+  }
+  if (parseInt(json.sd_sw) > 0) {
+    os = os + " SD앰프" + json.sd_sw;
+  }
+  if (parseInt(json.cu_sw) > 0) {
+    os = os + " 큐브EX앰프" + json.cu_sw;
+  }
+  if (parseInt(json.gi_sw) > 0) {
+    os = os + " 통기타" + json.gi_sw;
+  }
+  if (parseInt(json.el_sw) > 0) {
+    os = os + " 일렉기타" + json.el_sw;
+  }
+  if (parseInt(json.dk_sw) > 0) {
+    os = os + " 전자키보드" + json.dk_sw;
+  }
+  if (parseInt(json.dp_sw) > 0) {
+    os = os + " 88건반디지털피아노" + json.dp_sw;
+  }
+  if (parseInt(json.ta_sw) > 0) {
+    os = os + " 접이식테이블" + json.ta_sw;
+  }
+  if (parseInt(json.ch_sw) > 0) {
+    os = os + " 의자" + json.ch_sw;
+  }
+  if (parseInt(json.au_sw) > 0) {
+    os = os + " 오디오인터페이스" + json.au_sw;
+  }
+  if (parseInt(json.he_sw) > 0) {
+    os = os + " 헤드폰" + json.he_sw;
+  }
+  if (parseInt(json.bl_sw) > 0) {
+    os = os + " 블루투스스피커" + json.bl_sw;
+  }
+  if (parseInt(json.sp_sw) > 0) {
+    os = os + " 스피커" + json.sp_sw;
+  }
+  if (parseInt(json.bo_sw) > 0) {
+    os = os + " 보면대" + json.bo_sw;
+  }
+  if (parseInt(json.st_sw) > 0) {
+    os = os + " 마이크스탠드" + json.st_sw;
+  }
+  if (parseInt(json.ds_sw) > 0) {
+    os = os + " 드럼스틱" + json.ds_sw;
+  }
+  if (parseInt(json.yo_sw) > 0) {
+    os = os + " 요가매트" + json.yo_sw;
+  }
+
+  return os;
+}
+
+function make_rtext(json) {
+  json.notice = "";
+  if (json.stype == "ND" || json.stype == "NX") {
+    json.notice =
+      "주소 : 서울시 강남구 논현동 140-4 송월타올 지하 (비밀번호: 현관&화장실 6784, 연습실8763, 와이파이 24972497)";
+  }
+
+  var rtype = rtypeName[json.rtype];
+
+  var rtext =
+    "[가능확인]" +
+    // "\n" + json. +
+    "\n유형: " +
+    rtype +
+    "\n이름: " +
+    json.username +
+    "\n휴대전화: " +
+    json.mobile +
+    "\n공간: " +
+    json.stype +
+    json.rn_sw +
+    "\n날짜: " +
+    json.yy_sw +
+    "년" +
+    json.mm_sw +
+    "월" +
+    json.dd_sw +
+    "일" +
+    "\n시간: " +
+    json.hh_sw +
+    ":" +
+    json.mi_sw +
+    "\n사용분 " +
+    json.dm_sw +
+    "분" +
+    "\n패키지: " +
+    pkgName[json.pkg] +
+    "\n옵션: " +
+    json.os +
+    "\n가격: " +
+    json.price +
+    "\n사유: " +
+    "\n결제: " +
+    "\n적립금: " +
+    "\n비고: " +
+    "\n알림:" +
+    json.notice +
+    // "\n" + json. +
+    // "\n" + json. +
+    // "\n" + json. +
+
+    "";
+  return rtext;
+}
+
+function copy_to_clipboard() {
+  var copyText = document.getElementById("container");
+  copyText.select();
+  document.execCommand("Copy");
+}
+
+function send_picture() {}
+function copy_account_to_clipboard() {
+  var copyText = document.getElementById("account_number");
+  copyText.select();
+  document.execCommand("Copy");
+}
+
+function copy_request_to_clipboard() {
+  var copyText = document.getElementById("request_text");
+  copyText.select();
+  document.execCommand("Copy");
+}
+
+function send_kakao() {
+  // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
+  window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
+}
+
+function check_refund_policy() {
+  // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
+  window.open("https://cafe.naver.com/oncevocal/66", "_blank");
+}
+
+function go_cafe_nonhyun() {
+  // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
+  window.open("https://cafe.naver.com/oncevocal/47", "_blank");
+}
+
+function go_cafe_hongdae() {
+  // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
+  window.open("https://cafe.naver.com/oncevocal/49", "_blank");
+}
+
+function go_cafe_option() {
+  // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
+  window.open("https://cafe.naver.com/oncevocal/76", "_blank");
+}

@@ -1,0 +1,11 @@
+<div class="space-login">
+  <% if(session && session.user && session.user.username) { %>
+  <span
+    ><%=session.user.username %> 님 <a href="/user/logout">[로그아웃]</a></span
+  >
+  <span> <a href="/mypage">[나의예약]</a></span>
+  <% } else { %>
+
+  <span> <a href="/login">[로그인]</a> </span>
+  <% } %>
+</div>

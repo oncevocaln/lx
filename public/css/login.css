@@ -1,0 +1,1033 @@
+@charset 'utf-8';
+body,
+button,
+dd,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+legend,
+li,
+ol,
+p,
+select,
+table,
+td,
+textarea,
+th,
+ul {
+  font-family: "Helvetica Neue", "Apple SD Gothic Neo", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+body,
+button,
+input,
+select,
+table,
+textarea {
+  font-size: 14px;
+  line-height: 1.25em;
+}
+button,
+input,
+select,
+textarea {
+  border: 0;
+  border-radius: 0;
+  background: 0 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+fieldset,
+img {
+  border: 0;
+}
+ol,
+ul {
+  list-style: none;
+}
+address,
+em {
+  font-style: normal;
+}
+a {
+  text-decoration: none;
+}
+table {
+  border-collapse: collapse;
+}
+.blind,
+.u_hc,
+.u_skip,
+.u_vc {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+body {
+  height: 100%;
+  background: #f8f8fa;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+#wrap {
+  position: relative;
+  min-height: 100%;
+}
+#container {
+  padding-bottom: 8px;
+}
+.bold {
+  font-weight: 700;
+}
+.logo,
+.sp,
+.wrg {
+  background: url(https://static.nid.naver.com/images/ui/login/m_sp_login_190522.png)
+    no-repeat;
+  -webkit-background-size: 460px auto;
+  background-size: 460px auto;
+}
+#header {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 113px 15px 0;
+  background-color: #fff;
+}
+.lang {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.lang::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 6px;
+  right: 7px;
+  width: 15px;
+  height: 13px;
+  background-image: url(https://static.nid.naver.com/images/ui/login/m_btn_lang_arrow.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 15px 13px;
+}
+.logo_area {
+  padding-left: 5px;
+}
+.h_logo {
+  display: block;
+  width: 157px;
+  height: 30px;
+  margin: 0 auto;
+  background-image: url(../images/onebeat_ci_black.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  -webkit-background-size: contain;
+  background-size: contain;
+  color: transparent;
+  font-size: 15px;
+}
+.h_logo:before {
+  content: "\00a0";
+  font-size: 0;
+}
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 4px 0 34px;
+}
+.u_cr {
+  font-size: 12px;
+  line-height: 14px;
+  clear: both;
+  text-align: center;
+  color: #888;
+}
+.u_cri {
+  display: inline-block;
+  margin: 0 2px;
+  color: #888;
+}
+.u_cri_v1 .u_cra {
+  font-size: 13px;
+  letter-spacing: -0.46px;
+}
+.u_cri_v1::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 9px;
+  margin: 0 7px 0 -1px;
+  background-color: #dadada;
+  border-radius: 0.5px;
+}
+.u_cra {
+  font-size: 12px;
+  font-weight: 300;
+  color: #888;
+}
+.title {
+  margin: 0 1px 8px;
+}
+.title p {
+  font-size: 12px;
+  line-height: 14px;
+  color: #333;
+}
+.title p .sevice {
+  font-weight: 700;
+}
+a.btn_minor {
+  font-size: 13px;
+  line-height: 13px;
+  display: inline-block;
+  margin-top: 6px;
+  padding-right: 11px;
+  text-decoration: underline;
+  color: #8e8e8e;
+  background-position: 100% -16px;
+}
+.link_info {
+  position: relative;
+  min-height: 16px;
+  margin: 0 0 4px;
+}
+.link_info a {
+  font-size: 12px;
+  line-height: 13px;
+  display: inline-block;
+  float: left;
+  padding-right: 8px;
+  text-decoration: none;
+  color: #8e8e8e;
+}
+.global .link_info a {
+  font-size: 13px;
+}
+.link_info a span {
+  position: relative;
+  display: block;
+  padding-right: 12px;
+}
+.link_info .btn_key_down {
+  background: 0 0;
+}
+.link_info .btn_key_up {
+  margin-right: 8px;
+  background-position: 100% -200px;
+}
+.link_info .btn_key_down span {
+  background-position: 100% -124px;
+}
+.link_info .btn_key_up span {
+  background-position: 100% -161px;
+}
+.key {
+  float: left;
+}
+.key a {
+  padding-right: 11px;
+  background-position: 100% -16px;
+}
+.key_char {
+  height: 115px;
+}
+.key_symbol {
+  height: 89px;
+}
+.key_img {
+  position: absolute;
+  top: 23px;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 76px;
+  background-repeat: no-repeat;
+  background-position: 50% -280px;
+}
+.key_symbol .key_img {
+  height: 50px;
+  background-position: 50% -370px;
+}
+.link_info .link_group {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+}
+.link_info .link_group a {
+  padding-right: 0;
+}
+.error {
+  font-size: 12px;
+  line-height: 16px;
+  margin: -2px 0 12px;
+  color: #ff1616;
+}
+.error .error_info {
+  color: #333;
+}
+.error strong {
+  font-size: 15px;
+  position: relative;
+  top: 3px;
+}
+.find_info {
+  font-size: 12px;
+  padding-top: 16px;
+  text-align: center;
+  color: #8e8e8e;
+}
+.find_info a {
+  font-size: 14px;
+  display: inline-block;
+  text-decoration: none;
+  color: #666;
+  letter-spacing: -0.5px;
+}
+html[lang="en"] .find_info a,
+html[lang="zh-Hant"] .find_info a,
+html[lang="zh-Hans"] .find_info a {
+  text-decoration: underline;
+}
+.find_item:last-child::after {
+  display: none;
+}
+.find_item::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 10px;
+  margin: 0 3px 0 7px;
+  background-color: #dadada;
+}
+.global .find_info a {
+  text-decoration: underline;
+}
+.check_info {
+  position: relative;
+  margin-bottom: 13px;
+}
+.error_browser {
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+}
+.error_browser p {
+  font-size: 13px;
+  line-height: 17px;
+  display: block;
+  margin: 0 10px;
+  padding: 13px 15px;
+  color: #8e8e8e;
+  background: #ecedf1;
+}
+.sel {
+  min-width: 78px;
+  height: 26px;
+  padding: 1px 9px 3px 7px;
+  line-height: 18px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #333;
+  border: 1px solid #dadada;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+html[lang="zh-Hant"] .sel,
+html[lang="zh-Hans"] .sel {
+  padding: 1px 25px 3px 7px;
+}
+.input_row {
+  position: relative;
+  overflow: hidden;
+  height: 36px;
+  margin: 0 0 6px;
+  padding: 5px 39px 5px 11px;
+  border: solid 1px #dadada;
+  background: #fff;
+}
+.input_row.focus {
+  border: solid 1px black;
+}
+.input_box {
+  display: block;
+  overflow: hidden;
+}
+.int {
+  font-size: 14px;
+  line-height: 16px;
+  position: relative;
+  z-index: 9;
+  width: 100%;
+  height: 32px;
+  padding: 11px 0 8px;
+  color: #222;
+  border: none;
+  background: #fff;
+}
+.lbl {
+  font-size: 15px;
+  line-height: 16px;
+  position: absolute;
+  z-index: 8;
+  top: 13px;
+  left: 11px;
+  color: #8e8e8e;
+}
+.wrg {
+  position: absolute;
+  z-index: 1000;
+  top: 13px;
+  right: 11px;
+  width: 19px;
+  height: 19px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  background-image: url(https://static.nid.naver.com/images/ui/login/m_btn_delet.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-color: transparent;
+}
+::-webkit-input-placeholder {
+  color: #8e8e8e;
+}
+#container.scheme_bottom {
+  padding-bottom: 100px;
+}
+.login_form {
+  position: relative;
+  height: 100%;
+  background-color: #fff;
+  clear: both;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.login_form::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -20px;
+  width: 100%;
+  height: 32px;
+  mix-blend-mode: multiply;
+  background-image: linear-gradient(to bottom, #f1f1f1, rgba(255, 255, 255, 0));
+  z-index: 1;
+}
+.login_form_inner {
+  position: relative;
+  padding: 0 15px 48px;
+  background-color: #fff;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  z-index: 2;
+}
+.login_form_inner .find_info {
+  margin-bottom: -11px;
+}
+.login_form_inner .btn_login {
+  position: relative;
+}
+.id_form {
+  padding: 8px 15px 0;
+  background-color: #f8f8fa;
+}
+.top_readcopy {
+  margin: 36px 0 16px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: center;
+  color: #222;
+  letter-spacing: -0.3px;
+}
+.id_form .top_readcopy {
+  font-weight: 400;
+  color: #666;
+}
+.guide {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: left;
+}
+.guide .tit {
+  font-size: 16px;
+}
+.guide_list {
+  margin-top: 7px;
+}
+.guide_item {
+  position: relative;
+  padding-left: 10px;
+  font-size: 14px;
+  letter-spacing: -0.5px;
+  color: #888;
+}
+.guide_item::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 1px;
+  width: 2px;
+  height: 2px;
+  background-color: #888;
+  border-radius: 50%;
+}
+.app_set {
+  color: #666;
+}
+.app_set span::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 12px;
+  margin: -2px 0 0 2px;
+  background-image: url(https://static.nid.naver.com/images/ui/login/m_btn_guide_arrow.png);
+  -webkit-background-size: contain;
+  background-size: contain;
+  vertical-align: middle;
+}
+.blue,
+.more {
+  color: #0068c3;
+}
+.more.open {
+  color: #888;
+}
+.simple_login {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 54px;
+  background-color: #fff;
+  border: 1px solid #c8c8c8;
+  text-align: center;
+}
+.login_form_inner .btn_login::after,
+.simple_login::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+.login_form_inner .btn_login::after {
+  bottom: -2px;
+}
+.simple_text {
+  position: relative;
+  margin-left: 28px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: -0.5px;
+}
+.simple_text::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: -29px;
+  width: 20px;
+  height: 20px;
+  margin-top: -8.5px;
+  background-image: url(https://static.nid.naver.com/images/ui/login/m_icon_naver_small.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: contain;
+}
+.id_form .simple_login::after {
+  display: none;
+}
+.id_form .simple_login {
+  margin: 19px 0 3px;
+}
+.social_login {
+  overflow: hidden;
+  margin: 29px 15px 0;
+}
+.social_header {
+  overflow: hidden;
+  margin: 0 4px 5px;
+}
+.social_header .social_title {
+  font-size: 13px;
+  line-height: 15px;
+  float: left;
+  color: #333;
+}
+.social_header .btn_more {
+  font-size: 13px;
+  line-height: 14px;
+  float: right;
+  padding: 0 13px 0 0;
+  color: #8e8e8e;
+}
+.social_header .btn_more:focus,
+.social_header .btn_more:hover {
+  text-decoration: none;
+}
+.social_header .btn_more.close {
+  background-position: 100% -124px;
+}
+.social_header .btn_more.open {
+  background-position: 100% -161px;
+}
+.btn_social_group {
+  overflow: hidden;
+  margin: 0 -3px;
+}
+.btn_social_group .btn_social_align {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+}
+.btn_social {
+  font-size: 14px;
+  display: block;
+  height: 24px;
+  margin: 0 3px;
+  padding: 10px;
+  color: #fff;
+}
+.btn_social:focus,
+.btn_social:hover {
+  text-decoration: none;
+}
+.btn_social .social_ico {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-right: 11px;
+  vertical-align: middle;
+}
+.social_text {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.btn_social.facebook {
+  background-color: #47639e;
+}
+.btn_social.facebook .social_ico {
+  background-position: -1px -530px;
+}
+.btn_social.line {
+  background-color: #00c300;
+}
+.btn_social.line .social_ico {
+  background-position: -1px -555px;
+}
+.btn_social.weibo {
+  background-color: #df4e42;
+}
+.btn_social.weibo .social_ico {
+  background-position: -1px -580px;
+}
+.btn_social.wechat {
+  background-color: #7bb32e;
+}
+.btn_social.wechat .social_ico {
+  background-position: -1px -605px;
+}
+.btn_global {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 54px;
+  margin: 6px 0 5px;
+  padding: 15px 0 18px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  background-color: #a2a2a2;
+  -webkit-appearance: none;
+}
+.btn_global.on {
+  background-color: black;
+}
+.btn_global:active,
+.btn_global:hover,
+.btn_global:link {
+  text-decoration: none;
+  color: #fff;
+}
+.ch_b .btn_global,
+.ch_g .btn_global,
+.global .btn_global,
+html[lang="en"] .btn_global,
+html[lang="zh-Hant"] .btn_global,
+html[lang="zh-Hans"] .btn_global {
+  font-size: 19px;
+  font-weight: 400;
+}
+.phishing_banner {
+  width: 100%;
+  margin: 45px auto 0;
+  padding: 18px 0 20px;
+  border: 1px solid #dce6ee;
+  background-color: #e5edf3;
+  -wbkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.phishing_banner .sp {
+  position: relative;
+  width: 219px;
+  height: 73px;
+  margin: 0 auto;
+  background: url(https://static.nid.naver.com/images/ui/login/m_phishing_banner_190524.png)
+    no-repeat;
+  -webkit-background-size: 510px auto;
+  background-size: 510px auto;
+  background-color: #e5edf3;
+}
+.phishing_banner.bw_safari .sp {
+  background-position: -16px -52px;
+}
+.phishing_banner.bw_chrome .sp {
+  background-position: -16px -188px;
+}
+.phishing_banner.bw_whale .sp {
+  background-position: -16px -323px;
+}
+.phishing_banner.bw_edge .sp {
+  background-position: -16px -459px;
+}
+.phishing_banner.bw_kakao .sp {
+  height: 80px;
+  background-position: -16px -595px;
+}
+.phishing_banner.bw_line .sp {
+  height: 80px;
+  background-position: -16px -730px;
+}
+.phishing_banner.android_safari .sp {
+  background-position: -276px -52px;
+}
+.phishing_banner.android_edge .sp {
+  background-position: -276px -188px;
+}
+.phishing_banner.android_chrome .sp {
+  background-position: -276px -323px;
+}
+.phishing_banner.android_whale .sp {
+  background-position: -276px -459px;
+}
+.phishing_banner.android_kakao .sp {
+  height: 80px;
+  background-position: -276px -595px;
+}
+.phishing_banner.android_line .sp {
+  height: 80px;
+  background-position: -276px -730px;
+}
+.naversign_banner,
+.naversign_cert_banner,
+.whale_wrap {
+  position: relative;
+  display: block;
+  margin: 53px auto 0;
+  padding: 0 15px;
+  text-align: center;
+}
+.banner_inner {
+  padding: 19px 0;
+  background-color: #fdf6e2;
+  border: 1px solid #e6e8ee;
+}
+.naversign_banner .bill_img_m,
+.naversign_cert_banner .bill_img_m,
+.whale_set_banner .whale_banner_m {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 73px;
+  background-image: url(https://ssl.pstatic.net/static/nid/login/m_cartax_2001_w218.png);
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  -webkit-background-size: contain;
+  background-size: contain;
+}
+.whale_set_banner {
+  position: relative;
+  display: inline-block;
+  background-color: #f1fbfa;
+  border: 1px solid #e6e8ee;
+  vertical-align: top;
+}
+.whale_set_banner .whale_banner_m {
+  width: 295px;
+  height: 107px;
+  background-image: url(https://ssl.pstatic.net/static/nid/login/m_710_222_0716.png);
+}
+.whale_btn {
+  position: absolute;
+  bottom: 15px;
+  left: 21px;
+  width: 50px;
+  height: 9px;
+  background-image: url(https://ssl.pstatic.net/static/nid/login/m_710_222_btn_0701.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  -webkit-background-size: contain;
+  background-size: contain;
+}
+.naversign_cert_banner .banner_inner {
+  padding: 0;
+  background-color: #fff;
+  border: 1px solid #e6e8ee;
+}
+.naversign_cert_banner .bill_img_m {
+  height: 110px;
+  background-image: url(https://ssl.pstatic.net/static/nid/login/m_920_294_0729.png);
+}
+.otp_step_banner {
+  position: relative;
+  display: block;
+  margin: 30px auto 0;
+  padding: 0 15px;
+}
+.otp_inner {
+  padding: 19px 0;
+  background-color: #f0fffd;
+  border: 1px solid #e6e8ee;
+}
+.otp_step_banner .bill_img_m {
+  display: block;
+  margin: 0 auto;
+  width: 218px;
+  height: 73px;
+  background-image: url(https://ssl.pstatic.net/static/nid/login/m_2step_218_73.png);
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  -webkit-background-size: contain;
+  background-size: contain;
+}
+.error_chatbot {
+  display: table;
+  margin: 14px 0 17px;
+}
+.error_chatbot .error {
+  display: table-cell;
+  width: 100%;
+  padding-left: 2px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: -0.3px;
+  vertical-align: middle;
+}
+.error_chatbot .chatbot_area {
+  display: table-cell;
+  vertical-align: middle;
+}
+.error_chatbot .chatbot_box {
+  position: relative;
+  width: 113px;
+  height: 15px;
+  margin-left: 10px;
+  padding: 4px 0 9px;
+  border-radius: 1px;
+  border: solid 1px #d8d8d8;
+  text-align: center;
+}
+.chatbot_box .txt {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  color: #444;
+  letter-spacing: -0.6px;
+}
+.chatbot_box .txt::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  background-image: url(https://static.nid.naver.com/images/ui/chatbot/m_icon_chatbot.png);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+@media (min-width: 768px) {
+  .phishing_banner {
+    max-width: 460px;
+  }
+  .naversign_banner,
+  .naversign_cert_banner,
+  .otp_step_banner,
+  .whale_wrap {
+    width: 460px;
+  }
+}
+@media (min-width: 460px) {
+  .phishing_banner {
+    padding: 24px 0 31px;
+  }
+  .phishing_banner .sp {
+    width: 397px;
+    height: 110px;
+    background: url(https://static.nid.naver.com/images/ui/login/t_phishing_banner_190524.png)
+      no-repeat;
+    -webkit-background-size: 931px auto;
+    background-size: 931px auto;
+    background-color: #e5edf3;
+  }
+  .phishing_banner.bw_safari .sp {
+    background-position: -32px -86px;
+  }
+  .phishing_banner.bw_chrome .sp {
+    background-position: -32px -282px;
+  }
+  .phishing_banner.bw_whale .sp {
+    background-position: -32px -478px;
+  }
+  .phishing_banner.bw_edge .sp {
+    background-position: -32px -674px;
+  }
+  .phishing_banner.bw_kakao .sp {
+    height: 120px;
+    background-position: -32px -867px;
+  }
+  .phishing_banner.bw_line .sp {
+    height: 120px;
+    background-position: -32px -1064px;
+  }
+  .phishing_banner.android_safari .sp {
+    background-position: -503px -86px;
+  }
+  .phishing_banner.android_chrome .sp {
+    background-position: -503px -282px;
+  }
+  .phishing_banner.android_whale .sp {
+    background-position: -503px -478px;
+  }
+  .phishing_banner.android_edge .sp {
+    background-position: -503px -674px;
+  }
+  .phishing_banner.android_kakao .sp {
+    height: 122px;
+    background-position: -503px -867px;
+  }
+  .phishing_banner.android_line .sp {
+    height: 122px;
+    background-position: -503px -1064px;
+  }
+  .naversign_banner .bill_img_m {
+    width: 436px;
+    height: 146px;
+    background-image: url(https://ssl.pstatic.net/static/nid/login/m_cartax_2001_w436.png);
+  }
+  .naversign_cert_banner .bill_img_m {
+    height: 147px;
+  }
+  .whale_set_banner .whale_banner_m {
+    width: 460px;
+    height: 166px;
+    background: url(https://static.nid.naver.com/images/ui/login/t_whale_920_332.png)
+      no-repeat 0 0;
+    -webkit-background-size: contain;
+    background-size: contain;
+  }
+  .whale_set_banner .whale_banner_m {
+    width: 460px;
+    height: 222px;
+    background-image: url(https://ssl.pstatic.net/static/nid/login/m_460_222_0716.png);
+  }
+  .whale_btn {
+    bottom: 28px;
+    left: 29px;
+    width: 81px;
+    height: 13px;
+  }
+  .otp_step_banner .bill_img_m {
+    width: 436px;
+    height: 146px;
+    background-image: url(https://ssl.pstatic.net/static/nid/login/m_2step_436_146.png);
+  }
+}
+@media (max-width: 360px) {
+  .naversign_cert_banner .bill_img_m,
+  .whale_set_banner .whale_banner_m {
+    height: 105px;
+  }
+}
+@media (max-width: 320px) {
+  .whale_set_banner .whale_banner_m {
+    width: 260px;
+    height: 107px;
+    background-image: url(https://ssl.pstatic.net/static/nid/login/m_600_222_0716.png);
+  }
+  .whale_btn {
+    bottom: 15px;
+    left: 15px;
+    width: 45px;
+    height: 8px;
+  }
+  .naversign_cert_banner .bill_img_m {
+    height: 73px;
+  }
+}
+@media (max-width: 250px) {
+  .whale_set_banner .whale_banner_m {
+    width: 218px;
+    height: 81px;
+    background-image: url(https://ssl.pstatic.net/static/nid/login/m_600_222_0716.png);
+  }
+  .naversign_cert_banner .bill_img_m {
+    height: 70px;
+  }
+}
+#dimmed {
+  position: fixed;
+  z-index: 90;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+#dimmed_aside {
+  display: table;
+  table-layout: fixed;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  z-index: 100;
+}
+#dimmed_bar {
+  display: table-cell;
+  vertical-align: middle;
+}

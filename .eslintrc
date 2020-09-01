@@ -1,0 +1,7 @@
+{
+    "extends": "",
+    "globals": {
+        "chance": true,
+        "moment": true
+    }
+}

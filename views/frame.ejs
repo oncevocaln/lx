@@ -1,0 +1,47 @@
+<html lang="ko">
+  <head>
+    <%- include('part/meta'); %> <%- include('part/title'); %>
+
+    <!-- css 부분 -->
+    <link rel="stylesheet" href="/css/menu-slide.css" />
+    
+    <link rel="stylesheet" href="/css/profile.css" />
+
+    <!-- <link rel="stylesheet" href="/css/main-body.css" /> -->
+    
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+    <div class="container">
+      <div class="menu-container" id="toggle">
+        <a href="#" class="menu"
+          ><i class="fa fa-bars" aria-hidden="true"></i
+        ></a>
+      </div>
+
+      
+    <div id="header">
+      <a
+        href="https://onebeat.kr/space/1"
+        target="_blank"
+        title="원비트 메인으로 가기"
+        ><img src="/images/onebeat_ci_black.png" id="logo"
+      /></a>
+
+      <%- include('part/spacelogin'); %> 
+
+      
+    </div>
+
+
+    <%- include('part/menu'); %> 
+
+    
+    
+      
+    <%- include('part/reserve'); %> 
+    
+
+  </body>
+</html>
