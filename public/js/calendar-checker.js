@@ -425,3 +425,50 @@ function go_cafe_option() {
   // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
   window.open("https://cafe.naver.com/oncevocal/76", "_blank");
 }
+
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+   var reader = new FileReader();
+   
+   reader.onload = function (e) {
+    $('#image_section').attr('src', e.target.result);  
+   }
+   
+   reader.readAsDataURL(input.files[0]);
+   }
+ }
+  
+ // 이벤트를 바인딩해서 input에 파일이 올라올때 위의 함수를 this context로 실행합니다.
+ $("#imgInput").change(function(){
+    readURL(this);
+ });
+
+ function src_selector_na(){
+  //  alert('x');
+
+
+  var main_image = document.getElementById("main_image");
+  main_image.src = "/images/na.jpg";
+
+  // $("img[src='/images/main-na02.jpg']").css("width","200");
+}
+
+
+function src_selector(){
+  //  alert('x');
+
+
+  // var stype =  document.getElementById("stype").value;
+
+
+  var stype = document.querySelector('input[name="stype"]:checked').value;
+  var stype_l = stype.toLocaleLowerCase();
+  var image_path = "/images/" + stype_l + ".jpg";
+  var main_image = document.getElementById("main_image");
+
+  // alert(image_path);
+  main_image.src = image_path;
+
+  // $("img[src='/images/main-na02.jpg']").css("width","200");
+}

@@ -1,5 +1,7 @@
 <script src="../js/calendar-checker.js"></script>
     
+<script src="http://code.jquery.com/jquery.min.js"></script>
+
 
 <div id="wrap">
       
@@ -15,9 +17,9 @@
                 </span>
                 <div>
                  공간: [논현]
-                  <input type="radio" name="stype" value="NY" />NY
-                  <input type="radio" name="stype" value="NA" />NA
-                  <input type="radio" name="stype" value="NB" />NB
+                  <input type="radio" name="stype" value="NY" onclick="src_selector();" />NY
+                  <input type="radio" name="stype" value="NA" onclick="src_selector();"/>NA
+                  <input type="radio" name="stype" value="NB" onclick="src_selector();" />NB
                   
           
           <button onclick="go_cafe_nonhyun();" style="color: black;">
@@ -26,31 +28,32 @@
                 </div>
 
                 <div>
-                  <input type="radio" name="stype" value="NX" />NX
-                  <input type="radio" name="stype" value="ND" />ND
-                  <input type="radio" name="stype" value="NM" />NM
-                  <input type="radio" name="stype" value="NP" />NP
+                  <input type="radio" name="stype" value="NX" onclick="src_selector();" />NX
+                  <input type="radio" name="stype" value="ND" onclick="src_selector();" />ND
+                  <input type="radio" name="stype" value="NM" onclick="src_selector();" />NM
+                  <input type="radio" name="stype" value="NP" onclick="src_selector();" />NP
                   <input type="radio" name="stype" value="NV" checked/>NV
                 </div>
 
                 <div>
                   공간: [홍대]
-                  <input type="radio" name="stype" value="HR" />HR
-                  <input type="radio" name="stype" value="HA" />HA
-                  <input type="radio" name="stype" value="HS" />HS
+                  <input type="radio" name="stype" value="HR" onclick="src_selector();" />HR
+                  <input type="radio" name="stype" value="HA" onclick="src_selector();" />HA
+                  <input type="radio" name="stype" value="HS" onclick="src_selector();" />HS
 
                   <button onclick="go_cafe_nonhyun();" style="color: black;">
                     홍대점 사진
                   </button>
                 </div>
                 <div>
-                  <input type="radio" name="stype" value="HX" />HX
-                  <input type="radio" name="stype" value="HD" />HD
-                  <input type="radio" name="stype" value="HM" />HM
-                  <input type="radio" name="stype" value="HP" />HP
-                  <input type="radio" name="stype" value="HV" />HV
+                  <input type="radio" name="stype" value="HX" onclick="src_selector();" />HX
+                  <input type="radio" name="stype" value="HD" onclick="src_selector();" />HD
+                  <input type="radio" name="stype" value="HM" onclick="src_selector();" />HM
+                  <input type="radio" name="stype" value="HP" onclick="src_selector();" />HP
+                  <input type="radio" name="stype" value="HV" onclick="src_selector();" />HV
                 </div>
 
+                <div>  <img id="main_image" src="/images/nv.jpg" alt="your image" width="350" /> </div>
 
                 <div class="select_date">
                   날짜:
