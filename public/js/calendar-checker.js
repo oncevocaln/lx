@@ -7,6 +7,7 @@ var rtypeName = {
   pass: "자율",
   rent: "대여",
   admin: "관리자",
+  visit: "현장",
 };
 
 var pkgName = {

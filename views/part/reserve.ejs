@@ -209,7 +209,7 @@
 
               <br>
               <span style="color: red; font-size: 15px" >
-              -이 하단은 무관한 분들은 그대로 두셔도 됩니다.-
+              -여기 부터는 무관한 분들은 그대로 두셔도 됩니다.-
             </span>
 
 
@@ -480,6 +480,8 @@
                   유형:
                   <input type="radio" name="rtype" value="rent" checked />대여
                   <input type="radio" name="rtype" value="pass" />자율
+                  <input type="radio" name="rtype" value="visit" />현장
+                  
 
                   <!-- <input type="radio" name="rtype" value="admin" />관리자
                   <input type="radio" name="rtype" value="vip" />VIP
@@ -571,8 +573,8 @@
       
                 
               </div>
-
-            예약자는 변경&환불규정에 동의한것으로 간주됩니다.<br>예약내용 확인후 신중하게 이체해주세요. 
+              <span style="font-size: 14px;"> 
+            예약자는 변경&환불규정에 동의한것으로 간주됩니다.<br>예약내용 확인후 신중하게 이체해주세요. </span>
             <button onclick="check_refund_policy();" style="color: black; ">
               변경&환불규정
             </button><br>
@@ -603,6 +605,18 @@
                 </button>
                 
           </div>
+
+
+          <div>
+              <span style="font-size: 14px;"> 
+               예약이 정상적으로 처리되지 않았을때 연락을 드립니다. <br> 응답이 없거나 예약현황에 나오지 않아도 예약된것입니다.<br></span>
+                <button onclick="request_reserve();"  style=" background-color:yellow; color: black; height: 30px">
+                    <span style="font-size: 20px">
+                    4. 예약등록하기</span>
+                  </button>
+                  
+            </div>
+
           <!-- <div>   
             <button  onclick="request_reserve();" style="color: black;">
                 예약요청

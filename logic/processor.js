@@ -1019,6 +1019,11 @@ exports.calcuratePriceV2 = function (data) {
   if (data.rtype == "pass") {
     basePrice = 0;
   }
+
+
+  if (data.rtype == "visit") {
+    basePrice = basePrice + 1000;
+  }
   var optionPriceTable = [
     { name: "큐브", id: "cu_sw", price30: 1000, type: "hour" },
     { name: "SD앰프", id: "sd_sw", price30: 500, type: "hour" },
