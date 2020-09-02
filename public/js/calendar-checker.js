@@ -265,9 +265,7 @@ function request_reserve() {
 
         alert("" + json.reason);
       } else {
-        var rtext = make_rtext(json);
-        rtext = rtext + "\n[요청완료-카톡으로 이체내역을 보내주세요]";
-        document.querySelector('textarea[id="request_text"]').value = rtext;
+        alert("예약 완료!" );
       }
     });
 }
