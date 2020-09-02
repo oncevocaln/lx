@@ -179,6 +179,8 @@ function make_data() {
   checkData.dp_sw = document.querySelector('select[name="dp_sw"]').value;
   checkData.dk_sw = document.querySelector('select[name="dk_sw"]').value;
 
+  checkData.hs_sw = document.querySelector('select[name="hs_sw"]').value;
+
   checkData.dm_sw = document.querySelector('select[name="dm_sw"]').value;
   checkData.rn_sw = document.querySelector('select[name="rn_sw"]').value;
   checkData.pkg = document.querySelector('select[name="pkg"]').value;
