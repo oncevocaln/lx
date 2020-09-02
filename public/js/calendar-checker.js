@@ -326,6 +326,9 @@ function make_os(json) {
   if (parseInt(json.yo_sw) > 0) {
     os = os + " 요가매트" + json.yo_sw;
   }
+  if (parseInt(json.hs_sw) > 0) {
+    os = os + " 휴대폰삼각대" + json.hs_sw;
+  }
 
   return os;
 }
