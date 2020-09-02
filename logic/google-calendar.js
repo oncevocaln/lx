@@ -278,7 +278,9 @@ exports.listUpcomingEvent = function (data, callback) {
                   "시" +
                   (gend.getMinutes() < 10 ? "0" : "") +
                   gend.getMinutes() +
-                  "분 일정 있음\n";
+                  "분 일정 있음\n"
+                  +event.summary +
+                  "\n";
               }
 
               console.log(`${start} - ${event.summary}`);
