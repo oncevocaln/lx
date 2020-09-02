@@ -401,13 +401,19 @@ function copy_account_to_clipboard() {
   document.execCommand("Copy");
 }
 
-function copy_request_to_clipboard() {
+// function copy_request_to_clipboard() {
+//   var copyText = document.getElementById("request_text");
+//   copyText.select();
+//   document.execCommand("Copy");
+// }
+
+function send_kakao() {
+
+
   var copyText = document.getElementById("request_text");
   copyText.select();
   document.execCommand("Copy");
-}
 
-function send_kakao() {
   // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
   window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
 }
