@@ -386,9 +386,9 @@ exports.insertEvent = function (data, callback) {
               console.log(
                 "There was an error contacting the Calendar service: " + err
               );
-              callback(err, data);
             }
             console.log("Event created: %s", event.htmlLink);
+            callback(err, data);
           }
         );
       } catch (e) {

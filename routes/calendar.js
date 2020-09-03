@@ -85,35 +85,46 @@ router.post("/request", async (req, res) => {
 
   if (grade == "no" || grade == "new") {
     r.possible = "NO";
-    r.reason = "제한된 기능입니다. 카톡보내기를 이용해주세요";
+    r.reason = "제한된 기능입니다. 로그인하시거나 카톡보내기를 이용해주세요";
   }
 
   if (r.possible == "NO") {
     res.json(r);
   } else {
-    google.listUpcomingEvent(r, (err, data) => {
-      if (data.possible != "NO") {
-        data.possible = "OK";
 
-        data.user = user;
-        data.room = data.rn_sw;
+    try {
 
-        console.log(data.start);
-        console.log(data.end);
-
-        //자율사용자
-        if (grade == "pass") {
-          //자율사용자는 한개씩 예약할수 있게 변경
-        }
-        insertReserve(data);
-
-        google.insertEvent(data, (err, data) => {
+      google.listUpcomingEvent(r, async (err, data) => {
+        if (data.possible != "NO") {
+          data.possible = "OK";
+  
+          data.user = user;
+          data.room = data.rn_sw;
+  
+          console.log(data.start);
+          console.log(data.end);
+  
+          //자율사용자
+          if (grade == "pass") {
+            //자율사용자는 한개씩 예약할수 있게 변경
+          }
+          var savedData = await insertReserve(data);
+  
+          google.insertEvent(data, (err, data) => {
+            console.log('-----------------insert event r')
+            res.json(data);
+          });
+        } else {
+          console.log('-----------------insert event x')
           res.json(data);
-        });
-      } else {
-        res.json(data);
-      }
-    });
+        }
+      });
+    }catch(e){
+
+      res.json(r);
+
+    }
+   
   }
 });
 
@@ -136,8 +147,8 @@ async function insertReserve(data) {
     const savedData = await reserve.save();
 
     console.log("-----------------------------saved reserve ");
-    console.log(savedData);
-    return data;
+    
+    return savedData;
   } catch (e) {
     return data;
   }

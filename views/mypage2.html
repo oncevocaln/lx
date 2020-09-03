@@ -1,0 +1,332 @@
+<html lang="ko">
+    <head>
+
+        <!-- css 부분 -->
+        <link rel="stylesheet" href="/css/menu-slide.css"/>
+
+        <link rel="stylesheet" href="/css/profile.css"/>
+
+        <link rel="stylesheet" href="/css/partner-sc.css"/>
+
+        <!-- <link rel="stylesheet" href="/css/main-body.css" /> -->
+
+    </head>
+    <body>
+        <script src="/js/calendar-checker.js"></script>
+
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <div class="container">
+            <div class="menu-container" id="toggle">
+                <a href="#" class="menu">
+                    <i class="fa fa-bars" aria-hidden="true"></i >
+                </a>
+            </div>
+
+            <div id="header">
+                <a href="/space/1" target="_blank" title="원비트 메인으로 가기"><img src="/images/onebeat_ci_black.png" id="logo"/></a>
+
+            </div>
+            <div>
+                <a href="/space/1">
+                    <span
+                        style="
+              font-size: 30;
+              font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            ">
+                        뒤로가기</span >
+                </a ><br/><br/>
+            </div>
+
+            <div>
+                공사중입니다</div>
+
+            <div class="reservation_list">
+                <div class="box_search">
+                    <div class="box_inner">
+                        <div class="one_search">
+                            <div class="flex_wrap">
+                                <div class="flex_box">
+                                    <div class="flex">예약 정보 검색</div>
+                                    <div class="flex">
+                                        <div class="input"><input
+                                            type="text"
+                                            name="reservation_num"
+                                            id="reservation_num"
+                                            placeholder="예약번호 또는 예약자명"
+                                            value=""></div>
+                                    </div>
+                                    <div class="flex">
+                                        <a class="btn btn_default" href="/reservation?q=">
+                                            <i class="sp_icon ico_search_primary"></i>
+                                            <i class="sp_icon ico_btn_search"></i>검색</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter_area">
+                    <div class="inner_width">
+                        <div class="sorting_filter">
+                            <label for="sorting">전체상태</label>
+                            <select name="sort" id="sorting">
+                                <option value="">전체상태</option>
+                                <option value="RSREQ">승인대기</option>
+                                <option value="RSCFM">결제대기</option>
+                                <option value="RSCMP">예약확정</option>
+                                <option value="USEDC">이용완료</option>
+                                <option value="RCCMP">취소환불</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="inner_width inner_width_shallow">
+                        <a href="/reservation-calendar">
+                            <div class="reservation-view-switch">캘린더 보기</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="list_box_wrap">
+                    <article class="list_box">
+                        <a href="/reservation/1444594">
+                            <p class="state_tag">
+                                <span class="tag tag_reservation_decide">예약확정</span><span class="reservation_num">예약번호 1444594</span></p>
+                            <dl class="list_detail">
+                                <dt class="blind">예약정보</dt>
+                                <dd class="place">
+                                    <span class="blind">예약공간</span>원스연습실강남논현점 - 댄스A, 신규 1+1 이벤트</dd>
+                                <dd class="date">
+                                    <span class="blind">날짜/시간</span>2020.09.04(금) 12~13 시, 1 시간</dd>
+                                <dd class="sub_detail">
+                                    <p class="user" style="margin-right: 4px;">
+                                        <span class="blind">예약자명</span>원성범</p>
+                                    <p class="tel">
+                                        <span class="blind">전화번호</span>010-9237-1530</p>
+                                    <p class="price">
+                                        <span class="blind">가격</span>0원</p>
+                                </dd>
+                            </dl>
+                            <i class="sp_ico ico_links_type2"></i>
+                        </a>
+                    </article>
+                    <article class="list_box">
+                        <a href="/reservation/1444590">
+                            <p class="state_tag">
+                                <span class="tag tag_reservation_decide">예약확정</span><span class="reservation_num">예약번호 1444590</span></p>
+                            <dl class="list_detail">
+                                <dt class="blind">예약정보</dt>
+                                <dd class="place">
+                                    <span class="blind">예약공간</span>원스연습실강남논현점 - 댄스A, NA-논현댄스A</dd>
+                                <dd class="date">
+                                    <span class="blind">날짜/시간</span>2020.09.04(금) 11~12 시, 1 시간</dd>
+                                <dd class="sub_detail">
+                                    <p class="user" style="margin-right: 4px;">
+                                        <span class="blind">예약자명</span>원성범</p>
+                                    <p class="tel">
+                                        <span class="blind">전화번호</span>010-9237-1530</p>
+                                    <p class="price">
+                                        <span class="blind">가격</span>4,400원</p>
+                                </dd>
+                            </dl>
+                            <i class="sp_ico ico_links_type2"></i>
+                        </a>
+                    </article>
+                    <article class="list_box">
+                        <a href="/reservation/1444167">
+                            <p class="state_tag">
+                                <span class="tag tag_reservation_decide">예약확정</span><span class="reservation_num">예약번호 1444167</span></p>
+                            <dl class="list_detail">
+                                <dt class="blind">예약정보</dt>
+                                <dd class="place">
+                                    <span class="blind">예약공간</span>원스연습실홍대점-보컬, 3+1이벤트</dd>
+                                <dd class="date">
+                                    <span class="blind">날짜/시간</span>2020.09.04(금) 18~19 시, 1 시간</dd>
+                                <dd class="sub_detail">
+                                    <p class="user" style="margin-right: 4px;">
+                                        <span class="blind">예약자명</span>염지선</p>
+                                    <p class="tel">
+                                        <span class="blind">전화번호</span>010-8214-8918</p>
+                                    <p class="price">
+                                        <span class="blind">가격</span>0원</p>
+                                </dd>
+                            </dl>
+                            <i class="sp_ico ico_links_type2"></i>
+                        </a>
+                    </article>
+                    <article class="list_box">
+                        <a href="/reservation/1444165">
+                            <p class="state_tag">
+                                <span class="tag tag_cancle_payback">취소환불</span><span class="reservation_num">예약번호 1444165</span></p>
+                            <dl class="list_detail">
+                                <dt class="blind">예약정보</dt>
+                                <dd class="place">
+                                    <span class="blind">예약공간</span>원스연습실홍대점-보컬, 3+1이벤트</dd>
+                                <dd class="date">
+                                    <span class="blind">날짜/시간</span>2020.09.04(금) 19~20 시, 1 시간</dd>
+                                <dd class="sub_detail">
+                                    <p class="user" style="margin-right: 4px;">
+                                        <span class="blind">예약자명</span>염지*</p>
+                                    <p class="price">
+                                        <span class="blind">가격</span>0원</p>
+                                </dd>
+                            </dl>
+                            <i class="sp_ico ico_links_type2"></i>
+                        </a>
+                    </article>
+                    <article class="list_box">
+                        <a href="/reservation/1444161">
+                            <p class="state_tag">
+                                <span class="tag tag_reservation_decide">예약확정</span><span class="reservation_num">예약번호 1444161</span></p>
+                            <dl class="list_detail">
+                                <dt class="blind">예약정보</dt>
+                                <dd class="place">
+                                    <span class="blind">예약공간</span>원스연습실홍대점-보컬, 보컬-장시간이벤트</dd>
+                                <dd class="date">
+                                    <span class="blind">날짜/시간</span>2020.09.04(금) 14~18 시, 4 시간</dd>
+                                <dd class="sub_detail">
+                                    <p class="user" style="margin-right: 4px;">
+                                        <span class="blind">예약자명</span>염지선</p>
+                                    <p class="tel">
+                                        <span class="blind">전화번호</span>010-8214-8918</p>
+                                    <p class="price">
+                                        <span class="blind">가격</span>14,000원</p>
+                                </dd>
+                            </dl>
+                            <i class="sp_ico ico_links_type2"></i>
+                        </a>
+                    </article>
+                    <article class="list_box">
+                        <a href="/reservation/1442753">
+                            <p class="state_tag">
+                                <span class="tag tag_exploit_finish">이용완료</span><span class="reservation_num">예약번호 1442753</span></p>
+                            <dl class="list_detail">
+                                <dt class="blind">예약정보</dt>
+                                <dd class="place">
+                                    <span class="blind">예약공간</span>원스연습실강남논현점 - 보컬, NV3-보컬</dd>
+                                <dd class="date">
+                                    <span class="blind">날짜/시간</span>2020.09.03(목) 11~13 시, 2 시간</dd>
+                                <dd class="sub_detail">
+                                    <p class="user" style="margin-right: 4px;">
+                                        <span class="blind">예약자명</span>김민*</p>
+                                    <p class="price">
+                                        <span class="blind">가격</span>9,800원</p>
+                                </dd>
+                            </dl>
+                            <i class="sp_ico ico_links_type2"></i>
+                        </a>
+                    </article>
+                    <article class="list_box">
+                        <a href="/reservation/1439774">
+                            <p class="state_tag">
+                                <span class="tag tag_exploit_finish">이용완료</span><span class="reservation_num">예약번호 1439774</span></p>
+                            <dl class="list_detail">
+                                <dt class="blind">예약정보</dt>
+                                <dd class="place">
+                                    <span class="blind">예약공간</span>원스연습실강남논현점 - 댄스A, NA-논현댄스A</dd>
+                                <dd class="date">
+                                    <span class="blind">날짜/시간</span>2020.09.02(수) 10~12 시, 2 시간</dd>
+                                <dd class="sub_detail">
+                                    <p class="user" style="margin-right: 4px;">
+                                        <span class="blind">예약자명</span>김찬*</p>
+                                    <p class="price">
+                                        <span class="blind">가격</span>8,800원</p>
+                                </dd>
+                            </dl>
+                            <i class="sp_ico ico_links_type2"></i>
+                        </a>
+                    </article>
+                    <article class="list_box">
+                        <a href="/reservation/1439762">
+                            <p class="state_tag">
+                                <span class="tag tag_cancle_payback">취소환불</span><span class="reservation_num">예약번호 1439762</span></p>
+                            <dl class="list_detail">
+                                <dt class="blind">예약정보</dt>
+                                <dd class="place">
+                                    <span class="blind">예약공간</span>원스연습실강남논현점 - 댄스A, NA-논현댄스A</dd>
+                                <dd class="date">
+                                    <span class="blind">날짜/시간</span>2020.09.02(수) 10~12 시, 2 시간</dd>
+                                <dd class="sub_detail">
+                                    <p class="user" style="margin-right: 4px;">
+                                        <span class="blind">예약자명</span>김찬*</p>
+                                    <p class="price">
+                                        <span class="blind">가격</span>8,800원</p>
+                                </dd>
+                            </dl>
+                            <i class="sp_ico ico_links_type2"></i>
+                        </a>
+                    </article>
+                    <article class="list_box">
+                        <a href="/reservation/1439649">
+                            <p class="state_tag">
+                                <span class="tag tag_exploit_finish">이용완료</span><span class="reservation_num">예약번호 1439649</span></p>
+                            <dl class="list_detail">
+                                <dt class="blind">예약정보</dt>
+                                <dd class="place">
+                                    <span class="blind">예약공간</span>원스연습실강남논현점 - 보컬, 신규 1+1 이벤트</dd>
+                                <dd class="date">
+                                    <span class="blind">날짜/시간</span>2020.09.02(수) 19~20 시, 1 시간</dd>
+                                <dd class="sub_detail">
+                                    <p class="user" style="margin-right: 4px;">
+                                        <span class="blind">예약자명</span>안소*</p>
+                                    <p class="price">
+                                        <span class="blind">가격</span>0원</p>
+                                </dd>
+                            </dl>
+                            <i class="sp_ico ico_links_type2"></i>
+                        </a>
+                    </article>
+                    <article class="list_box">
+                        <a href="/reservation/1439646">
+                            <p class="state_tag">
+                                <span class="tag tag_exploit_finish">이용완료</span><span class="reservation_num">예약번호 1439646</span></p>
+                            <dl class="list_detail">
+                                <dt class="blind">예약정보</dt>
+                                <dd class="place">
+                                    <span class="blind">예약공간</span>원스연습실강남논현점 - 보컬, NV1-보컬</dd>
+                                <dd class="date">
+                                    <span class="blind">날짜/시간</span>2020.09.02(수) 17~19 시, 2 시간</dd>
+                                <dd class="sub_detail">
+                                    <p class="user" style="margin-right: 4px;">
+                                        <span class="blind">예약자명</span>안소*</p>
+                                    <p class="price">
+                                        <span class="blind">가격</span>13,200원</p>
+                                </dd>
+                            </dl>
+                            <i class="sp_ico ico_links_type2"></i>
+                        </a>
+                    </article>
+                </div>
+                <div class="paging">
+                    <a class="btn_prev_list" href="/reservation?page=1">
+                        <i class="sp_icon ico_prev_list">이전목록 10개로 이동</i>
+                    </a>
+                    <a class="num active" href="/reservation?page=1">1</a>
+                    <a class="num" href="/reservation?page=2">2</a>
+                    <a class="num" href="/reservation?page=3">3</a>
+                    <a class="num" href="/reservation?page=4">4</a>
+                    <a class="num" href="/reservation?page=5">5</a>
+                    <a class="btn_next_list active" href="/reservation?page=6">
+                        <i class="sp_icon ico_next_list">다음목록 10개로 이동</i>
+                    </a>
+                </div>
+            </div>
+            <div></div>
+
+        </body>
+    </html>
+
+    <html lang="ko">
+        <head>
+            <!-- css 부분 -->
+            <link rel="stylesheet" href="/css/menu-slide.css"/>
+
+            <link rel="stylesheet" href="/css/profile.css"/>
+
+        </head>
+
+    </script>
+
+</body>
+</html>

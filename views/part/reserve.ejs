@@ -1,4 +1,4 @@
-<script src="../js/calendar-checker.js"></script>
+<script src="/js/calendar-checker.js"></script>
     
 <script src="http://code.jquery.com/jquery.min.js"></script>
 
@@ -15,43 +15,64 @@
               <span style="color: red; font-size: 15px" >
                   -[필수사항] 선택후 가격계산&가능확인 을 누르세요 -
                 </span>
+
+
+	<h2>논현점</h2>
+	<div class="switch-field">
+      <input type="radio" id="radio-ny" name="stype" value="NY" onclick="src_selector();" />
+      <label for="radio-ny">NY</label>
+      <input type="radio" id="radio-na" name="stype" value="NA" onclick="src_selector();" />
+      <label for="radio-na">NA</label>
+      <input type="radio" id="radio-nb" name="stype" value="NB" onclick="src_selector();" />
+      <label for="radio-nb">NB</label>
+      <input type="radio" id="radio-nx" name="stype" value="NX" onclick="src_selector();" />
+      <label for="radio-nx">NX</label>
+      <input type="radio" id="radio-nd" name="stype" value="ND" onclick="src_selector();" />
+      <label for="radio-nd">ND</label>
+      <input type="radio" id="radio-nm" name="stype" value="NM" onclick="src_selector();" />
+      <label for="radio-nm">NM</label>
+      <input type="radio" id="radio-np" name="stype" value="NP" onclick="src_selector();" />
+      <label for="radio-np">NP</label>
+      <input type="radio" id="radio-nv" name="stype" value="NV" onclick="src_selector();" />
+      <label for="radio-nv">NV</label>
+
+</div>
+      
+	<h2>홍대점</h2>
+	<div class="switch-field">
+      <input type="radio" id="radio-hr" name="stype" value="HR" onclick="src_selector();" />
+      <label for="radio-hr">HR</label>
+      <input type="radio" id="radio-ha" name="stype" value="HA" onclick="src_selector();" />
+      <label for="radio-ha">HA</label>
+      <input type="radio" id="radio-hs" name="stype" value="HS" onclick="src_selector();" />
+      <label for="radio-hs">HS</label>
+      <input type="radio" id="radio-hx" name="stype" value="HX" onclick="src_selector();" />
+      <label for="radio-hx">HX</label>
+      <input type="radio" id="radio-hd" name="stype" value="HD" onclick="src_selector();" />
+      <label for="radio-hd">HD</label>
+      <input type="radio" id="radio-hm" name="stype" value="HM" onclick="src_selector();" />
+      <label for="radio-hm">HM</label>
+      <input type="radio" id="radio-hp" name="stype" value="HP" onclick="src_selector();" />
+      <label for="radio-hp">HP</label>
+      <input type="radio" id="radio-hv" name="stype" value="HV" onclick="src_selector();" />
+      <label for="radio-hv">HV</label>
+
+</div>
+      
+    
+  
                 <div>
-                 공간: [논현]
-                  <input type="radio" name="stype" value="NY" onclick="src_selector();" />NY
-                  <input type="radio" name="stype" value="NA" onclick="src_selector();"/>NA
-                  <input type="radio" name="stype" value="NB" onclick="src_selector();" />NB
-                  
+
           
           <button onclick="go_cafe_nonhyun();" style="color: black;">
             논현점 사진
           </button>
+
+          <button onclick="go_cafe_nonhyun();" style="color: black;">
+              홍대점 사진
+            </button>
                 </div>
 
-                <div>
-                  <input type="radio" name="stype" value="NX" onclick="src_selector();" />NX
-                  <input type="radio" name="stype" value="ND" onclick="src_selector();" />ND
-                  <input type="radio" name="stype" value="NM" onclick="src_selector();" />NM
-                  <input type="radio" name="stype" value="NP" onclick="src_selector();" />NP
-                  <input type="radio" name="stype" value="NV" checked/>NV
-                </div>
-
-                <div>
-                  공간: [홍대]
-                  <input type="radio" name="stype" value="HR" onclick="src_selector();" />HR
-                  <input type="radio" name="stype" value="HA" onclick="src_selector();" />HA
-                  <input type="radio" name="stype" value="HS" onclick="src_selector();" />HS
-
-                  <button onclick="go_cafe_nonhyun();" style="color: black;">
-                    홍대점 사진
-                  </button>
-                </div>
-                <div>
-                  <input type="radio" name="stype" value="HX" onclick="src_selector();" />HX
-                  <input type="radio" name="stype" value="HD" onclick="src_selector();" />HD
-                  <input type="radio" name="stype" value="HM" onclick="src_selector();" />HM
-                  <input type="radio" name="stype" value="HP" onclick="src_selector();" />HP
-                  <input type="radio" name="stype" value="HV" onclick="src_selector();" />HV
-                </div>
 
                 <div>  <img id="main_image" src="/images/nv.jpg" alt="your image" width="350" /> </div>
 
@@ -476,19 +497,21 @@
           </div>
 
           <br>
-              <div class="input_row" id="rtype_area">
-                  유형:
-                  <input type="radio" name="rtype" value="rent" checked />대여
-                  <input type="radio" name="rtype" value="pass" />자율
-                  <input type="radio" name="rtype" value="visit" />현장
-                  
-                  <input type="radio" name="rtype" value="vip" />VIP
-                  <input type="radio" name="rtype" value="vip" />강사
-                  <!-- <input type="radio" name="rtype" value="admin" />관리자
-                  
-                  
-                   -->
-                </div>
+
+
+      
+	<h2>유형</h2>
+	<div class="switch-field">
+      <input type="radio" id="radio-rent" name="rtype" value="rent" checked />
+      <label for="radio-rent">대여</label>
+      <input type="radio" id="radio-pass" name="rtype" value="pass" />
+      <label for="radio-pass">자율</label>
+      <input type="radio" id="radio-vip" name="rtype" value="vip" >
+      <label for="radio-vip">강사</label>
+      <input type="radio" id="radio-visit" name="rtype" value="visit" >
+      <label for="radio-visit">현장</label>
+</div>
+      
   
                 <div>
   
@@ -547,7 +570,7 @@
                           <div class="input_row" id="price_area">
                             가격: <input type="text" id="price" name="price"
                             placeholder="가격계산을 누르세요"  maxlength="41"
-                            value="" />
+                            value=""/>
                           </div>
 
 

@@ -1,161 +1,122 @@
-
-
 <html lang="ko">
-  <head>
-    <%- include('part/meta'); %> <%- include('part/title'); %>
+    <head>
+        <%- include('part/meta'); %>
+            <%- include('part/title'); %>
 
-    <!-- css 부분 -->
-    <link rel="stylesheet" href="/css/menu-slide.css" />
-    
-    <link rel="stylesheet" href="/css/profile.css" />
+                <!-- css 부분 -->
+                <link rel="stylesheet" href="/css/menu-slide.css"/>
 
-    <!-- <link rel="stylesheet" href="/css/main-body.css" /> -->
-    
-  </head>
-  <body>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-    <div class="container">
-      <div class="menu-container" id="toggle">
-        <a href="#" class="menu"
-          ><i class="fa fa-bars" aria-hidden="true"></i
-        ></a>
-      </div>
+                <link rel="stylesheet" href="/css/profile.css"/>
 
-      
-    <div id="header">
-      <a
-        href="https://onebeat.kr/space/1"
-        target="_blank"
-        title="원비트 메인으로 가기"
-        ><img src="/images/onebeat_ci_black.png" id="logo"
-      /></a>
+                <link rel="stylesheet" href="/css/partner-sc.css"/>
 
-      <%- include('part/spacelogin'); %> 
+                <!-- <link rel="stylesheet" href="/css/main-body.css" /> -->
 
-      
-    </div>
-    <div>
-        <a href="/space/1"
-          ><span
-            style="
+            </head>
+            <body>
+                <script src="/js/calendar-checker.js"></script>
+
+                <script
+                    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                    crossorigin="anonymous"></script>
+                <div class="container">
+                    <div class="menu-container" id="toggle">
+                        <a href="#" class="menu">
+                            <i class="fa fa-bars" aria-hidden="true"></i >
+                        </a>
+                    </div>
+
+                    <div id="header">
+                        <a href="/space/1" title="원비트 메인으로 가기"><img src="/images/onebeat_ci_black.png" id="logo"/></a>
+
+                        <%- include('part/spacelogin'); %>
+
+                        </div>
+                        <div>
+                            <a href="/space/1">
+                                <span
+                                    style="
               font-size: 30;
               font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-            "
-          >
-            뒤로가기</span
-          > </a
-        ><br /><br />
-      </div>
+            ">
+                                    뒤로가기</span >
+                            </a ><br/><br/>
+                        </div>
 
-    <%- include('part/menu'); %> 
+                        <%- include('part/menu'); %>
 
-    <div> 공사중입니다</div>
-    <div>
 
-    <% reserve.forEach(element => { %> 
-      <br>-----------------------------------------------------------------
-      <br>상태: 요청
-      <br>공간: <%=element.stype+element.room %> 
-      <br>사용자: <%=element.username+ " " + element.mobile %> 
-      <br>시작: <%=element.start.format('yyyy-MM-dd(KS) HH:mm:ss')%>
-      <br >종료: <%=element.end.format('yyyy-MM-dd(KS) HH:mm:ss')%>
-      
-      
-  
-      <% }); %> 
-      
-    </div>
-    
-      
-    
-    
+                            <div class="reservation_list">
 
-  </body>
-</html>
+                                <div class="list_box_wrap">
 
-<html lang="ko">
-  <head>
-    <%- include('part/meta'); %> <%- include('part/title'); %>
-
-    <!-- css 부분 -->
-    <link rel="stylesheet" href="/css/menu-slide.css" />
-
-    <link rel="stylesheet" href="/css/profile.css" />
-
-  </head>
- 
-
-<% 
-  
-  Date.prototype.format = function (f) {
-
-if (!this.valueOf()) return " ";
+                                    <% reserve.forEach(element => { %>
 
 
 
-var weekKorName = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
 
-var weekKorShortName = ["일", "월", "화", "수", "목", "금", "토"];
-
-var weekEngName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-var weekEngShortName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-var d = this;
-
-
-
-return f.replace(/(yyyy|yy|MM|dd|KS|KL|ES|EL|HH|hh|mm|ss|a\/p)/gi, function ($1) {
-
-    switch ($1) {
-
-        case "yyyy": return d.getFullYear(); // 년 (4자리)
-
-        case "yy": return (d.getFullYear() % 1000).zf(2); // 년 (2자리)
-
-        case "MM": return (d.getMonth() + 1).zf(2); // 월 (2자리)
-
-        case "dd": return d.getDate().zf(2); // 일 (2자리)
-
-        case "KS": return weekKorShortName[d.getDay()]; // 요일 (짧은 한글)
-
-        case "KL": return weekKorName[d.getDay()]; // 요일 (긴 한글)
-
-        case "ES": return weekEngShortName[d.getDay()]; // 요일 (짧은 영어)
-
-        case "EL": return weekEngName[d.getDay()]; // 요일 (긴 영어)
-
-        case "HH": return d.getHours().zf(2); // 시간 (24시간 기준, 2자리)
-
-        case "hh": return ((h = d.getHours() % 12) ? h : 12).zf(2); // 시간 (12시간 기준, 2자리)
-
-        case "mm": return d.getMinutes().zf(2); // 분 (2자리)
-
-        case "ss": return d.getSeconds().zf(2); // 초 (2자리)
-
-        case "a/p": return d.getHours() < 12 ? "오전" : "오후"; // 오전/오후 구분
-
-        default: return $1;
-
-    }
-
-});
-
-};
+                                    <article class="list_box">
+                                        <a href="/space/1">
+                                            <p class="state_tag">
+                                                <span class="tag tag_reservation_decide">예약확정</span><span class="reservation_num">예약번호 <%=element.id%></span></p>
+                                            <dl class="list_detail">
+                                                <dt class="blind">예약정보</dt>
+                                                <dd class="place">
+                                                    <span class="blind">예약공간</span>원스연습실 <%=element.stype%></dd>
+                                                <dd class="date">
+                                                    <span class="blind">날짜/시간</span>  <%=element.start%></dd>
+                                                <dd class="sub_detail">
+                                                    <p class="user" style="margin-right: 4px;">
+                                                        <span class="blind">예약자명</span><%=element.username %></p>
+                                                    <p class="tel">
+                                                        <span class="blind">전화번호</span><%=element.mobile %></p>
+                                                    <!-- <p class="price">
+                                                        <span class="blind">가격</span>0원</p> -->
+                                                </dd>
+                                            </dl>
+                                            <i class="sp_ico ico_links_type2"></i>
+                                        </a>
+                                    </article>
 
 
+                                    <% }); %>
 
-String.prototype.string = function (len) { var s = '', i = 0; while (i++ < len) { s += this; } return s; };
+                                    
+                                </div>
+                                <div class="paging">
+                                    <a class="btn_prev_list" href="#">
+                                        <i class="sp_icon ico_prev_list">이전목록 10개로 이동</i>
+                                    </a>
+                                    <a class="num active" href="#">1</a>
+                                    <a class="num" href="#">2</a>
+                                    <a class="num" href="#">3</a>
+                                    <a class="num" href="#">4</a>
+                                    <a class="num" href="#">5</a>
+                                    <a class="btn_next_list active" href="#">
+                                        <i class="sp_icon ico_next_list">다음목록 10개로 이동</i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+                                    </div>
 
-String.prototype.zf = function (len) { return "0".string(len - this.length) + this; };
+                                </body>
+                            </html>
 
-Number.prototype.zf = function (len) { return this.toString().zf(len); };
+                            <html lang="ko">
+                                <head>
+                                    <%- include('part/meta'); %>
+                                        <%- include('part/title'); %>
 
-  %> 
+                                            <!-- css 부분 -->
+                                            <link rel="stylesheet" href="/css/menu-slide.css"/>
 
+                                            <link rel="stylesheet" href="/css/profile.css"/>
 
-</script>
+                                        </head>
 
-  </body>
-</html>
+                                    </script>
+
+                                </body>
+                            </html>

@@ -222,8 +222,8 @@ function check_possible() {
       // document.querySelector('input[name="possible"]').value = json.possible;
 
       if (json.possible == "NO") {
-        document.querySelector('input[name="request_text"]').value =
-          json.reason;
+        // document.querySelector('input[name="request_text"]').value =
+        //   json.reason;
         alert("[예약불가] - " + json.reason);
       } else {
         var rtext = make_rtext(json);
@@ -247,6 +247,7 @@ function request_reserve() {
   })
     .then((response) => response.json())
     .then((json) => {
+      console.log('-------------got response');
       console.log(json);
       document.getElementById("price").value = json.price;
       document.querySelector('select[name="dm_sw"]').value = json.dm_sw;
@@ -257,6 +258,7 @@ function request_reserve() {
 
       document.querySelector('input[name="possible"]').value = json.possible;
 
+      
       console.log(json);
       // document.querySelector('input[name="possible"]').value = json.possible;
 
