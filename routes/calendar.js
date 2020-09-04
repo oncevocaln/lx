@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Reserve = require("../models/Reserve");
 const processor = require("../logic/processor");
-
+const mongoose = require("mongoose");
 const google = require("../logic/google-calendar");
 const mailer = require("../logic/mailer");
 
@@ -85,7 +85,7 @@ router.post("/request", async (req, res) => {
 
   if (grade == "no" || grade == "new") {
     r.possible = "NO";
-    r.reason = "제한된 기능입니다. 로그인하시거나 카톡보내기를 이용해주세요";
+    r.reason = "로그인해주세요";
   }
 
   if (r.possible == "NO") {
@@ -99,18 +99,31 @@ router.post("/request", async (req, res) => {
           data.possible = "OK";
   
           data.user = user;
-          data.room = data.rn_sw;
+          data.room = Number.parseInt(data.rn_sw);
   
           console.log(data.start);
           console.log(data.end);
   
+
+
+          let r = Math.random().toString(36).substring(7);
+          console.log("random", r);
+
+          data.rid = data.user.id + r;
           //자율사용자
           if (grade == "pass") {
             //자율사용자는 한개씩 예약할수 있게 변경
           }
           var savedData = await insertReserve(data);
+
+          
+          console.log('------------------this is data saved');
+          console.log(savedData);
+          console.log(data);
   
-          google.insertEvent(data, (err, data) => {
+          // res.json(data);
+          
+          google.makeEvent(data, (err, data) => {
             console.log('-----------------insert event r')
             res.json(data);
           });
@@ -140,6 +153,79 @@ async function insertReserve(data) {
     from: data.from,
     stype: data.stype,
     room: data.room,
+    rawData: data,
+    rtext: data.rtext
+  };
+  var reserve = new Reserve(preparedData);
+
+  try {
+    const savedData = await reserve.save();
+
+    console.log("-----------------------------saved reserve ");
+    
+    return savedData;
+  } catch (e) {
+    return data;
+  }
+}
+
+
+
+router.post("/request2", async (req, res) => {
+  console.log(
+    "-----------------------is admin-----grade grade---------------------"
+  );
+
+
+  let reqData = req.body;
+
+  const rid = reqData.rid;
+
+  var ObjectId = mongoose.Types.ObjectId;
+
+  try {
+    const reserve = await Reserve.findOne( {_id : ObjectId(rid)});
+
+
+    var data = reserve.rawData;
+
+    google.insertEvent(data, (err, data) => {
+      console.log('-----------------insert event r')
+      res.json(data);
+    });
+
+    console.log('---------------------------------------------');
+    console.log(reserve);
+
+
+
+    // res.render("frame2", {
+    //   session: req.session,
+    //   user: user,
+    //   reserve: reserve,
+    // });
+
+
+  } catch (e) {
+    res.json({message: "요청대기"});
+  }
+
+});
+
+async function insertReserve(data) {
+  var preparedData = {
+    id: data.user.id,
+    username: data.username,
+    email: data.email,
+    mobile: data.mobile,
+    grade: data.grade,
+    start: new Date(data.startdate),
+    end: new Date(data.enddate),
+    from: data.from,
+    stype: data.stype,
+    room: data.room,
+    rawData: data,
+    rtext: data.rtext
   };
   var reserve = new Reserve(preparedData);
 

@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 const ReserveSchema = new mongoose.Schema({
   id: String,
+
+  rid: String,
   username: String,
   email: String,
 
@@ -27,6 +29,10 @@ const ReserveSchema = new mongoose.Schema({
   },
   otype: [String], // 옵션 종류
   ocount: [Number], // 옵션 갯수
+  rawData: {},
+  rtext: String,
 });
+
+
 
 module.exports = mongoose.model("Reserves", ReserveSchema);

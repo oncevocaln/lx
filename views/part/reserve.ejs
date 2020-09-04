@@ -539,7 +539,7 @@
                         title="rn"
                         class="sel"
                       >
-                        <option value="0">배정되지 않았다면 1번부터 순서대로 빈방을 사용하세요</option>
+                        <option value="1">배정되지 않았다면 1번부터 순서대로 빈방을 사용하세요</option>
 
                         <!-- <option value="1">1</option>                      
                         <option value="2">2</option>
@@ -597,22 +597,22 @@
       
                 
               </div>
-              <span style="font-size: 14px;"> 
-            예약자는 변경&환불규정에 동의한것으로 간주됩니다.<br>예약내용 확인후 신중하게 이체해주세요. </span>
-            <button onclick="check_refund_policy();" style="color: black; ">
+              <span style="font-size: 10px;"> 
+            가능확인을 누르고 다음을 눌러주세요 <br>예약자는 변경&환불규정에 동의한것으로 간주됩니다.<br>예약내용 확인후 신중하게 이체해주세요. </span>
+            <button onclick="check_refund_policy();" style="background-color: antiquewhite; color: black; ">
               변경&환불규정
             </button><br>
           <div>
-              <textarea id="account_number" cols="34"  
+              <!-- <textarea id="account_number" cols="34"  
               >하나은행 134-910094-25407 이효원</textarea> 
               <button onclick="copy_account_to_clipboard();" style="color: black;">
                 계좌번호복사
-              </button>
+              </button> -->
           </div>
   
           
           <div>
-              <textarea id="request_text" cols="34" rows="17"
+              <textarea id="request_text" cols="34" rows="17" style="background-color: aliceblue"
               ></textarea> 
               <!-- <button onclick="copy_request_to_clipboard();" style="background-color:yellow; color: black; height: 30px">
                 <span style="font-size: 20px">2. 예약요청복사</span>
@@ -620,31 +620,55 @@
               </button> -->
   
           </div>
-          <div>
-            [OK]가 되면 예약요청이 만들어집니다. <br>
-            카톡으로 예약요청과 이체내역 캡쳐를 보내주세요 -><br>
-              <button onclick="send_kakao();"  style=" background-color:yellow; color: black; height: 30px">
-                  <span style="font-size: 20px">
-                  2-1. 클립보드에 복사 & 카톡열기</span>
-                </button>
-                
-          </div>
-
 
           <div>
-              <span style="font-size: 14px;"> 
-               예약이 정상적으로 처리되지 않았을때 연락을 드립니다. <br> 응답이 없거나 예약현황에 나오지 않아도 예약된것입니다.<br>
-               <br>
-               등급에 따라서 바로예약하기 기능을 사용할수 있습니다. <br>
-               허가된 등급의 사용자는 카톡 대신 바로등록하기를 이용해주세요-><br>
-               
-              </span>
-                <button onclick="request_reserve();"  style=" background-color:yellow; color: black; height: 30px">
+
+              <span style="font-size: 10px;"> 
+                  [가격계산]을 먼저 하시고 [가능확인]이 뜨면 [다음]을 눌러주세요. <br>오전/오후 꼭 확인해주세요 <br></span>
+
+                <button onclick="request_reserve();"  style=" background-color:yellow; color: black; height: 40px; width: 200px">
                     <span style="font-size: 20px">
-                    2-2. 바로등록하기</span>
+                    2. 다음</span>
                   </button>
                   
             </div>
+
+
+          <div>
+
+
+
+              <span style="font-size: 10px;"> 
+  
+                <br>
+                <br>
+              
+              비회원 또는 오류로 다음으로 진행이 안될때, 카톡으로 예약도 가능합니다. <br>
+              예약요청을 복사 전송후 이체내역 또는 결제증빙 사진을 보내주세요<br>
+              
+                  
+                 </span>
+  
+
+            <div>
+                <textarea id="account_number" cols="34" style="background-color: aliceblue" 
+                >하나은행 134-910094-25407 이효원</textarea> 
+                <button onclick="copy_account_to_clipboard();" style="background-color: antiquewhite; color: black;">
+                  계좌번호복사
+                </button>
+            </div>
+              <button onclick="copy_to_clipboard();"  style=" background-color:yellow; color: black; height: 30px">
+                  <span style="font-size: 20px">
+                  2-1. 예약요청을 복사</span>
+                </button>
+                <button onclick="send_kakao();"  style=" background-color:yellow; color: black; height: 30px">
+                    <span style="font-size: 20px">
+                    2-2. 카톡열기</span>
+                  </button>
+                  
+            </div>
+
+  
 
           <!-- <div>   
             <button  onclick="request_reserve();" style="color: black;">

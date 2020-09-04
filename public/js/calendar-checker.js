@@ -237,10 +237,75 @@ function request_reserve() {
   // document.querySelector('input[name="possible"]').value = "-----loading-----";
 
   var checkData = make_data();
-  console.log(checkData);
-  fetch("/calendar/request", {
+
+
+
+  var rtext = document.querySelector('textarea[id="request_text"]').value;
+
+  if(rtext.substr(0,1) != "[") {
+    alert('가능확인을 먼저 해주세요');
+  } else {
+
+    checkData.rtext = rtext;
+    console.log(checkData);
+    fetch("/calendar/request", {
+      method: "POST",
+      body: JSON.stringify(checkData),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log('-------------got response----------');
+        console.log(json);
+        document.getElementById("price").value = json.price;
+        document.querySelector('select[name="dm_sw"]').value = json.dm_sw;
+  
+        document.querySelector('select[name="hh_sw"]').value = json.hh_sw;
+        document.querySelector('select[name="pkg"]').value = json.pkg;
+        document.querySelector('select[name="rn_sw"]').value = json.rn_sw;
+  
+        document.querySelector('input[name="possible"]').value = json.possible;
+        
+        console.log(json);
+        // document.querySelector('input[name="possible"]').value = json.possible;
+  
+        if (json.possible == "NO") {
+          // document.querySelector('input[name="request_text"]').value =json.reason;
+  
+          alert("" + json.reason);
+        } else {
+          alert("요청하였습니다. 결제를 완료해주세요" );
+  
+          var uri = "/space/2/" + json.user.id;
+  
+          window.open(uri, "_blank");
+        }
+      });
+  }
+  
+}
+
+
+
+function request_reserve2() {
+  // document.querySelector('input[name="price"]').value = "-----loading-----";
+  // document.querySelector('input[name="possible"]').value = "-----loading-----";
+
+  // var checkData = make_data();
+
+
+
+  var rid = document.querySelector('input[id="rid"]').value;
+
+
+
+
+  var data = {rid: rid};
+  fetch("/calendar/request2", {
     method: "POST",
-    body: JSON.stringify(checkData),
+    body: JSON.stringify(data),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
@@ -257,7 +322,6 @@ function request_reserve() {
       document.querySelector('select[name="rn_sw"]').value = json.rn_sw;
 
       document.querySelector('input[name="possible"]').value = json.possible;
-
       
       console.log(json);
       // document.querySelector('input[name="possible"]').value = json.possible;
@@ -267,10 +331,17 @@ function request_reserve() {
 
         alert("" + json.reason);
       } else {
-        alert("예약 완료!" );
+        alert("요청완료 하였습니다. 이체 내역을 카톡으로 보내주세요." );
+
+        // var uri = "/space/2/" + json.rid;
+
+        // window.open(uri, "_blank");
       }
     });
 }
+
+
+
 
 function make_os(json) {
   var os = "";
@@ -407,9 +478,15 @@ function copy_account_to_clipboard() {
 //   document.execCommand("Copy");
 // }
 
+
+
+function copy_to_clipboard() {
+  var copyText = document.getElementById("request_text");
+  copyText.select();
+  document.execCommand("Copy");
+}
+
 function send_kakao() {
-
-
   var copyText = document.getElementById("request_text");
   copyText.select();
   document.execCommand("Copy");

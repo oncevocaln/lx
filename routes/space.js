@@ -2,6 +2,9 @@ const express = require("express");
 
 const gc = require("../logic/google-calendar");
 
+const Reserve = require("../models/Reserve");
+
+const mongoose = require("mongoose");
 const router = express.Router();
 
 const calendarIds = {
@@ -77,6 +80,44 @@ const calendarIds = {
 
 router.get("/1", function (req, res, next) {
   res.render("frame", { session: req.session });
+});
+
+router.get("/2/:rid", async function (req, res, next) {
+
+
+  var rid = req.params.rid;
+
+  console.log("-------------------------------grade-----");
+  console.log(rid);
+
+  console.log(req.session);
+
+  var id = "";
+  var user = {};
+
+  // if (req.session && req.session.user && req.session.user.id) {
+  //   user = req.session.user;
+  //   id = req.session.user.id;
+  // }
+
+  var ObjectId = mongoose.Types.ObjectId;
+
+  try {
+    const reserve = await Reserve.findOne( {id: rid} ,{}, { sort: { 'creationDate' : -1 } });
+
+    console.log('----------------------find one space-----------------------');
+    console.log(reserve);
+
+    res.render("frame2", {
+      session: req.session,
+      user: user,
+      reserve: reserve,
+    });
+  } catch (e) {
+    res.render("frame2", { session: req.session });
+  }
+
+
 });
 
 router.get("/1/:stype", function (req, res, next) {

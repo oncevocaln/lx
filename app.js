@@ -25,6 +25,7 @@ const loginRoute = require("./routes/login");
 
 const calendarRoute = require("./routes/calendar");
 
+
 app.set("view engine", "ejs");
 
 
@@ -57,13 +58,14 @@ app.use(cookieParser());
 
 
 //connect to db
-mongoose.connect(
+const connection = mongoose.connect(
     process.env.DB_CONNECTION,
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => {
       console.log("connect to db");
     }
   );
+
 
 
   app.use("/", baseRoute);

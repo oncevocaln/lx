@@ -1,0 +1,119 @@
+<script src="/js/calendar-checker.js"></script>
+    
+<script src="http://code.jquery.com/jquery.min.js"></script>
+
+
+
+<div id="wrap">
+     
+
+        <div class="reserve-content" id="content">
+          
+           
+              <span style="font-size: 14px;"> 
+            예약자는 변경&환불규정에 동의한것으로 간주됩니다.<br>예약내용 확인후 신중하게 이체해주세요. </span>
+            <button onclick="check_refund_policy();" style="background-color: antiquewhite; color: black; ">
+              변경&환불규정
+            </button><br>
+          <div>
+              <textarea id="account_number" cols="34" style="background-color: aliceblue" 
+              >하나은행 134-910094-25407 이효원</textarea> 
+              <button onclick="copy_account_to_clipboard();" style="background-color: antiquewhite; color: black;">
+                계좌번호복사
+              </button>
+          </div>
+  
+          
+          <div>
+              <textarea id="request_text" cols="34" rows="17" style="background-color: aliceblue" 
+              ><%=reserve.rtext %>  </textarea> 
+              <!-- <button onclick="copy_request_to_clipboard();" style="background-color:yellow; color: black; height: 30px">
+                <span style="font-size: 20px">2. 예약요청복사</span>
+                
+              </button> -->
+  
+          </div>
+
+
+        <div>
+
+            <span style="font-size: 14px;"> 
+
+                <br>
+              
+              1.예약 완료하기를 눌러주세요
+                  
+                 </span>
+  
+          <br>
+          <button onclick="request_reserve2();"  style=" background-color:yellow; color: black; height: 30px">
+              <span style="font-size: 20px">
+              1. 예약 완료하기</span>
+            </button>
+          </div>
+       
+          <input type="hidden" id="rid" name="rid" value="<%=reserve._id%>" >
+
+          <div>
+
+
+
+            <span style="font-size: 14px;"> 
+
+              <br>
+            
+            2.예약요청을 카피해서 카톡으로 전송후 이체내역 또는 결제증빙 사진을 보내주세요<br>
+            
+                
+               </span>
+
+            <button onclick="copy_to_clipboard();"  style=" background-color:yellow; color: black; height: 30px">
+                <span style="font-size: 20px">
+                2-1. 예약요청을 복사</span>
+              </button>
+              <button onclick="send_kakao();"  style=" background-color:yellow; color: black; height: 30px">
+                  <span style="font-size: 20px">
+                  2-2. 카톡열기</span>
+                </button>
+                
+          </div>
+
+
+          <div>
+              <span style="font-size: 14px;"> 
+                <br>
+                자율사용자나 결제할 금액이 0원 인경우 예약요청만 보내면 됩니다.<br>
+                카톡에서 답변이 없어도 요청을 보냈다면 예약된것입니다.<br>
+                예약이 정상적으로 처리되지 않았거나 사용불가능할때 따로 연락을 드립니다. <br>
+               <br>
+               
+              </span>
+                  
+            </div>
+
+          <!-- <div>   
+            <button  onclick="request_reserve();" style="color: black;">
+                예약요청
+              </button>
+          </div> -->
+          <!-- //content -->
+        </div>
+        <!-- //container -->
+        <!-- footer -->
+
+        </div>
+    
+    <script>
+
+
+
+    </script>
+
+    <% if(session && session.user && session.user.username) { %> 
+        <script>
+        document.querySelector('input[name="username"]').value = "<%=session.user.username%>";
+        document.querySelector('input[name="mobile"]').value = "<%=session.user.mobile%>";
+
+    </script>
+
+    <% } %> 

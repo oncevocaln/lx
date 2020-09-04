@@ -48,7 +48,7 @@ router.post("/", async function (req, res) {
         console.log(" this is login ------------ complete ");
         //로그인 완료
         res.cookie("user", checkData.id, {
-          expires: new Date(Date.now() + 900000),
+          expires: new Date(Date.now() +  60*60*100*100),
           httpOnly: true,
         });
         req.session.user = {
