@@ -244,7 +244,10 @@ function request_reserve() {
 
   if(rtext.substr(0,1) != "[") {
     alert('가능확인을 먼저 해주세요');
-  } else {
+  }else if( checkData.mobile.substr(0,3) != "010") {
+    alert('로그인이 안되어 있거나 휴대폰번호가 바르지 않습니다.');
+  }
+  else {
 
     checkData.rtext = rtext;
     console.log(checkData);
@@ -331,7 +334,7 @@ function request_reserve2() {
 
         alert("" + json.reason);
       } else {
-        alert("요청완료 하였습니다. 이체 내역을 카톡으로 보내주세요." );
+        alert("요청완료 하였습니다.카톡을 보내주세요." );
 
         // var uri = "/space/2/" + json.rid;
 

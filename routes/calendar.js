@@ -83,7 +83,7 @@ router.post("/request", async (req, res) => {
   let resData = r;
   r.price = price;
 
-  if (grade == "no" || grade == "new") {
+  if (user == {}) {
     r.possible = "NO";
     r.reason = "로그인해주세요";
   }
@@ -114,6 +114,9 @@ router.post("/request", async (req, res) => {
           if (grade == "pass") {
             //자율사용자는 한개씩 예약할수 있게 변경
           }
+
+          console.log('----------------------------to save data--------------------');
+         
           var savedData = await insertReserve(data);
 
           
@@ -133,15 +136,15 @@ router.post("/request", async (req, res) => {
         }
       });
     }catch(e){
-
       res.json(r);
-
     }
    
   }
 });
 
 async function insertReserve(data) {
+
+  console.log('----------insertReserve-------------------------')
   var preparedData = {
     id: data.user.id,
     username: data.username,
@@ -154,17 +157,21 @@ async function insertReserve(data) {
     stype: data.stype,
     room: data.room,
     rawData: data,
-    rtext: data.rtext
+    rtext: data.rtext,
   };
+  console.log(preparedData);
   var reserve = new Reserve(preparedData);
 
+  console.log(reserve);
   try {
     const savedData = await reserve.save();
 
-    console.log("-----------------------------saved reserve ");
+    console.log("-----------------------------saved reserve -------------------");
     
     return savedData;
   } catch (e) {
+    console.log('---------------------');
+    console.log(e);
     return data;
   }
 }
@@ -212,32 +219,32 @@ router.post("/request2", async (req, res) => {
 
 });
 
-async function insertReserve(data) {
-  var preparedData = {
-    id: data.user.id,
-    username: data.username,
-    email: data.email,
-    mobile: data.mobile,
-    grade: data.grade,
-    start: new Date(data.startdate),
-    end: new Date(data.enddate),
-    from: data.from,
-    stype: data.stype,
-    room: data.room,
-    rawData: data,
-    rtext: data.rtext
-  };
-  var reserve = new Reserve(preparedData);
+// async function insertReserve(data) {
+//   var preparedData = {
+//     id: data.user.id,
+//     username: data.username,
+//     email: data.email,
+//     mobile: data.mobile,
+//     grade: data.grade,
+//     start: new Date(data.startdate),
+//     end: new Date(data.enddate),
+//     from: data.from,
+//     stype: data.stype,
+//     room: data.room,
+//     rawData: data,
+//     rtext: data.rtext
+//   };
+//   var reserve = new Reserve(preparedData);
 
-  try {
-    const savedData = await reserve.save();
+//   try {
+//     const savedData = await reserve.save();
 
-    console.log("-----------------------------saved reserve ");
+//     console.log("-----------------------------saved reserve ");
     
-    return savedData;
-  } catch (e) {
-    return data;
-  }
-}
+//     return savedData;
+//   } catch (e) {
+//     return data;
+//   }
+// }
 
 module.exports = router;

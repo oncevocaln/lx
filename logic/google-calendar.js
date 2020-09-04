@@ -433,8 +433,15 @@ exports.makeEvent = function (data, callback) {
       var namemask =
         data.username.substring(0, 2) + "*-" + data.mobile.substring(7, 4);
       var summary = data.rn_sw + namemask + "/" + grade + "/요청-" + data.stype + data.rn_sw;
-      // var calendarId = calendarIds[data.stype].id;
-      var calendarId = calendarIds["RQ"].id;
+
+      //신규가입자이거나 등급이 없다면
+      if(grade =="no" || grade == "new") {
+        var calendarId = calendarIds["RQ"].id;
+      } else {
+        var calendarId = calendarIds[data.stype].id;  
+      }
+      
+      
       var recurrence = "RRULE:FREQ=DAILY;COUNT=2";
 
       // var gend = data.endate.toISOString();
