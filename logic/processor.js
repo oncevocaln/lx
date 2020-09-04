@@ -789,30 +789,6 @@ exports.completeData = function (rawData) {
     }
   }
 
-  // if (rawData.pkg == "mo") {
-  //   rawData.hh_sw = "01";
-  //   rawData.dm_sw = "360";
-  // } else if (rawData.pkg == "am") {
-  //   rawData.hh_sw = "07";
-  //   rawData.dm_sw = "300";
-  // } else if (rawData.pkg == "da") {
-  //   rawData.hh_sw = "12";
-  //   rawData.dm_sw = "240";
-  // } else if (rawData.pkg == "pm") {
-  //   rawData.hh_sw = "16";
-  //   rawData.dm_sw = "180";
-  // } else if (rawData.pkg == "di") {
-  //   rawData.hh_sw = "19";
-  //   rawData.dm_sw = "180";
-  // } else if (rawData.pkg == "ni") {
-  //   rawData.hh_sw = "22";
-  //   rawData.dm_sw = "180";
-  // } else if (rawData.pkg == "up4") {
-  //   if (parseInt(rawData.dm_sw) < 240) rawData.dm_sw = "240";
-  // } else if (rawData.pkg == "up10") {
-  //   if (parseInt(rawData.dm_sw) < 600) rawData.dm_sw = "600";
-  // }
-
   if (rawData.pkg != "nu") {
     if (parseInt(rawData.dm_sw) >= 600) {
       rawData.pkg = "up10";
@@ -996,9 +972,9 @@ exports.calcuratePriceV2 = function (data) {
   if (data.pkg == "nu") {
     basePrice = basePrice / 2;
   } else if (data.pkg == "up10") {
-    basePrice = basePrice - priceCountIndex * 1000;
+    basePrice = basePrice * 0.6;
   } else if (data.pkg == "up4") {
-    basePrice = basePrice - priceCountIndex * 500;
+    basePrice = basePrice * 0.8;
   } else if (data.pkg == "mo") {
     basePrice = basePrice * 0.5;
   } else if (data.pkg == "am") {

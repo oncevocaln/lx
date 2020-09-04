@@ -281,7 +281,7 @@ function request_reserve() {
         } else {
           alert("요청하였습니다. 결제를 완료해주세요" );
   
-          var uri = "/space/2/" + json.user.id;
+          var uri = "/space/2/" + json.mobile;
   
           location.href = uri;
           // window.open(uri);
@@ -343,6 +343,8 @@ function request_reserve2() {
       }
     });
 }
+
+
 
 
 

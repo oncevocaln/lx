@@ -1,0 +1,40 @@
+<script src="/js/calendar-checker.js"></script>
+<script src="/js/admin-insert.js"></script>
+    
+<script src="http://code.jquery.com/jquery.min.js"></script>
+
+
+<div id="wrap">
+        <div class="reserve-content" id="content">
+          
+            <fieldset class="id_form" id="midside_panel">
+              <div class="" id="midside_panel_inner">
+
+	<h2>유형</h2>
+	<div class="switch-field">
+      <input type="radio" id="radio-rent" name="rtype" value="rent" checked />
+      <label for="radio-rent">네이버</label>
+      <input type="radio" id="radio-pass" name="rtype" value="pass" />
+      <label for="radio-pass">스클</label>
+      <input type="radio" id="radio-vip" name="rtype" value="vip" >
+      <label for="radio-vip">문자</label>
+</div>
+
+<textarea onclick="copy_to_clipboard();" id="request_text" cols="34" rows="17" style="background-color: aliceblue"
+></textarea> 
+<br>
+
+<% if(session && session.user && session.user.grade == "admin") { %> 
+<% } %> 
+
+<button onclick="request_reserve_admin();"  style=" background-color:yellow; color: black; height: 40px; width: 200px">
+    <span style="font-size: 20px">
+    입력하기</span>
+  </button>
+
+            </fieldset>
+        </div>
+        <!-- //container -->
+        <!-- footer -->
+        </div>
+    

@@ -82,13 +82,13 @@ router.get("/1", function (req, res, next) {
   res.render("frame", { session: req.session });
 });
 
-router.get("/2/:rid", async function (req, res, next) {
+router.get("/2/:mobile", async function (req, res, next) {
 
 
-  var rid = req.params.rid;
+  var mobile = req.params.mobile;
 
   console.log("-------------------------------grade-----");
-  console.log(rid);
+  console.log(mobile);
 
   console.log(req.session);
 
@@ -103,7 +103,7 @@ router.get("/2/:rid", async function (req, res, next) {
   var ObjectId = mongoose.Types.ObjectId;
 
   try {
-    const reserve = await Reserve.findOne( {id: rid} ,{}, { sort: { 'creationDate' : -1 } });
+    const reserve = await Reserve.findOne( {mobile: mobile} ,{}, { sort: { 'creationDate' : -1 } });
 
     console.log('----------------------find one space-----------------------');
     console.log(reserve);

@@ -47,6 +47,26 @@ router.post("/checkpossible", async (req, res) => {
   }
 });
 
+
+
+router.post("/admin", async (req, res) => {
+  console.log( "------------is admin-----grade grade---------");
+
+
+  let rtext = req.body;
+  console.log(rtext);
+
+
+  
+
+  // var data = {};
+
+  // data.result = "aa";
+  // res.json(data);
+
+});
+
+
 router.post("/request", async (req, res) => {
   console.log(
     "-----------------------is admin-----grade grade---------------------"
