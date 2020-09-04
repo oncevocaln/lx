@@ -459,8 +459,8 @@ exports.makeEvent = function (data, callback) {
         },
         // recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
         recurrence: [],
-        attendees: [{ email: "oncevocaln@gmail.com" }],
-        // attendees: [],
+        // attendees: [{ email: "oncevocaln@gmail.com" }],
+        attendees: [],
         reminders: {
           useDefault: false,
           overrides: [

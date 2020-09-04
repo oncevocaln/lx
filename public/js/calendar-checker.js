@@ -283,7 +283,8 @@ function request_reserve() {
   
           var uri = "/space/2/" + json.user.id;
   
-          window.open(uri, "_blank");
+          location.href = uri;
+          // window.open(uri);
         }
       });
   }

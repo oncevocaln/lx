@@ -567,6 +567,8 @@
                           </div>
             
                           <br>
+                          <span style="font-size: 10px;"> 
+                              <br> 하단의 가능확인 버튼을 누르면 자동계산됩니다 </span>
                           <div class="input_row" id="price_area">
                             가격: <input type="text" id="price" name="price"
                             placeholder="가격계산을 누르세요"  maxlength="41"
@@ -597,11 +599,7 @@
       
                 
               </div>
-              <span style="font-size: 10px;"> 
-            가능확인을 누르고 다음을 눌러주세요 <br>예약자는 변경&환불규정에 동의한것으로 간주됩니다.<br>예약내용 확인후 신중하게 이체해주세요. </span>
-            <button onclick="check_refund_policy();" style="background-color: antiquewhite; color: black; ">
-              변경&환불규정
-            </button><br>
+             
           <div>
               <!-- <textarea id="account_number" cols="34"  
               >하나은행 134-910094-25407 이효원</textarea> 
@@ -612,7 +610,9 @@
   
           
           <div>
-              <textarea id="request_text" cols="34" rows="17" style="background-color: aliceblue"
+            <br>
+            예약요청<br>
+              <textarea onclick="copy_to_clipboard();" id="request_text" cols="34" rows="17" style="background-color: aliceblue"
               ></textarea> 
               <!-- <button onclick="copy_request_to_clipboard();" style="background-color:yellow; color: black; height: 30px">
                 <span style="font-size: 20px">2. 예약요청복사</span>
@@ -624,7 +624,13 @@
           <div>
 
               <span style="font-size: 10px;"> 
-                  [가격계산]을 먼저 하시고 [가능확인]이 뜨면 [요청하기]을 눌러주세요. <br>오전/오후 꼭 확인해주세요 <br></span>
+                  <br>예약자는 변경&환불규정에 동의한것으로 간주됩니다.<br>예약내용 확인후 신중하게 이체해주세요. </span>
+                  <button onclick="check_refund_policy();" style="background-color: antiquewhite; color: black; ">
+                    변경&환불규정
+                  </button><br>
+
+                  <br>
+                  
 
                 <button onclick="request_reserve();"  style=" background-color:yellow; color: black; height: 40px; width: 200px">
                     <span style="font-size: 20px">
@@ -642,33 +648,37 @@
   
                 <br>
                 <br>
-              
-              비회원 또는 오류로 다음으로 진행이 안될때, 카톡으로 예약도 가능합니다. <br>
-              예약요청을 복사 전송후 이체내역 또는 결제증빙 사진을 보내주세요<br>
+
+                <br>
+              --혹시--<br>
+              오류로 다음으로 진행이 안될때, 카톡으로 예약도 가능합니다. <br>
+              금액을 이체하신 후 이체완료사잔을 캡쳐하고 예약요청을 복사해서 카톡으로 함께 전송해주세요<br>
+              <br>
               
                   
                  </span>
   
 
             <div>
-                <textarea id="account_number" cols="34" style="background-color: aliceblue" 
+                <textarea onclick="copy_account_to_clipboard();" id="account_number" cols="34" style="background-color: aliceblue" 
                 >하나은행 134-910094-25407 이효원</textarea> 
-                <button onclick="copy_account_to_clipboard();" style="background-color: antiquewhite; color: black;">
-                  계좌번호복사
-                </button>
+                
             </div>
-              <button onclick="copy_to_clipboard();"  style=" background-color:yellow; color: black; height: 30px">
-                  <span style="font-size: 20px">
-                  2-1. 예약요청을 복사</span>
-                </button>
-                <button onclick="send_kakao();"  style=" background-color:yellow; color: black; height: 30px">
-                    <span style="font-size: 20px">
-                    2-2. 카톡열기</span>
+
+            <br>
+                <button onclick="send_kakao();"  style=" background-color:blanchedalmond; color: black; height: 24px ; width:140px">
+                    <span style="font-size: 14px">
+                    카톡열기</span>
                   </button>
                   
             </div>
+            <br>
 
+            <span style="font-size: 12px;"> 
   
+            오류가 발생하거나 진행이 어렵다면 화면을 캡쳐해서 카톡으로 문의주세요.<br>
+  
+            </span> 
 
           <!-- <div>   
             <button  onclick="request_reserve();" style="color: black;">
