@@ -17,12 +17,7 @@ function request_reserve_admin() {
   })
     .then((response) => response.json())
     .then((json) => {
-      if (json.possible == "NO") {
-        alert("" + json.reason);
-      } else {
-        alert("완료\n" + json.result );
-
-      }
+      alert("완료\n" + json.result );
     });
 }
 

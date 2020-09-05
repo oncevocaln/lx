@@ -116,12 +116,24 @@ exports.splitData = async function (rawData) {
                 unit.spacecount = rlarray[7];
 
                 unit.optionstr = rlarray[9];
+                unit.room = 1;
+
+                console.log('--------------option str');
+                console.log(unit.optionstr);
+                if(unit.optionstr.includes("방번호")) {
+                  var xIndex = unit.optionstr.indexOf("방번호");
+                  console.log(xIndex);
+                  var roomstr = makeOnlyNumberString(unit.optionstr.substring(xIndex+3, xIndex+10)) ;
+                  console.log(roomstr);
+                  unit.room = parseInt(roomstr) || 1; 
+
+                }
                 unit.demandstr = rlarray[10];
                 unit.paystatus = rlarray[11];
                 unit.amountstr = rlarray[12];
                 unit.check = "";
                 unit.stype = "RQ";
-                unit.room = 1;
+                // unit.room = 1;
                 unit.os = "";
                 //방번호
 
@@ -339,6 +351,8 @@ exports.splitData = async function (rawData) {
         console.log('----------- this is naver list');
 
     }
+
+    return await data;
 }
 
 function convertTimeData(str) {
