@@ -28,3 +28,27 @@ function request_reserve_admin() {
     });
 }
 
+
+function process_naver_request(){
+  alert("-------naver request process first");
+
+  
+  var iframe = document.getElementById('naver-iframe');
+  var text = $(iframe).contents().find("html").html();
+
+  alert(text);
+}
+
+
+function print_iframe(frame_name) {
+
+
+  var iframe = document.getElementById('naver-iframe');
+
+  
+  console.log(iframe);
+
+  var doc = iframe.contentWindow.document;
+  console.log(doc);
+  // alert(frames[frame_name].document.body.innerHTML);
+}

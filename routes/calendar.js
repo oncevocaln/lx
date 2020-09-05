@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Reserve = require("../models/Reserve");
 const processor = require("../logic/processor");
+
+const adminlogic = require("../logic/adminlogic");
 const mongoose = require("mongoose");
 const google = require("../logic/google-calendar");
 const mailer = require("../logic/mailer");
@@ -53,16 +55,22 @@ router.post("/admin", async (req, res) => {
   console.log( "------------is admin-----grade grade---------");
 
 
-  let rtext = req.body;
-  console.log(rtext);
+  let rawData = req.body.rtext;
+  console.log(rawData);
 
+  if(rawData.includes("NAVER Corp. All Rights Reserved")) {
+
+    var data = adminlogic.completeData(rawData);
+    console.log('----------- this is naver list');
+    
+  }
 
   
 
-  // var data = {};
+  var data = {};
 
   // data.result = "aa";
-  // res.json(data);
+  res.json(data);
 
 });
 
