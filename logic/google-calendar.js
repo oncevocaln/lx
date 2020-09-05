@@ -322,92 +322,7 @@ exports.listUpcomingEvent = function (data, callback) {
   });
 };
 
-// exports.insertEvent = function (data, callback) {
-//   console.log("--------------------------- insert ");
-//   fs.readFile("credentials.json", (err, content) => {
-//     if (err) return console.log("Error loading client secret file:", err);
-//     // Authorize a client with credentials, then call the Google Calendar API.
-
-//     authorize(JSON.parse(content), function (auth) {
-//       const calendar = google.calendar({ version: "v3", auth });
-//       // var recurrence = ["RRULE:FREQ=DAILY;COUNT=2"];
-//       // var recurrence = ["RRULE:FREQ=DAILY;COUNT=2"];
-
-//       console.log("--------------------------------------------data");
-//       // console.log(data);
-//       console.log(data.startdate);
-//       console.log(data.enddate);
-//       var email = "";
-//       var grade = "no";
-
-//       if (data.user && data.user.email) {
-//         email = data.user.email;
-//         grade = data.user.grade;
-//       }
-//       var gstart = data.startdate.toISOString();
-//       var gend = data.enddate.toISOString();
-//       var namemask =
-//         data.username.substring(0, 2) + "*-" + data.mobile.substring(7, 4);
-//       var summary = data.rn_sw + namemask + "/" + grade;
-//       var calendarId = calendarIds[data.stype].id;
-//       var recurrence = "RRULE:FREQ=DAILY;COUNT=2";
-
-//       // var gend = data.endate.toISOString();
-//       var event = {
-//         summary: summary,
-//         location: "옵션:" + data.os,
-//         description: "휴대폰:" + data.mobile,
-//         start: {
-//           dateTime: gstart,
-//           timeZone: "Asia/Seoul",
-//         },
-//         end: {
-//           dateTime: gend,
-//           timeZone: "Asia/Seoul",
-//         },
-//         // recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
-//         recurrence: [],
-//         // attendees: [{ email: "oncevocaln@gmail.com" }],
-//         attendees: [],
-//         reminders: {
-//           useDefault: false,
-//           overrides: [
-//             { method: "email", minutes: 24 * 60 },
-//             { method: "popup", minutes: 10 },
-//           ],
-//         },
-//       };
-
-//       console.log(event);
-
-//       try {
-//         calendar.events.insert(
-//           {
-//             auth: auth,
-//             calendarId: calendarId,
-//             resource: event,
-//           },
-//           function (err, event) {
-//             if (err) {
-//               console.log(
-//                 "There was an error contacting the Calendar service: " + err
-//               );
-//             }
-//             console.log("Event created: %s", event.htmlLink);
-//             callback(err, data);
-//           }
-//         );
-//       } catch (e) {
-//         callback(err, data);
-//       }
-//     });
-//   });
-// };
-
-
-
 exports.makeEvent = function (data, callback) {
-  console.log("--------------------------- insert ");
   fs.readFile("credentials.json", (err, content) => {
     if (err) return console.log("Error loading client secret file:", err);
     // Authorize a client with credentials, then call the Google Calendar API.
@@ -415,12 +330,6 @@ exports.makeEvent = function (data, callback) {
     authorize(JSON.parse(content), function (auth) {
       const calendar = google.calendar({ version: "v3", auth });
       // var recurrence = ["RRULE:FREQ=DAILY;COUNT=2"];
-      // var recurrence = ["RRULE:FREQ=DAILY;COUNT=2"];
-
-      console.log("--------------------------------------------data");
-      // console.log(data);
-      console.log(data.startdate);
-      console.log(data.enddate);
       var email = "";
       var grade = "no";
 
@@ -430,9 +339,10 @@ exports.makeEvent = function (data, callback) {
       }
       var gstart = data.startdate.toISOString();
       var gend = data.enddate.toISOString();
+      //이름을 마스킹하는 다른 방법을 찾기
       var namemask =
-        data.username.substring(0, 2) + "**-" + data.mobile.substring(11, 7);
-      var summary = data.rn_sw + " " + namemask + "/등급-" + grade + "/요청-" + data.stype + data.rn_sw + "/배정-" + data.stype + data.rn_sw;
+        data.username.substring(0, 3) + " / " + data.mobile.substring(11, 7);
+      var summary = "" + data.rn_sw + " " + namemask + "/등급-" + grade + "/요청-" + data.stype + data.rn_sw + "/배정-" + data.stype + data.rn_sw;
 
       //신규가입자이거나 등급이 없다면
       if(grade =="no" || grade == "new") {
@@ -448,7 +358,7 @@ exports.makeEvent = function (data, callback) {
       var event = {
         summary: summary,
         location: "옵션:" + data.os,
-        description: "휴대폰:" + data.mobile,
+        description: "이름: " + data.username + " / 휴대폰: " + data.mobile,
         start: {
           dateTime: gstart,
           timeZone: "Asia/Seoul",
@@ -465,14 +375,90 @@ exports.makeEvent = function (data, callback) {
           useDefault: false,
           overrides: [
             { method: "email", minutes: 24 * 60 },
-            { method: "popup", minutes: 10 },
+            { method: "popup", minutes: 24 * 60 },
           ],
         },
       };
 
-      // callback(err, data);
+      try {
+        calendar.events.insert(
+          {
+            auth: auth,
+            calendarId: calendarId,
+            resource: event,
+          },
+          function (err, event) {
+            if (err) {
+              console.log(
+                "There was an error contacting the Calendar service: " + err
+              );
+            }
+            console.log("Event created: %s", event.htmlLink);
+            callback(err, data);
+          }
+        );
+      } catch (e) {
+        callback(err, data);
+      }
+    });
+  });
+};
 
-      console.log(event);
+
+
+exports.insertEventFromRequest = function (data, callback) {
+  fs.readFile("credentials.json", (err, content) => {
+    if (err) return console.log("Error loading client secret file:", err);
+    // Authorize a client with credentials, then call the Google Calendar API.
+
+    authorize(JSON.parse(content), function (auth) {
+      const calendar = google.calendar({ version: "v3", auth });
+      // var recurrence = ["RRULE:FREQ=DAILY;COUNT=2"];
+      var email = "";
+      var grade = data.from;
+
+      var gstart = data.start.toISOString();
+      var gend = data.end.toISOString();
+      //이름을 마스킹하는 다른 방법을 찾기
+      var namemask =
+        data.username.substring(0, 3) + "/" + data.mobile.substring(11, 7);
+      var summary =  "" + data.room + " " + namemask + "/등급-" + grade + "/요청-" + data.stype + data.room + "/배정-" + data.stype + data.room;
+
+      //신규가입자이거나 등급이 없다면
+      if(grade =="no" || grade == "new") {
+        var calendarId = calendarIds["RQ"].id;
+      } else {
+        var calendarId = calendarIds[data.stype].id;  
+      }
+      
+      
+      var recurrence = "RRULE:FREQ=DAILY;COUNT=2";
+
+      // var gend = data.endate.toISOString();
+      var event = {
+        summary: summary,
+        location: "옵션:" + data.os,
+        description: "이름: " + data.username + " / 휴대폰: " + data.mobile,
+        start: {
+          dateTime: gstart,
+          timeZone: "Asia/Seoul",
+        },
+        end: {
+          dateTime: gend,
+          timeZone: "Asia/Seoul",
+        },
+        // recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
+        recurrence: [],
+        // attendees: [{ email: "oncevocaln@gmail.com" }],
+        attendees: [],
+        reminders: {
+          useDefault: false,
+          overrides: [
+            { method: "email", minutes: 24 * 60 },
+            { method: "popup", minutes: 24 * 60 },
+          ],
+        },
+      };
 
       try {
         calendar.events.insert(

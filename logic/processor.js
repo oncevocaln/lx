@@ -182,10 +182,6 @@ var priceTable = {
 
 exports.rawDataChecker = function (rawData) {
   //자율사용자
-
-  console.log("---------------rawData check----------------");
-  console.log(rawData);
-
   var r = {
     isOK: false,
     type: "",
@@ -667,15 +663,11 @@ exports.rawDataChecker = function (rawData) {
     r.isOK = true;
   }
 
-  console.log("-----------------------re from input check");
-  console.log(r);
   return r;
 };
 
 exports.calcuratePrice = function (data) {
-  console.log("---------------------------------------가격 계산");
 
-  console.log(data);
 
   data.startstr = "오후6:30";
 
@@ -925,16 +917,11 @@ exports.calcuratePrice = function (data) {
     basePrice = basePrice - 500 * priceCountIndex;
   }
 
-  console.log("-----------------this is cal price");
-  console.log(basePrice);
-
   return basePrice;
 };
 
 exports.calcuratePriceV2 = function (data) {
-  console.log("---------------------------------------가격 계산");
 
-  console.log(data);
   var priceType = "NY";
   //공간타입에 따라 가격테이블 결정
   if (["NY", "HR", "HS"].includes(data.stype)) {

@@ -83,30 +83,14 @@ router.get("/1", function (req, res, next) {
 });
 
 router.get("/2/:mobile", async function (req, res, next) {
-
-
   var mobile = req.params.mobile;
-
-  console.log("-------------------------------grade-----");
-  console.log(mobile);
-
-  console.log(req.session);
-
   var id = "";
   var user = {};
-
-  // if (req.session && req.session.user && req.session.user.id) {
-  //   user = req.session.user;
-  //   id = req.session.user.id;
-  // }
 
   var ObjectId = mongoose.Types.ObjectId;
 
   try {
     const reserve = await Reserve.findOne( {mobile: mobile} ,{}, { sort: { 'creationDate' : -1 } });
-
-    console.log('----------------------find one space-----------------------');
-    console.log(reserve);
 
     res.render("frame2", {
       session: req.session,

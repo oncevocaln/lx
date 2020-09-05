@@ -18,7 +18,6 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/checkprice", async (req, res) => {
-  console.log("-----------------------is admin");
 
   let checkData = req.body;
   var r = processor.completeData(checkData);
@@ -29,8 +28,7 @@ router.post("/checkprice", async (req, res) => {
 });
 
 router.post("/checkpossible", async (req, res) => {
-  console.log("-----------------------is admin");
-
+  
   let checkData = req.body;
   var r = processor.completeData(checkData);
 
@@ -52,20 +50,11 @@ router.post("/checkpossible", async (req, res) => {
 
 
 router.post("/admin", async (req, res) => {
-  console.log( "------------is admin-----grade grade---------");
-
-
-  let rawData = req.body.rtext;
-  console.log(rawData);
-
-  if(rawData.includes("NAVER Corp. All Rights Reserved")) {
-
-    var data = adminlogic.completeData(rawData);
-    console.log('----------- this is naver list');
-    
-  }
-
   
+  let rawData = req.body.rtext;
+  
+  var data = adminlogic.splitData(rawData);
+
 
   var data = {};
 
@@ -76,10 +65,7 @@ router.post("/admin", async (req, res) => {
 
 
 router.post("/request", async (req, res) => {
-  console.log(
-    "-----------------------is admin-----grade grade---------------------"
-  );
-
+  
   var preparedData = {};
 
   console.log(req.session);
@@ -93,11 +79,9 @@ router.post("/request", async (req, res) => {
     grade = session.user.grade;
   }
 
-  console.log(grade);
 
   let query = req.query;
 
-  console.log(query);
   let checkData = req.body;
 
   console.log("--------------------------queryv-----------------------------");
@@ -142,24 +126,14 @@ router.post("/request", async (req, res) => {
           if (grade == "pass") {
             //자율사용자는 한개씩 예약할수 있게 변경
           }
-
-          console.log('----------------------------to save data--------------------');
-         
           var savedData = await insertReserve(data);
 
-          
-          console.log('------------------this is data saved');
-          console.log(savedData);
-          console.log(data);
-  
           // res.json(data);
           
           google.makeEvent(data, (err, data) => {
-            console.log('-----------------insert event r')
             res.json(data);
           });
         } else {
-          console.log('-----------------insert event x')
           res.json(data);
         }
       });
@@ -187,10 +161,8 @@ async function insertReserve(data) {
     rawData: data,
     rtext: data.rtext,
   };
-  console.log(preparedData);
   var reserve = new Reserve(preparedData);
 
-  console.log(reserve);
   try {
     const savedData = await reserve.save();
 
@@ -225,20 +197,8 @@ router.post("/request2", async (req, res) => {
     var data = reserve.rawData;
 
     google.insertEvent(data, (err, data) => {
-      console.log('-----------------insert event r')
       res.json(data);
     });
-
-    console.log('---------------------------------------------');
-    console.log(reserve);
-
-
-
-    // res.render("frame2", {
-    //   session: req.session,
-    //   user: user,
-    //   reserve: reserve,
-    // });
 
 
   } catch (e) {
@@ -246,33 +206,4 @@ router.post("/request2", async (req, res) => {
   }
 
 });
-
-// async function insertReserve(data) {
-//   var preparedData = {
-//     id: data.user.id,
-//     username: data.username,
-//     email: data.email,
-//     mobile: data.mobile,
-//     grade: data.grade,
-//     start: new Date(data.startdate),
-//     end: new Date(data.enddate),
-//     from: data.from,
-//     stype: data.stype,
-//     room: data.room,
-//     rawData: data,
-//     rtext: data.rtext
-//   };
-//   var reserve = new Reserve(preparedData);
-
-//   try {
-//     const savedData = await reserve.save();
-
-//     console.log("-----------------------------saved reserve ");
-    
-//     return savedData;
-//   } catch (e) {
-//     return data;
-//   }
-// }
-
 module.exports = router;

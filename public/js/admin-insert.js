@@ -6,7 +6,7 @@ function request_reserve_admin() {
   var data = {
     rtext: rtext
   };
-  alert(rtext);
+  // alert(rtext);
 
   fetch("/calendar/admin", {
     method: "POST",
@@ -17,8 +17,6 @@ function request_reserve_admin() {
   })
     .then((response) => response.json())
     .then((json) => {
-      console.log('-------------got response------');
-      console.log(json);
       if (json.possible == "NO") {
         alert("" + json.reason);
       } else {
@@ -45,10 +43,7 @@ function print_iframe(frame_name) {
 
   var iframe = document.getElementById('naver-iframe');
 
+    var doc = iframe.contentWindow.document;
   
-  console.log(iframe);
-
-  var doc = iframe.contentWindow.document;
-  console.log(doc);
   // alert(frames[frame_name].document.body.innerHTML);
 }

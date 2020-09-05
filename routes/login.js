@@ -12,7 +12,6 @@ router.get("/", function (req, res) {
 });
 
 router.get("/fail", function (req, res) {
-  console.log("-------- get login -----------");
   var base = process.cwd();
   var file = base + "/public/html/loginfail.html";
 
@@ -20,32 +19,18 @@ router.get("/fail", function (req, res) {
 });
 
 router.post("/", async function (req, res) {
-  console.log("-------- post login -----------");
-
+  
   let checkData = req.body;
-
-  console.log("---------------------------");
-  console.log(checkData);
-
-  console.log("-----------------body-----------------");
 
   try {
     const user = await User.findOne({
       id: checkData.id,
     });
 
-    console.log("------------------ user ------------");
-    console.log(user);
-    // let hashPassword = crypto.createHash("sha512").update() "";
-
     if (!user) {
       res.json({ result: "NOUSER" });
     } else {
-      console.log("-----------------------------user has");
-      console.log(user.password);
-      console.log(checkData.pw);
       if (user.password == checkData.pw) {
-        console.log(" this is login ------------ complete ");
         //로그인 완료
         res.cookie("user", checkData.id, {
           expires: new Date(Date.now() +  60*60*100*100),
@@ -60,7 +45,7 @@ router.post("/", async function (req, res) {
         };
 
         let session = req.session;
-        console.log("---------------------------------------com");
+        
         res.render("login", { session: session });
       } else {
         res.render("login", { message: "로그인이 실패하였습니다" });

@@ -79,10 +79,6 @@ const calendarIds = {
 };
 
 router.get("/", async function (req, res, next) {
-  console.log("-------------------------------grade");
-
-  console.log(req.session);
-
   var id = "";
   var user = {};
 

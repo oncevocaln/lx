@@ -25,8 +25,6 @@ var pkgName = {
 
 function getParam(sname) {
   var params = location.search.substr(location.search.indexOf("?") + 1);
-
-  console.log(params);
   var sval = "";
 
   params = params.split("&");
@@ -142,7 +140,6 @@ function init_date() {
   var now = new Date();
 
   var ts = now.format("yyyyMMddHHmm");
-  console.log(ts.substring(6, 4));
   document.querySelector('select[name="yy_sw"]').value = ts.substring(4, 0);
   document.querySelector('select[name="mm_sw"]').value = ts.substring(6, 4);
   document.querySelector('select[name="dd_sw"]').value = ts.substring(8, 6);
@@ -208,7 +205,6 @@ function check_possible() {
   })
     .then((response) => response.json())
     .then((json) => {
-      console.log(json);
       document.getElementById("price").value = json.price;
       document.querySelector('select[name="dm_sw"]').value = json.dm_sw;
 
@@ -218,12 +214,7 @@ function check_possible() {
 
       document.querySelector('input[name="possible"]').value = json.possible;
 
-      console.log(json);
-      // document.querySelector('input[name="possible"]').value = json.possible;
-
       if (json.possible == "NO") {
-        // document.querySelector('input[name="request_text"]').value =
-        //   json.reason;
         alert("[예약불가] - " + json.reason);
       } else {
         var rtext = make_rtext(json);
@@ -250,7 +241,7 @@ function request_reserve() {
   else {
 
     checkData.rtext = rtext;
-    console.log(checkData);
+    
     fetch("/calendar/request", {
       method: "POST",
       body: JSON.stringify(checkData),
@@ -260,8 +251,7 @@ function request_reserve() {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log('-------------got response----------');
-        console.log(json);
+
         document.getElementById("price").value = json.price;
         document.querySelector('select[name="dm_sw"]').value = json.dm_sw;
   
@@ -271,12 +261,8 @@ function request_reserve() {
   
         document.querySelector('input[name="possible"]').value = json.possible;
         
-        console.log(json);
-        // document.querySelector('input[name="possible"]').value = json.possible;
-  
         if (json.possible == "NO") {
-          // document.querySelector('input[name="request_text"]').value =json.reason;
-  
+        
           alert("" + json.reason);
         } else {
           alert("요청하였습니다. 결제를 완료해주세요" );
@@ -316,8 +302,7 @@ function request_reserve2() {
   })
     .then((response) => response.json())
     .then((json) => {
-      console.log('-------------got response');
-      console.log(json);
+
       document.getElementById("price").value = json.price;
       document.querySelector('select[name="dm_sw"]').value = json.dm_sw;
 
@@ -327,19 +312,12 @@ function request_reserve2() {
 
       document.querySelector('input[name="possible"]').value = json.possible;
       
-      console.log(json);
-      // document.querySelector('input[name="possible"]').value = json.possible;
-
       if (json.possible == "NO") {
-        // document.querySelector('input[name="request_text"]').value =json.reason;
-
+      
         alert("" + json.reason);
       } else {
         alert("요청완료 하였습니다.카톡을 보내주세요." );
 
-        // var uri = "/space/2/" + json.rid;
-
-        // window.open(uri, "_blank");
       }
     });
 }

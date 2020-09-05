@@ -35,8 +35,6 @@ router.get("/findpw", async (req, res) => {
 //route
 router.post("/join", async (req, res) => {
   let rawData = req.body;
-  console.log("----------------------body data");
-
   var data = new User({
     id: rawData.id,
     username: rawData.userName,
@@ -86,7 +84,6 @@ router.post("/join", async (req, res) => {
 
 //route
 router.post("/login", async (req, res) => {
-  console.log(req);
   var mailData = {
     title: "로그인시도",
     data: JSON.stringify(req),
@@ -102,8 +99,6 @@ router.post("/login", async (req, res) => {
 
 //route
 router.get("/kakaologin", async (req, res) => {
-  console.log("------------------------------");
-  console.log(req);
   var base = process.cwd();
   var file = base + "/public/html/loginpage.html";
 
@@ -120,8 +115,6 @@ router.get("/kakaoauth", async (req, res) => {
   //원스보컬 비즈 계정으로 키 발급
   var key = "a4fa67a4b73f76e5ded936e8ce2d6937";
 
-  console.log("------------------------------");
-  console.log(req);
   var base = process.cwd();
   var file = base + "/public/html/loginpage.html";
 

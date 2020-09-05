@@ -282,8 +282,7 @@ function clickJoinBtn() {
       })
         .then((response) => response.json())
         .then((json) => {
-          console.log(json);
-          console.log("-----------------------json get--");
+
           if (json.result == "OK") {
             //회원가입 완료
             alert("축하합니다. 가입이 완료 되었습니다.");
