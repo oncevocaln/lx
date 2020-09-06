@@ -955,6 +955,10 @@ exports.calcuratePriceV2 = function (data) {
     priceIndex++;
   }
 
+  if(priceCountIndex < 2 ) {
+    basePrice = basePrice + 1000;
+
+  }
   // console.log(data);
   if (data.pkg == "nu") {
     basePrice = basePrice / 2;
