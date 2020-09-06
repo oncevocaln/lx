@@ -76,28 +76,180 @@ var stypelist = [
 exports.splitData = async function (rawData) {
     var data = {
         list: [],
-        insert: [],
+        insert: []
     };
 
     var from = "";
 
-    if(rawData.includes("[Web]발신")){
-      from = "navertext";
+    if (rawData.includes("[Web]발신")) {
+        from = "navertext";
     } else if (rawData.includes("NAVER Corp. All Rights Reserved")) {
-      from = "navertotal";
+        from = "navertotal";
+    } else if (rawData.includes("NAVER예약파트너센터") && rawData.includes("빠른순늦은순")) {
+        from = "navermobile";
     } else if (rawData.includes("NSPACE")) {
-      from = "spacetotal"
+        from = "spacetotal"
     }
 
-    if (from == "navertotal") {
+    if (from == "navermobile") {
         data.from = "naver";
         rawlist = rawData.split("확정");
         rawlist.forEach(function (rl) {
 
-            console.log('-------------------rl--');
-            // console.log(rl);
+            console.log('-------------------rl------');
 
             var rlarray = rl.split("\n");
+
+            console.log(rlarray);
+
+            var unit = {
+                stype: ""
+            };
+
+            //휴대폰 번호가 없으면 처리불가능
+            unit.mobile = "";
+
+            unit.mobile = makeOnlyNumberString(rlarray[4]);
+
+            if (unit.mobile && unit.mobile.indexOf("010") > -1) {
+                unit.formated = true;
+
+                unit.from = "naver";
+                unit.username = rlarray[1];
+                unit.rno = "n" + makeOnlyNumberString(rlarray[5].trim()) ;
+
+                unit.timestr = rlarray[9] + "@" + rlarray[10];
+
+
+                var timedata = convertTimeDataNaverMobile(rlarray[9], rlarray[10]);
+                unit.startdate = timedata.startdate;
+                unit.enddate = timedata.enddate;
+                unit.dur = timedata.dur;
+
+                unit.placestr = rlarray[7];
+                unit.spacestr = rlarray[8];
+
+                unit.spacecount = rlarray[11];
+
+                unit.optionstr = rlarray[12];
+                unit.room = 1;
+
+                console.log('--------------option str');
+                console.log(unit.optionstr);
+                if (unit.optionstr.includes("방번호")) {
+                    var xIndex = unit
+                        .optionstr
+                        .indexOf("방번호");
+                    console.log(xIndex);
+                    var roomstr = makeOnlyNumberString(
+                        unit.optionstr.substring(xIndex + 3, xIndex + 10)
+                    );
+                    console.log(roomstr);
+                    unit.room = parseInt(roomstr) || 1;
+                }
+
+                if (unit.optionstr.includes("결제상태")) {
+                  var xIndex = unit
+                      .optionstr
+                      .indexOf("결제상태");
+                  console.log(xIndex);
+                  var paystatus = makeOnlyNumberString(
+                      unit.optionstr.substring(xIndex + 3, xIndex + 10)
+                  );
+                  console.log(roomstr);
+                  unit.room = parseInt(roomstr) || 1;
+              }
+                unit.demandstr = rlarray[10];
+                unit.paystatus = paystatus;
+                // unit.amountstr = rlarray[12];
+                unit.check = "";
+                unit.stype = "RQ";
+                // unit.room = 1;
+                unit.os = "";
+                //방번호
+
+                stypelist.forEach(function (st) {
+                    if (unit.spacestr.includes(st)) {
+                        unit.stype = st;
+                    }
+                });
+                unit.rawData = rl;
+                unit.formated = true;
+
+            } else {
+                unit.formated = false;
+            }
+
+            data
+                .list
+                .push(unit);
+        })
+
+        data
+            .list
+            .forEach(async function (unit) {
+
+              console.log("-----------------formated unit status ");
+              console.log(unit);
+                // inserting
+                if (unit.formated == true) {
+
+                    var preparedData = {
+                        from: unit.from,
+                        rno: unit.rno,
+                        username: unit.username,
+                        mobile: unit.mobile,
+                        start: unit.startdate,
+                        end: unit.enddate,
+                        dur: unit.dur,
+                        stype: unit.stype,
+                        room: unit.room,
+                        os: unit.os
+                    }
+
+                    var request = new Request(preparedData);
+                    try {
+                        const prevOne = await Request.findOne({
+                            rno: request.rno
+                        }, {}, {
+                            sort: {
+                                'creationDate': -1
+                            }
+                        });
+
+                        if (prevOne) {
+                            unit.status = prevOne.status;
+
+                        } else {
+                            console.log('----------------------------has no prev one ---------------');
+                            const savedData = await request.save();
+
+                            google.insertEventFromRequest(preparedData, (err, data) => {
+                                console.log('-----------make event after---------------');
+                                console.log(data);
+
+                            });
+
+                            console.log('saved data -' + savedData);
+                        }
+
+                    } catch (e) {
+                        console.log('saved data -' + e);
+                    }
+                }
+
+            })
+        console.log('----------- this is naver list');
+    } else if (from == "navertotal") {
+        data.from = "naver";
+        rawlist = rawData.split("확정");
+        rawlist.forEach(function (rl) {
+
+            console.log('-------------------rl------');
+
+            var rlarray = rl.split("\n");
+
+            console.log(rlarray);
 
             var unit = {
                 stype: ""
@@ -132,12 +284,16 @@ exports.splitData = async function (rawData) {
 
                 console.log('--------------option str');
                 console.log(unit.optionstr);
-                if(unit.optionstr.includes("방번호")) {
-                  var xIndex = unit.optionstr.indexOf("방번호");
-                  console.log(xIndex);
-                  var roomstr = makeOnlyNumberString(unit.optionstr.substring(xIndex+3, xIndex+10)) ;
-                  console.log(roomstr);
-                  unit.room = parseInt(roomstr) || 1; 
+                if (unit.optionstr.includes("방번호")) {
+                    var xIndex = unit
+                        .optionstr
+                        .indexOf("방번호");
+                    console.log(xIndex);
+                    var roomstr = makeOnlyNumberString(
+                        unit.optionstr.substring(xIndex + 3, xIndex + 10)
+                    );
+                    console.log(roomstr);
+                    unit.room = parseInt(roomstr) || 1;
 
                 }
                 unit.demandstr = rlarray[10];
@@ -346,13 +502,16 @@ exports.splitData = async function (rawData) {
                         } else {
                             console.log('----------------------------has no prev one ---------------');
                             const savedData = await request.save();
-                            data.insert.push(unit);
-                            // data.result = data.result +  request.rno + "/" + request.username + "/" + request.mobile + + "/" + request.startdate + "/" + request.stype + "\n" ;
+                            data
+                                .insert
+                                .push(unit);
+                            // data.result = data.result +  request.rno + "/" + request.username + "/" +
+                            // request.mobile + + "/" + request.startdate + "/" + request.stype + "\n" ;
 
                             await google.insertEventFromRequest(preparedData, (err, data) => {
                                 console.log('-----------make event after---------------');
                                 console.log(data);
-                         
+
                             });
 
                             console.log('saved data -' + savedData);
@@ -450,18 +609,92 @@ function convertTimeData(str) {
 
     var dur = parseInt((enddate - startdate) / (1000 * 60));
 
-    console.log('-----------------start end dur---------');
-    console.log(startdate);
-    console.log(enddate);
-    console.log(dur);
-
     data.startdate = startdate;
     data.enddate = enddate;
     data.dur = dur;
 
     return data;
-    /* var timefromstr = */
-    // document.querySelector('textarea[id="this"]').value = a;
+}
+
+
+function convertTimeDataNaverMobile(datestr, timestr) {
+
+  var data = {};
+  // var dIndex = str.indexOf(")");
+  var datestrArray = datestr.split(".");
+  var yystr = makeOnlyNumberString(datestrArray[0].trim()) ;
+  var mmstr = makeOnlyNumberString( datestrArray[1].trim());
+  var ddstr = makeOnlyNumberString( datestrArray[2].trim());
+
+  
+  if(timestr.includes("오전")) {
+    var ampmstr = "오전";
+  } else {
+    var ampmstr = "오후";
+  }
+
+  var fIndex = timestr.indexOf("~");
+  var starttimestr = timestr
+      .substring(fIndex, 2)
+      .trim();
+
+  var endtimestr = timestr
+      .substring(fIndex + 1)
+      .trim();
+
+  var startColIndex = starttimestr.indexOf(":");
+
+  var starthourstr = makeOnlyNumberString(starttimestr.substring(startColIndex, 0)) ;
+
+  var starthour24 = parseInt(starthourstr);
+
+  if (starthour24 == 12) {
+      starthour24 = 0;
+  }
+
+  if (ampmstr == "오후") {
+      starthour24 = 12 + starthour24;
+  }
+
+  var startminutestr = makeOnlyNumberString( starttimestr.substring(startColIndex + 1));
+
+  var endColIndex = endtimestr.indexOf(":");
+
+  var endhourstr =  makeOnlyNumberString( endtimestr.substring(endColIndex, 0));
+
+  var endhour24 = parseInt(endhourstr);
+
+  if (ampmstr == "오후" || starthour24 > endhour24) {
+      endhour24 = 12 + endhour24;
+  }
+
+  var endminutestr = endtimestr.substring(endColIndex + 1, endColIndex + 3);
+
+  // var a = endminutestr;
+
+  var startdate = new Date(
+      parseInt(yystr),
+      parseInt(mmstr) - 1,
+      parseInt(ddstr),
+      starthour24,
+      parseInt(startminutestr)
+  );
+
+  var enddate = new Date(
+      parseInt(yystr),
+      parseInt(mmstr) - 1,
+      parseInt(ddstr),
+      endhour24,
+      parseInt(endminutestr)
+  );
+
+  var dur = parseInt((enddate - startdate) / (1000 * 60));
+
+  data.startdate = startdate;
+  data.enddate = enddate;
+  data.dur = dur;
+
+  return data;
 }
 
 function convertTimeDataSpace(str) {
@@ -486,8 +719,6 @@ function convertTimeDataSpace(str) {
         .substring(dIndex + 1)
         .trim();
 
-    // var ampmstr = timestr.substring(2, 0);
-
     var fIndex = timestr.indexOf("~");
     var starttimestr = timestr
         .substring(fIndex, 0)
@@ -497,18 +728,11 @@ function convertTimeDataSpace(str) {
         .substring(fIndex + 1)
         .trim();
 
-    // var startColIndex = starttimestr.indexOf(":");
 
     var starthourstr = makeOnlyNumberString(starttimestr);
 
-    console.log('---------------------------hour')
-    console.log(starthourstr);
     var starthour24 = parseInt(starthourstr);
 
-    // if (starthour24 == 12) {     starthour24 = 0; } if (ampmstr == "오후") {
-    // starthour24 = 12 + starthour24; } var startminutestr =
-    // starttimestr.substring(startColIndex + 1); var endColIndex =
-    // endtimestr.indexOf(":");
 
     var endhourstr = makeOnlyNumberString(
         endtimestr.substring(endtimestr.indexOf(","), 0)
@@ -522,8 +746,6 @@ function convertTimeDataSpace(str) {
         endhour24 = 23;
         endminute = 59;
     }
-    // var endminutestr = endtimestr.substring(endColIndex + 1); var a =
-    // endminutestr;
 
     var startdate = new Date(
         parseInt(yystr),
@@ -543,16 +765,10 @@ function convertTimeDataSpace(str) {
 
     var dur = parseInt(Math.round((enddate - startdate) / (1000 * 60)));
 
-    console.log('-----------------start end dur---------');
-    console.log(startdate);
-    console.log(enddate);
-    console.log(dur);
-
     data.startdate = startdate;
     data.enddate = enddate;
     data.dur = dur;
 
     return data;
-    /* var timefromstr = */
-    // document.querySelector('textarea[id="this"]').value = a;
 }
+
