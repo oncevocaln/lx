@@ -26,6 +26,8 @@ const loginRoute = require("./routes/login");
 const calendarRoute = require("./routes/calendar");
 const adminRoute = require("./routes/admin");
 
+const sRoute = require("./routes/s");
+
 
 app.set("view engine", "ejs");
 
@@ -82,6 +84,9 @@ const connection = mongoose.connect(
   app.use("/mypage", mypageRoute);
 
   app.use("/admin", adminRoute);
+
+
+  app.use("/s", sRoute);
 
 
 app.use(express.static("public"));
