@@ -1,0 +1,630 @@
+
+<div class="time_booking" ng-if="$ctrl.booking.startDateTime">
+        <div class="out_tit" translate="CM-DATE_BAR_TEXT_5" translate-values="$ctrl.bookingDateText.values">9. 23(수) 오전 1:30 ~ (2시간)</div>
+        <div class="time_controler" ng-class="{ slick_slider: $ctrl.env.environment.isPc }">
+            <div class="time_controler_inner">
+                <!---->
+                <ul class="lst_time_cont data_" ng-attr-style="{{'transform: translateX(-' + $ctrl.scrollWidths[$ctrl.scrollIndex] + 'px); transition: transform .2s ease-out, opacity .3s ease-out;'}}" style="transform: translateX(-0px); transition: transform .2s ease-out, opacity .3s ease-out;">
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">&nbsp;</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">00:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <span class="ampm" translate="CM-AM_UPPERCASE" ng-if="timeBlock.duration * $index === 60">오전</span>
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">01:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item on" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">01:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item on" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">02:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item on" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">02:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item on" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">03:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">03:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">04:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">04:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">05:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">05:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">06:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">06:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">07:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">07:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">08:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">08:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">09:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">09:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">10:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">10:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">11:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">11:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color10"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">12:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color11"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">12:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color11"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span class="ampm" translate="CM-PM_UPPERCASE" ng-if="timeBlock.duration * $index === 780">오후</span>
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">13:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color11"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">13:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color11"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">14:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color11"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">14:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color11"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">15:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color11"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">15:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color11"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">16:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color11"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">16:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color11"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">17:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color12"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">17:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color12"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">18:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color12"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">18:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color12"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">19:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color12"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">19:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color12"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">20:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color12"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">20:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color12"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">21:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color12"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">21:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color12"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">22:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color11"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">22:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color11"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">23:00</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color11"></span>
+                        </a>
+                    </li>
+                    <!---->
+                    <li class="item" ng-repeat="timeBlock in $ctrl.hourlySchedules track by $index" ng-class="{ 'none' : timeBlock.disabled, 'on' : ($ctrl.endTimeIndex === undefined &amp;&amp; $ctrl.startTimeIndex === $index) || ($ctrl.endTimeIndex !== undefined &amp;&amp; $ctrl.startTimeIndex <= $index &amp;&amp; $index <= $ctrl.endTimeIndex) }">
+                        <span class="time_txt">
+                            <!---->
+                            <!---->
+                            <span ng-bind="!$first ? timeBlock.unitStartTime.format('HH:mm') : '&nbsp;'">23:30</span>
+                        </span>
+                        <a href="#" class="time_box" ng-click="$ctrl.onSelectTimeBlock($event, timeBlock, $index)" data-tst_time_select="0">
+                            <span translate="CM-SELECTED">선택</span>
+                            <span class="box_inn_btm color11"></span>
+                        </a>
+                    </li>
+                    <!---->
+                </ul>
+                <!---->
+            </div>
+        </div>
+        <div class="info_time_cont">
+            <span class="txt" ng-bind="$ctrl.minBookingTimeText">최소 1시간 ~
+            </span>
+            <span class="txt" translate="CM-MAXIMUM_TIME_2" translate-values="$ctrl.maxBookingTimeTextTO.values">최대 24시간 이용가능</span>
+            <div class="calendar_info">
+                <ul class="list_calendar_info">
+                    <li class="item">
+                        <span class="date_label color2"></span>
+                        <span translate="CM-SELECTED">선택</span>
+                    </li>
+                    <li class="item">
+                        <span class="date_label color3"></span>
+                        <span translate="CM-UNAVAILABLE">불가</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="calendar_info">
+            <ul class="list_calendar_info">
+                <!---->
+                <li class="item" ng-repeat="Legend in $ctrl.priceLegends">
+                    <span class="date_label color10"></span>
+                    <span translate="CM-PRICE" translate-value-v1="2,625" translate-value-currency="원">2,625 원</span>
+                </li>
+                <!---->
+                <li class="item" ng-repeat="Legend in $ctrl.priceLegends">
+                    <span class="date_label color11"></span>
+                    <span translate="CM-PRICE" translate-value-v1="5,250" translate-value-currency="원">5,250 원</span>
+                </li>
+                <!---->
+                <li class="item" ng-repeat="Legend in $ctrl.priceLegends">
+                    <span class="date_label color12"></span>
+                    <span translate="CM-PRICE" translate-value-v1="6,300" translate-value-currency="원">6,300 원</span>
+                </li>
+                <!---->
+            </ul>
+        </div>
+    </div>

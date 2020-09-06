@@ -71,6 +71,13 @@
           <button onclick="go_cafe_hongdae();" style="color: black;">
               홍대점 사진
             </button>
+
+            
+          <button onclick="go_cafe_price();" style="color: black;">
+              가격보기
+            </button>
+
+            
                 </div>
 
 
@@ -496,10 +503,6 @@
                 </button>
           </div>
 
-          <br>
-
-
-      
 	<h2>유형</h2>
 	<div class="switch-field">
       <input type="radio" id="radio-rent" name="rtype" value="rent" checked />
@@ -531,7 +534,7 @@
                     
                   </div>
                   
-                  <div class="select_rn"  >
+                  <!-- <div class="select_rn"  >
                       방번호:
                       <select
                         id="rn_sw"
@@ -541,18 +544,18 @@
                       >
                         <option value="1">배정되지 않았다면 1번부터 순서대로 빈방을 사용하세요</option>
 
-                        <!-- <option value="1">1</option>                      
+                        <option value="1">1</option>                      
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                         <option value="6">6</option>
                         <option value="7">7</option>
-                        <option value="8">8</option> -->
+                        <option value="8">8</option>
 
                       </select>
                       </div>
-      
+       -->
 
             
                         <div class="input_row" id="username_area">
@@ -583,6 +586,40 @@
                           value="" />
                         </div>
           
+
+
+                  <div class="select_rn"  >
+                      방번호:
+                      <select
+                        id="rn_sw"
+                        name="rn_sw"
+                        title="rn"
+                        class="sel"
+                      >
+                        <option value="1">배정되지 않았다면 1번부터 순서대로 빈방을 사용하세요</option>
+
+                        <option value="1">1</option>                      
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+
+                      </select>
+                      </div>
+      
+                        <!-- <div class="input_plus">
+                            
+                            <div class="number">
+                                방번호:
+                                <span class="minus">-</span>
+                                
+                                <input class="number_input" type="text" id="rn_sw" name="rn_sw" value="1"/>
+                                <span class="plus">+</span>
+                              </div>
+                        </div> -->
 
             </fieldset>
           

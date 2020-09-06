@@ -23,6 +23,22 @@ var pkgName = {
   nu: "신규이벤트",
 };
 
+
+function makeOnlyNumberString(str) {
+  var strSimple = "";
+  if (typeof(str) == "string") {
+      str
+          .split("")
+          .forEach(function (c) {
+              if ("0123456789".includes(c)) {
+                  strSimple = strSimple + c;
+              }
+          })
+  }
+  return strSimple;
+}
+
+
 function getParam(sname) {
   var params = location.search.substr(location.search.indexOf("?") + 1);
   var sval = "";
@@ -152,7 +168,10 @@ function make_data() {
   checkData.stype = document.querySelector('input[name="stype"]:checked').value;
   checkData.rtype = document.querySelector('input[name="rtype"]:checked').value;
   checkData.username = document.querySelector('input[name="username"]').value;
-  checkData.mobile = document.querySelector('input[name="mobile"]').value;
+  var mobile_no = document.querySelector('input[name="mobile"]').value;
+
+  checkData.mobile = makeOnlyNumberString(mobile_no);
+
   checkData.yy_sw = document.querySelector('select[name="yy_sw"]').value;
   checkData.mm_sw = document.querySelector('select[name="mm_sw"]').value;
   checkData.dd_sw = document.querySelector('select[name="dd_sw"]').value;
@@ -494,11 +513,15 @@ function go_cafe_hongdae() {
   window.open("https://cafe.naver.com/oncevocal/49", "_blank");
 }
 
+function go_cafe_price() {
+  // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
+  window.open("https://cafe.naver.com/oncevocal/88", "_blank");
+}
+
 function go_cafe_option() {
   // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
   window.open("https://cafe.naver.com/oncevocal/76", "_blank");
 }
-
 
 function readURL(input) {
   if (input.files && input.files[0]) {
@@ -518,30 +541,38 @@ function readURL(input) {
  });
 
  function src_selector_na(){
-  //  alert('x');
-
 
   var main_image = document.getElementById("main_image");
   main_image.src = "/images/na.jpg";
 
-  // $("img[src='/images/main-na02.jpg']").css("width","200");
 }
 
 
 function src_selector(){
-  //  alert('x');
-
-
-  // var stype =  document.getElementById("stype").value;
-
 
   var stype = document.querySelector('input[name="stype"]:checked').value;
   var stype_l = stype.toLocaleLowerCase();
   var image_path = "/images/" + stype_l + ".jpg";
   var main_image = document.getElementById("main_image");
 
-  // alert(image_path);
   main_image.src = image_path;
 
-  // $("img[src='/images/main-na02.jpg']").css("width","200");
 }
+
+
+	$(document).ready(function() {
+			$('.minus').click(function () {
+				var $input = $(this).parent().find('input');
+				var count = parseInt($input.val()) - 1;
+				count = count < 1 ? 1 : count;
+				$input.val(count);
+				$input.change();
+				return false;
+			});
+			$('.plus').click(function () {
+				var $input = $(this).parent().find('input');
+				$input.val(parseInt($input.val()) + 1);
+				$input.change();
+				return false;
+			});
+		});

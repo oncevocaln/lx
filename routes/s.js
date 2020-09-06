@@ -82,6 +82,12 @@ router.get("/1", function (req, res, next) {
   res.render("s1", { session: req.session });
 });
 
+
+
+router.get("/2", function (req, res, next) {
+  res.render("s2", { session: req.session });
+});
+
 router.get("/2/:mobile", async function (req, res, next) {
   var mobile = req.params.mobile;
   var id = "";

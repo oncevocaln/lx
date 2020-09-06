@@ -2,6 +2,21 @@ const fs = require("fs");
 const readline = require("readline");
 const { google } = require("googleapis");
 
+
+function makeOnlyNumberString(str) {
+  var strSimple = "";
+  if (typeof(str) == "string") {
+      str
+          .split("")
+          .forEach(function (c) {
+              if ("0123456789".includes(c)) {
+                  strSimple = strSimple + c;
+              }
+          })
+  }
+  return strSimple;
+}
+
 const calendarIds = {
   NY: {
     id: "3v45ttcu6h58kho5vtibohf7g4@group.calendar.google.com",
@@ -187,6 +202,7 @@ exports.listUpcomingEvent = function (data, callback) {
   data.calendarId = calendarId;
   var rcount = calendarIds[data.stype].count;
   data.reason = "";
+  data.room_requested = data.rn_sw;
 
   console.log(calendarId);
 
@@ -195,6 +211,15 @@ exports.listUpcomingEvent = function (data, callback) {
   var occupiedroom = [];
   var emptyroom = 0;
   var destroom = parseInt(data.rn_sw);
+
+
+  console.log('xxxxxxxx')
+  console.log(destroom);
+  console.log(rcount);
+  if(destroom > rcount) {
+    destroom = 1;
+    data.rn_sw = destroom.toString();
+  }
   // Load client secrets from a local file.
   fs.readFile("credentials.json", (err, content) => {
     if (err) return console.log("Error loading client secret file:", err);
@@ -253,17 +278,16 @@ exports.listUpcomingEvent = function (data, callback) {
                 (data.startdate >= gstart && data.startdate < gend) ||
                 (data.enddate > gstart && data.enddate <= gend)
               ) {
-                console.log("startdate big-----------------");
+                console.log("------------startdate big-----------------");
                 // data.possible = "NO";
 
                 dupCount = dupCount + 1;
 
-                var groomstr = event.summary.substring(0, 1);
-                var groom = parseInt(groomstr) || 0;
+                var groomstr = makeOnlyNumberString(event.summary.substring(0, 4)) ;
+                var groom = parseInt(groomstr) || 1;
 
-                console.log("--------------------this groom");
+                console.log("--------------------this groom--------------");
                 console.log(groomstr);
-
                 console.log(groom);
 
                 occupiedroom[groom] = "BOOK";
@@ -271,9 +295,8 @@ exports.listUpcomingEvent = function (data, callback) {
                 //정확한 방 번호로 나오도록 고쳐야 함
                 data.reason =
                   data.reason +
-                  data.stype +
-                  dupCount +
-                  " - " +
+                  event.summary.substring(0,3) +
+                  "* - " +
                   gstart.getHours() +
                   "시" +
                   (gstart.getMinutes() < 10 ? "0" : "") +
@@ -283,11 +306,8 @@ exports.listUpcomingEvent = function (data, callback) {
                   "시" +
                   (gend.getMinutes() < 10 ? "0" : "") +
                   gend.getMinutes() +
-                  "분 일정 있음\n"
-                  +event.summary +
-                  "\n";
+                  "분 일정 있음\n" ;
               }
-
               console.log(`${start} - ${event.summary}`);
             });
 
@@ -301,14 +321,14 @@ exports.listUpcomingEvent = function (data, callback) {
               }
 
               if (
-                occupiedroom[destroom] == "BOOK" ||
-                destroom > rcount ||
-                destroom == 0
+                occupiedroom[destroom] == "BOOK" 
               ) {
                 destroom = emptyroom;
                 data.rn_sw = destroom.toString();
                 data.room = destroom;
               }
+              console.log("------------------occupiedroom--------------");
+              console.log("------------------occupiedroom--------------"+occupiedroom);
             }
 
             callback(err, data);
@@ -341,8 +361,8 @@ exports.makeEvent = function (data, callback) {
       var gend = data.enddate.toISOString();
       //이름을 마스킹하는 다른 방법을 찾기
       var namemask =
-        data.username.substring(0, 3) + " / " + data.mobile.substring(11, 7);
-      var summary = "" + data.rn_sw + " " + namemask + "/등급-" + grade + "/요청-" + data.stype + data.rn_sw + "/배정-" + data.stype + data.rn_sw;
+        data.username + " / " + data.mobile.substring(11, 7);
+      var summary = "" + data.stype + data.rn_sw + " " + namemask + "/ 등급-" + grade ;
 
       //신규가입자이거나 등급이 없다면
       if(grade =="no" || grade == "new") {
@@ -358,7 +378,7 @@ exports.makeEvent = function (data, callback) {
       var event = {
         summary: summary,
         location: "옵션:" + data.os,
-        description: "이름: " + data.username + " / 휴대폰: " + data.mobile,
+        description: "이름: " + data.username + " / 휴대폰: " + data.mobile + " / 방번호선택: " +data.room_requested,
         start: {
           dateTime: gstart,
           timeZone: "Asia/Seoul",
@@ -370,7 +390,6 @@ exports.makeEvent = function (data, callback) {
         // recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
         recurrence: [],
         // attendees: [{ email: "oncevocaln@gmail.com" }],
-        attendees: [],
         reminders: {
           useDefault: false,
           overrides: [
@@ -422,7 +441,7 @@ exports.insertEventFromRequest = function (data, callback) {
       //이름을 마스킹하는 다른 방법을 찾기
       var namemask =
         data.username.substring(0, 3) + "/" + data.mobile.substring(11, 7);
-      var summary =  "" + data.room + " " + namemask + "/등급-" + grade + "/요청-" + data.stype + data.room + "/배정-" + data.stype + data.room;
+      var summary =  "" + data.stype + data.room + " " + namemask + "/등급-" + grade ;
 
       //신규가입자이거나 등급이 없다면
       if(grade =="no" || grade == "new") {

@@ -95,13 +95,8 @@ exports.splitData = async function (rawData) {
         data.from = "naver";
         rawlist = rawData.split("확정");
         rawlist.forEach(function (rl) {
-
             console.log('-------------------rl------');
-
             var rlarray = rl.split("\n");
-
-            console.log(rlarray);
-
             var unit = {
                 stype: ""
             };
@@ -116,10 +111,9 @@ exports.splitData = async function (rawData) {
 
                 unit.from = "naver";
                 unit.username = rlarray[1];
-                unit.rno = "n" + makeOnlyNumberString(rlarray[5].trim()) ;
+                unit.rno = "n" + makeOnlyNumberString(rlarray[5].trim());
 
                 unit.timestr = rlarray[9] + "@" + rlarray[10];
-
 
                 var timedata = convertTimeDataNaverMobile(rlarray[9], rlarray[10]);
                 unit.startdate = timedata.startdate;
@@ -148,17 +142,10 @@ exports.splitData = async function (rawData) {
                     unit.room = parseInt(roomstr) || 1;
                 }
 
-                if (unit.optionstr.includes("결제상태")) {
-                  var xIndex = unit
-                      .optionstr
-                      .indexOf("결제상태");
-                  console.log(xIndex);
-                  var paystatus = makeOnlyNumberString(
-                      unit.optionstr.substring(xIndex + 3, xIndex + 10)
-                  );
-                  console.log(roomstr);
-                  unit.room = parseInt(roomstr) || 1;
-              }
+                unit.paid = false;
+                if(rl.includes("결제완료")) {
+                  unit.paid = true;
+                }
                 unit.demandstr = rlarray[10];
                 unit.paystatus = paystatus;
                 // unit.amountstr = rlarray[12];
@@ -189,10 +176,10 @@ exports.splitData = async function (rawData) {
             .list
             .forEach(async function (unit) {
 
-              console.log("-----------------formated unit status ");
-              console.log(unit);
+                console.log("-----------------formated unit status ");
+                console.log(unit);
                 // inserting
-                if (unit.formated == true) {
+                if (unit.formated == true && unit.paid == true) {
 
                     var preparedData = {
                         from: unit.from,
@@ -244,13 +231,10 @@ exports.splitData = async function (rawData) {
         data.from = "naver";
         rawlist = rawData.split("확정");
         rawlist.forEach(function (rl) {
-
             console.log('-------------------rl------');
 
             var rlarray = rl.split("\n");
-
             console.log(rlarray);
-
             var unit = {
                 stype: ""
             };
@@ -262,13 +246,10 @@ exports.splitData = async function (rawData) {
 
             if (unit.mobile && unit.mobile.indexOf("010") > -1) {
                 unit.formated = true;
-
                 unit.from = "naver";
                 unit.username = rlarray[1];
                 unit.rno = "n" + rlarray[3].trim();
-
                 unit.timestr = rlarray[4];
-
                 var timedata = convertTimeData(unit.timestr);
                 unit.startdate = timedata.startdate;
                 unit.enddate = timedata.enddate;
@@ -310,6 +291,10 @@ exports.splitData = async function (rawData) {
                         unit.stype = st;
                     }
                 });
+                unit.paid = false;
+                if(rl.includes("결제완료")) {
+                  unit.paid = true;
+                }
                 unit.rawData = rl;
                 unit.formated = true;
 
@@ -327,7 +312,7 @@ exports.splitData = async function (rawData) {
             .forEach(async function (unit) {
 
                 // inserting
-                if (unit.formated == true) {
+                if (unit.formated == true && unit.paid == true) {
 
                     var preparedData = {
                         from: unit.from,
@@ -616,85 +601,87 @@ function convertTimeData(str) {
     return data;
 }
 
-
 function convertTimeDataNaverMobile(datestr, timestr) {
 
-  var data = {};
-  // var dIndex = str.indexOf(")");
-  var datestrArray = datestr.split(".");
-  var yystr = makeOnlyNumberString(datestrArray[0].trim()) ;
-  var mmstr = makeOnlyNumberString( datestrArray[1].trim());
-  var ddstr = makeOnlyNumberString( datestrArray[2].trim());
+    var data = {};
+    // var dIndex = str.indexOf(")");
+    var datestrArray = datestr.split(".");
+    var yystr = makeOnlyNumberString(datestrArray[0].trim());
+    var mmstr = makeOnlyNumberString(datestrArray[1].trim());
+    var ddstr = makeOnlyNumberString(datestrArray[2].trim());
 
-  
-  if(timestr.includes("오전")) {
-    var ampmstr = "오전";
-  } else {
-    var ampmstr = "오후";
-  }
+    if (timestr.includes("오전")) {
+        var ampmstr = "오전";
+    } else {
+        var ampmstr = "오후";
+    }
 
-  var fIndex = timestr.indexOf("~");
-  var starttimestr = timestr
-      .substring(fIndex, 2)
-      .trim();
+    var fIndex = timestr.indexOf("~");
+    var starttimestr = timestr
+        .substring(fIndex, 2)
+        .trim();
 
-  var endtimestr = timestr
-      .substring(fIndex + 1)
-      .trim();
+    var endtimestr = timestr
+        .substring(fIndex + 1)
+        .trim();
 
-  var startColIndex = starttimestr.indexOf(":");
+    var startColIndex = starttimestr.indexOf(":");
 
-  var starthourstr = makeOnlyNumberString(starttimestr.substring(startColIndex, 0)) ;
+    var starthourstr = makeOnlyNumberString(
+        starttimestr.substring(startColIndex, 0)
+    );
 
-  var starthour24 = parseInt(starthourstr);
+    var starthour24 = parseInt(starthourstr);
 
-  if (starthour24 == 12) {
-      starthour24 = 0;
-  }
+    if (starthour24 == 12) {
+        starthour24 = 0;
+    }
 
-  if (ampmstr == "오후") {
-      starthour24 = 12 + starthour24;
-  }
+    if (ampmstr == "오후") {
+        starthour24 = 12 + starthour24;
+    }
 
-  var startminutestr = makeOnlyNumberString( starttimestr.substring(startColIndex + 1));
+    var startminutestr = makeOnlyNumberString(starttimestr.substring(
+        startColIndex + 1
+    ));
 
-  var endColIndex = endtimestr.indexOf(":");
+    var endColIndex = endtimestr.indexOf(":");
 
-  var endhourstr =  makeOnlyNumberString( endtimestr.substring(endColIndex, 0));
+    var endhourstr = makeOnlyNumberString(endtimestr.substring(endColIndex, 0));
 
-  var endhour24 = parseInt(endhourstr);
+    var endhour24 = parseInt(endhourstr);
 
-  if (ampmstr == "오후" || starthour24 > endhour24) {
-      endhour24 = 12 + endhour24;
-  }
+    if (ampmstr == "오후" || starthour24 > endhour24) {
+        endhour24 = 12 + endhour24;
+    }
 
-  var endminutestr = endtimestr.substring(endColIndex + 1, endColIndex + 3);
+    var endminutestr = endtimestr.substring(endColIndex + 1, endColIndex + 3);
 
-  // var a = endminutestr;
+    // var a = endminutestr;
 
-  var startdate = new Date(
-      parseInt(yystr),
-      parseInt(mmstr) - 1,
-      parseInt(ddstr),
-      starthour24,
-      parseInt(startminutestr)
-  );
+    var startdate = new Date(
+        parseInt(yystr),
+        parseInt(mmstr) - 1,
+        parseInt(ddstr),
+        starthour24,
+        parseInt(startminutestr)
+    );
 
-  var enddate = new Date(
-      parseInt(yystr),
-      parseInt(mmstr) - 1,
-      parseInt(ddstr),
-      endhour24,
-      parseInt(endminutestr)
-  );
+    var enddate = new Date(
+        parseInt(yystr),
+        parseInt(mmstr) - 1,
+        parseInt(ddstr),
+        endhour24,
+        parseInt(endminutestr)
+    );
 
-  var dur = parseInt((enddate - startdate) / (1000 * 60));
+    var dur = parseInt((enddate - startdate) / (1000 * 60));
 
-  data.startdate = startdate;
-  data.enddate = enddate;
-  data.dur = dur;
+    data.startdate = startdate;
+    data.enddate = enddate;
+    data.dur = dur;
 
-  return data;
+    return data;
 }
 
 function convertTimeDataSpace(str) {
@@ -728,11 +715,9 @@ function convertTimeDataSpace(str) {
         .substring(fIndex + 1)
         .trim();
 
-
     var starthourstr = makeOnlyNumberString(starttimestr);
 
     var starthour24 = parseInt(starthourstr);
-
 
     var endhourstr = makeOnlyNumberString(
         endtimestr.substring(endtimestr.indexOf(","), 0)
@@ -771,4 +756,3 @@ function convertTimeDataSpace(str) {
 
     return data;
 }
-

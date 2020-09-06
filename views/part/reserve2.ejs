@@ -103,12 +103,3 @@
 
 
     </script>
-
-    <% if(session && session.user && session.user.username) { %> 
-        <script>
-        document.querySelector('input[name="username"]').value = "<%=session.user.username%>";
-        document.querySelector('input[name="mobile"]').value = "<%=session.user.mobile%>";
-
-    </script>
-
-    <% } %> 
