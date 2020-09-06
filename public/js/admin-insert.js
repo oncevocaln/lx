@@ -3,8 +3,13 @@ function request_reserve_admin() {
 
   var rtext = document.querySelector('textarea[id="request_text"]').value;
 
+
+
+  var from = document.querySelector('input[name="from"]:checked').value;
+
   var data = {
-    rtext: rtext
+    rtext: rtext,
+    from: from
   };
   // alert(rtext);
 
@@ -17,7 +22,9 @@ function request_reserve_admin() {
   })
     .then((response) => response.json())
     .then((json) => {
-      alert("완료\n" + json.result );
+
+      console.log(json);
+      alert("완료\n" + json );
     });
 }
 

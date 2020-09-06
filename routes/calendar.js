@@ -53,7 +53,7 @@ router.post("/admin", async (req, res) => {
   
   let rawData = req.body.rtext;
   
-  var data = adminlogic.splitData(rawData);
+  var data = await adminlogic.splitData(rawData);
 
   // data.result = "aa";
   res.json(data);

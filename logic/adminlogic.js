@@ -75,9 +75,21 @@ var stypelist = [
 
 exports.splitData = async function (rawData) {
     var data = {
-        list: []
+        list: [],
+        insert: [],
     };
-    if (rawData.includes("NAVER Corp. All Rights Reserved")) {
+
+    var from = "";
+
+    if(rawData.includes("[Web]발신")){
+      from = "navertext";
+    } else if (rawData.includes("NAVER Corp. All Rights Reserved")) {
+      from = "navertotal";
+    } else if (rawData.includes("NSPACE")) {
+      from = "spacetotal"
+    }
+
+    if (from == "navertotal") {
         data.from = "naver";
         rawlist = rawData.split("확정");
         rawlist.forEach(function (rl) {
@@ -207,7 +219,7 @@ exports.splitData = async function (rawData) {
 
             })
         console.log('----------- this is naver list');
-    } else if (rawData.includes("NSPACE")) {
+    } else if (from == "spacetotal") {
         data.from = "space";
 
         console.log(rawData);
@@ -294,6 +306,8 @@ exports.splitData = async function (rawData) {
                 .push(unit);
         })
 
+        // data.result = result + "[대상]" + data.list.length + "개 데이터 중 새로 입력건\n";
+
         data
             .list
             .forEach(async function (unit) {
@@ -332,11 +346,13 @@ exports.splitData = async function (rawData) {
                         } else {
                             console.log('----------------------------has no prev one ---------------');
                             const savedData = await request.save();
+                            data.insert.push(unit);
+                            // data.result = data.result +  request.rno + "/" + request.username + "/" + request.mobile + + "/" + request.startdate + "/" + request.stype + "\n" ;
 
-                            google.insertEventFromRequest(preparedData, (err, data) => {
+                            await google.insertEventFromRequest(preparedData, (err, data) => {
                                 console.log('-----------make event after---------------');
                                 console.log(data);
-
+                         
                             });
 
                             console.log('saved data -' + savedData);
