@@ -927,7 +927,7 @@ exports.calcuratePriceV2 = function (data) {
   if (["NY", "HR", "HS"].includes(data.stype)) {
     priceType = "NY";
   } else if (
-    ["NX", "NM", "NA", "NX", "ND", "HA", "HX", "HD"].includes(data.stype)
+    ["NX", "NM", "NA", "ND", "HA", "HX", "HD", "HM"].includes(data.stype)
   ) {
     priceType = "NX";
   } else if (["NP", "NV", "NB", "HP", "HV"].includes(data.stype)) {
