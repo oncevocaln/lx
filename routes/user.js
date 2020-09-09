@@ -63,7 +63,7 @@ router.post("/join", async (req, res) => {
     } else {
       const saveData = await data.save();
       var mailData = {
-        title: "회원가입완료 | " + data.username + " | " + data.mobile,
+        title: "가입완료 | " + data.username + " | " + data.mobile + " | " + data.id  + " | " + data.address,
         rawData: rawData,
         data: data,
         saveData: saveData,
@@ -73,7 +73,7 @@ router.post("/join", async (req, res) => {
     }
   } catch (err) {
     var mailData = {
-      title: "회원가입실패 | " + data.username,
+      title: "가입실패 | " + data.username + " | " + data.mobile + " | " + data.id  + " | " + data.address,
       rawData: rawData,
       data: data,
     };

@@ -417,8 +417,8 @@ exports.makeEvent = function (data, callback) {
             console.log("Event created: %s", event.data.htmlLink);
             console.log("===================================== created google event =================")
 
-            var viewStart = new Date(data.start);
-            var viewDateStr = viewStart.getMonth() + 1 + "월" + viewStart.getDate() + "일 / " + viewStart.getHours() + "시" + viewStart.getMinutes() + "분";
+            var viewStart = new Date(data.startdate);
+            var viewDateStr = viewStart.getMonth() + 1 + "월" + viewStart.getDate() + "일/" + viewStart.getHours() + "시" + viewStart.getMinutes() + "분";
             var mailData = {
               title: "입력:" + data.gstype + " " + viewDateStr + " 요청:" + event.data.summary ,
               data: data,
@@ -512,7 +512,7 @@ exports.insertEventFromRequest = function (data, callback) {
             console.log("===================================== created google event =================")
 
             var viewStart = new Date(data.start);
-            var viewDateStr = viewStart.getMonth() + 1 + "월" + viewStart.getDate() + "일 / " + viewStart.getHours() + "시" + viewStart.getMinutes() + "분";
+            var viewDateStr = viewStart.getMonth() + 1 + "월" + viewStart.getDate() + "일/" + viewStart.getHours() + "시" + viewStart.getMinutes() + "분";
             var mailData = {
               title: "입력:" + data.gstype + " " + viewDateStr + " 요청:" + event.data.summary ,
               data: data,
