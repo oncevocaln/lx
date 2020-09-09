@@ -1,550 +1,355 @@
 <script src="/js/calendar-checker.js"></script>
-    
+
 <script src="http://code.jquery.com/jquery.min.js"></script>
 
-
 <div id="wrap">
-      
-      
-        <div class="reserve-content" id="content">
-          
-            <fieldset class="id_form" id="midside_panel">
-              <div class="" id="midside_panel_inner">
 
+    <div class="reserve-content" id="content">
 
-              <span style="color: red; font-size: 15px" >
-                  -[필수사항] 선택후 가격계산&가능확인 을 누르세요 -
+        <fieldset class="id_form" id="midside_panel">
+            <div class="" id="midside_panel_inner">
+
+                <span style="color: red; font-size: 15px">
+                    -[필수사항] 선택후 가격계산&가능확인 을 누르세요 -
                 </span>
 
+                <h2>논현점</h2>
+                <div class="switch-field">
+                    <input
+                        type="radio"
+                        id="radio-ny"
+                        name="stype"
+                        value="NY"
+                        onclick="src_selector();"/>
+                    <label for="radio-ny">NY</label>
+                    <input
+                        type="radio"
+                        id="radio-na"
+                        name="stype"
+                        value="NA"
+                        onclick="src_selector();"/>
+                    <label for="radio-na">NA</label>
+                    <input
+                        type="radio"
+                        id="radio-nb"
+                        name="stype"
+                        value="NB"
+                        onclick="src_selector();"/>
+                    <label for="radio-nb">NB</label>
+                    <input
+                        type="radio"
+                        id="radio-nx"
+                        name="stype"
+                        value="NX"
+                        onclick="src_selector();"/>
+                    <label for="radio-nx">NX</label>
+                    <input
+                        type="radio"
+                        id="radio-nd"
+                        name="stype"
+                        value="ND"
+                        onclick="src_selector();"/>
+                    <label for="radio-nd">ND</label>
+                    <input
+                        type="radio"
+                        id="radio-nm"
+                        name="stype"
+                        value="NM"
+                        onclick="src_selector();"/>
+                    <label for="radio-nm">NM</label>
+                    <input
+                        type="radio"
+                        id="radio-np"
+                        name="stype"
+                        value="NP"
+                        onclick="src_selector();"/>
+                    <label for="radio-np">NP</label>
+                    <input
+                        type="radio"
+                        id="radio-nv"
+                        name="stype"
+                        value="NV"
+                        onclick="src_selector();"
+                        checked="checked"/>
+                    <label for="radio-nv">NV</label>
 
-	<h2>논현점</h2>
-	<div class="switch-field">
-      <input type="radio" id="radio-ny" name="stype" value="NY" onclick="src_selector();" />
-      <label for="radio-ny">NY</label>
-      <input type="radio" id="radio-na" name="stype" value="NA" onclick="src_selector();" />
-      <label for="radio-na">NA</label>
-      <input type="radio" id="radio-nb" name="stype" value="NB" onclick="src_selector();" />
-      <label for="radio-nb">NB</label>
-      <input type="radio" id="radio-nx" name="stype" value="NX" onclick="src_selector();" />
-      <label for="radio-nx">NX</label>
-      <input type="radio" id="radio-nd" name="stype" value="ND" onclick="src_selector();" />
-      <label for="radio-nd">ND</label>
-      <input type="radio" id="radio-nm" name="stype" value="NM" onclick="src_selector();" />
-      <label for="radio-nm">NM</label>
-      <input type="radio" id="radio-np" name="stype" value="NP" onclick="src_selector();" />
-      <label for="radio-np">NP</label>
-      <input type="radio" id="radio-nv" name="stype" value="NV" onclick="src_selector();" checked/>
-      <label for="radio-nv">NV</label>
+                </div>
 
-</div>
-      
-	<h2>홍대점</h2>
-	<div class="switch-field">
-      <input type="radio" id="radio-hr" name="stype" value="HR" onclick="src_selector();" />
-      <label for="radio-hr">HR</label>
-      <input type="radio" id="radio-ha" name="stype" value="HA" onclick="src_selector();" />
-      <label for="radio-ha">HA</label>
-      <input type="radio" id="radio-hs" name="stype" value="HS" onclick="src_selector();" />
-      <label for="radio-hs">HS</label>
-      <input type="radio" id="radio-hx" name="stype" value="HX" onclick="src_selector();" />
-      <label for="radio-hx">HX</label>
-      <input type="radio" id="radio-hd" name="stype" value="HD" onclick="src_selector();" />
-      <label for="radio-hd">HD</label>
-      <input type="radio" id="radio-hm" name="stype" value="HM" onclick="src_selector();" />
-      <label for="radio-hm">HM</label>
-      <input type="radio" id="radio-hp" name="stype" value="HP" onclick="src_selector();" />
-      <label for="radio-hp">HP</label>
-      <input type="radio" id="radio-hv" name="stype" value="HV" onclick="src_selector();" />
-      <label for="radio-hv">HV</label>
+                <h2>홍대점</h2>
+                <div class="switch-field">
+                    <input
+                        type="radio"
+                        id="radio-hr"
+                        name="stype"
+                        value="HR"
+                        onclick="src_selector();"/>
+                    <label for="radio-hr">HR</label>
+                    <input
+                        type="radio"
+                        id="radio-ha"
+                        name="stype"
+                        value="HA"
+                        onclick="src_selector();"/>
+                    <label for="radio-ha">HA</label>
+                    <input
+                        type="radio"
+                        id="radio-hs"
+                        name="stype"
+                        value="HS"
+                        onclick="src_selector();"/>
+                    <label for="radio-hs">HS</label>
+                    <input
+                        type="radio"
+                        id="radio-hx"
+                        name="stype"
+                        value="HX"
+                        onclick="src_selector();"/>
+                    <label for="radio-hx">HX</label>
+                    <input
+                        type="radio"
+                        id="radio-hd"
+                        name="stype"
+                        value="HD"
+                        onclick="src_selector();"/>
+                    <label for="radio-hd">HD</label>
+                    <input
+                        type="radio"
+                        id="radio-hm"
+                        name="stype"
+                        value="HM"
+                        onclick="src_selector();"/>
+                    <label for="radio-hm">HM</label>
+                    <input
+                        type="radio"
+                        id="radio-hp"
+                        name="stype"
+                        value="HP"
+                        onclick="src_selector();"/>
+                    <label for="radio-hp">HP</label>
+                    <input
+                        type="radio"
+                        id="radio-hv"
+                        name="stype"
+                        value="HV"
+                        onclick="src_selector();"/>
+                    <label for="radio-hv">HV</label>
 
-</div>
-      
-    
-  
+                </div>
+
                 <div>
 
-          
-          <button onclick="go_cafe_nonhyun();" style="color: black;">
-            논현점 사진
-          </button>
+                    <button onclick="go_cafe_nonhyun();" style="color: black;">
+                        논현점 사진
+                    </button>
 
-          <button onclick="go_cafe_hongdae();" style="color: black;">
-              홍대점 사진
-            </button>
+                    <button onclick="go_cafe_hongdae();" style="color: black;">
+                        홍대점 사진
+                    </button>
 
-            
-          <button onclick="go_cafe_price();" style="color: black;">
-              가격보기
-            </button>
+                    <button onclick="go_cafe_price();" style="color: black;">
+                        가격보기
+                    </button>
 
-            
                 </div>
 
-
-                <div>  <img id="main_image" src="/images/nv.jpg" alt="your image" width="350" /> </div>
-
-                <div class="select_date">
-                  날짜:
-                  <select
-                    id="yy_sw"
-                    name="yy_sw"
-                    title="yy"
-                    class="sel"
-                  >
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                  </select>
-                  <select
-                    id="mm_sw"
-                    name="mm_sw"
-                    title="mm"
-                    class="sel"
-                  >
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                  </select>
-
-
-                  <select
-                    id="dd_sw"
-                    name="dd_sw"
-                    title="dd"
-                    class="sel"
-                  >
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                    <option value="31">31</option>
-                  </select>
+                <div>
+                    <img id="main_image" src="/images/nv.jpg" alt="your image" width="350"/>
                 </div>
 
                 <div class="select_date">
-                  시간:
+                    날짜:
+                    <select id="yy_sw" name="yy_sw" title="yy" class="sel">
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                    </select>
+                    <select id="mm_sw" name="mm_sw" title="mm" class="sel">
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
 
-                  <select
-                    id="hh_sw"
-                    name="hh_sw"
-                    title="hh"
-                    class="sel"
-                  >
-                    <option value="00">오전 00시</option>
-                    <option value="01">오전 01시</option>
-                    <option value="02">오전 02시</option>
-                    <option value="03">오전 03시</option>
-                    <option value="04">오전 04시</option>
-                    <option value="05">오전 05시</option>
-                    <option value="06">오전 06시</option>
-                    <option value="07">오전 07시</option>
-                    <option value="08">오전 08시</option>
-                    <option value="09">오전 09시</option>
-                    <option value="10">오전 10시</option>
-                    <option value="11">오전 11시</option>
-                    <option value="12">오후 12시</option>
-                    <option value="13">오후 13시</option>
-                    <option value="14">오후 14시</option>
-                    <option value="15">오후 15시</option>
-                    <option value="16">오후 16시</option>
-                    <option value="17">오후 17시</option>
-                    <option value="18">오후 18시</option>
-                    <option value="19">오후 19시</option>
-                    <option value="20">오후 20시</option>
-                    <option value="21">오후 21시</option>
-                    <option value="22">오후 22시</option>
-                    <option value="23">오후 23시</option>
-                  </select>
+                    <select id="dd_sw" name="dd_sw" title="dd" class="sel">
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                </div>
 
-                  <select
-                    id="mi_sw"
-                    name="mi_sw"
-                    title="mi"
-                    class="sel"
-                  >
-                    <option value="00">00분</option>
-                    <option value="30">30분</option>
-                  </select>
+                <div class="select_date">
+                    시간:
+
+                    <select id="hh_sw" name="hh_sw" title="hh" class="sel">
+                        <option value="00">오전 00시</option>
+                        <option value="01">오전 01시</option>
+                        <option value="02">오전 02시</option>
+                        <option value="03">오전 03시</option>
+                        <option value="04">오전 04시</option>
+                        <option value="05">오전 05시</option>
+                        <option value="06">오전 06시</option>
+                        <option value="07">오전 07시</option>
+                        <option value="08">오전 08시</option>
+                        <option value="09">오전 09시</option>
+                        <option value="10">오전 10시</option>
+                        <option value="11">오전 11시</option>
+                        <option value="12">오후 12시</option>
+                        <option value="13">오후 13시</option>
+                        <option value="14">오후 14시</option>
+                        <option value="15">오후 15시</option>
+                        <option value="16">오후 16시</option>
+                        <option value="17">오후 17시</option>
+                        <option value="18">오후 18시</option>
+                        <option value="19">오후 19시</option>
+                        <option value="20">오후 20시</option>
+                        <option value="21">오후 21시</option>
+                        <option value="22">오후 22시</option>
+                        <option value="23">오후 23시</option>
+                    </select>
+
+                    <select id="mi_sw" name="mi_sw" title="mi" class="sel">
+                        <option value="00">00분</option>
+                        <option value="30">30분</option>
+                    </select>
                 </div>
 
                 <div class="select_dm">
-                  사용분:
-                  <select
-                    id="dm_sw"
-                    name="dm_sw"
-                    title="dm"
-                    class="sel"
-                  >
-                    <option value="30">30분</option>
-                    <option value="60" selected>1시간00분</option>
-                    <option value="90">1시간30분</option>
-                    <option value="120">2시간00분</option>
-                    <option value="150">2시간30분</option>
-                    <option value="180">3시간00분</option>
-                    <!-- <option value="210">3시간30분</option> -->
-                    <option value="240">4시간00분</option>
-                    <!-- <option value="270">4시간30분</option> -->
-                    <option value="300">5시간00분</option>
-                    <!-- <option value="330">5시간30분</option> -->
-                    <option value="360">6시간00분</option>
-                    <!-- <option value="390">6시간30분</option> -->
-                    <!-- <option value="420">7시간00분</option> -->
-                    <!-- <option value="450">7시간30분</option> -->
-                    <option value="480">8시간00분</option>
-                    <!-- <option value="510">8시간30분</option> -->
-                    <!-- <option value="540">9시간00분</option> -->
-                    <!-- <option value="570">9시간30분</option> -->
-                    <option value="600">10시간00분</option>
-                    <option value="720">12시간00분</option>
-                  </select>
+                    사용분:
+                    <select id="dm_sw" name="dm_sw" title="dm" class="sel">
+                        <option value="30">30분</option>
+                        <option value="60" selected="selected">1시간00분</option>
+                        <option value="90">1시간30분</option>
+                        <option value="120">2시간00분</option>
+                        <option value="150">2시간30분</option>
+                        <option value="180">3시간00분</option>
+                        <!-- <option value="210">3시간30분</option> -->
+                        <option value="240">4시간00분</option>
+                        <!-- <option value="270">4시간30분</option> -->
+                        <option value="300">5시간00분</option>
+                        <!-- <option value="330">5시간30분</option> -->
+                        <option value="360">6시간00분</option>
+                        <!-- <option value="390">6시간30분</option> -->
+                        <!-- <option value="420">7시간00분</option> -->
+                        <!-- <option value="450">7시간30분</option> -->
+                        <option value="480">8시간00분</option>
+                        <!-- <option value="510">8시간30분</option> -->
+                        <!-- <option value="540">9시간00분</option> -->
+                        <!-- <option value="570">9시간30분</option> -->
+                        <option value="600">10시간00분</option>
+                        <option value="720">12시간00분</option>
+                    </select>
                 </div>
-              
 
+                <br>
+                <span style="color: red; font-size: 15px">
+                    -여기 부터는 무관한 분들은 그대로 두셔도 됩니다.-
+                </span>
 
-              <br>
-              <span style="color: red; font-size: 15px" >
-              -여기 부터는 무관한 분들은 그대로 두셔도 됩니다.-
-            </span>
+                <div>
+                    [옵션] 블루투스스피커:
+                    <select id="bl_sw" name="bl_sw" title="bl" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
 
-
-            <div>
-                [옵션] 블루투스스피커:
-                <select
-                  id="bl_sw"
-                  name="bl_sw"
-                  title="bl"
-                  class="sel"
-                >
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                </select>
-
-                스피커:
-                <select
-                  id="sp_sw"
-                  name="sp_sw"
-                  title="sp"
-                  class="sel"
-                >
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                </select>
-              </div>
-              <div>
-                헤드폰:
-                <select
-                  id="he_sw"
-                  name="he_sw"
-                  title="he"
-                  class="sel"
-                >
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-
-                오디오인터페이스:
-                <select
-                  id="au_sw"
-                  name="au_sw"
-                  title="au"
-                  class="sel"
-                >
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-              </div>
-              <div>
-                마이크:
-                <select
-                  id="mc_sw"
-                  name="mc_sw"
-                  title="mc"
-                  class="sel"
-                >
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-                마이크스탠드:
-                <select
-                  id="st_sw"
-                  name="st_sw"
-                  title="st"
-                  class="sel"
-                >
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-              </div>
-              <div>
-                큐브앰프:
-                <select
-                  id="cu_sw"
-                  name="cu_sw"
-                  title="cu"
-                  class="sel"
-                >
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                </select>
-
-                SD앰프:
-                <select
-                  id="sd_sw"
-                  name="sd_sw"
-                  title="sd"
-                  class="sel"
-                >
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                </select>
-                보면대:
-                <select
-                  id="bo_sw"
-                  name="bo_sw"
-                  title="bo"
-                  class="sel"
-                >
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                </select>
-              </div>
-              <div>
-                통기타:
-                <select
-                  id="gi_sw"
-                  name="gi_sw"
-                  title="gi"
-                  class="sel"
-                >
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-
-                  <option value="3">3</option>
-                </select>
-
-                일렉기타:
-                <select
-                  id="el_sw"
-                  name="el_sw"
-                  title="el"
-                  class="sel"
-                >
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-                
-                  스틱:
-                  <select
-                    id="ds_sw"
-                    name="ds_sw"
-                    title="ds"
-                    class="sel"
-                  >
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                  </select>
+                    스피커:
+                    <select id="sp_sw" name="sp_sw" title="sp" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
                 </div>
                 <div>
-                  
-              </div>
-              <div>
-                의자:
-                <select
-                  id="ch_sw"
-                  name="ch_sw"
-                  title="ch"
-                  class="sel"
-                >
-                  <!-- <option value="0">0</option> -->
-                  <option value="0">1</option> 
-                  <option value="0">2</option>
-                  <option value="1">3</option>
-                  <option value="2">4</option>
-                  <option value="3">5</option>
-                  <option value="4">6</option>
-                  <option value="5">7</option>
-                  <option value="6">8</option>
-                  <option value="8">10</option>
-                  <option value="10">12</option>
-                  <option value="12">14</option>
-                  <option value="14">16</option>
-                  <option value="16">18</option>
-                </select>
-                테이블:
-                <select
-                  id="ta_sw"
-                  name="ta_sw"
-                  title="ta"
-                  class="sel"
-                >
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-                요가매트:
-                <select
-                  id="yo_sw"
-                  name="yo_sw"
-                  title="yo"
-                  class="sel"
-                >
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                </select>
-            </div>
-            <div>
-              88건반:
-              <select
-                id="dp_sw"
-                name="dp_sw"
-                title="dp"
-                class="sel"
-              >
-                <option value="0">0</option>
-                <option value="1">1</option>
-              </select>
-              전자키보드:
-              <select
-                id="dk_sw"
-                name="dk_sw"
-                title="dk"
-                class="sel"
-              >
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-              </select>
-             
-              
-            <div>
-              휴대폰삼각대:
-              <select
-                id="hs_sw"
-                name="hs_sw"
-                title="dp"
-                class="sel"
-              >
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-              </select>
-              <button onclick="go_cafe_option();" style="color: black;">
-                  옵션에 대해 자세히
-                </button>
-          </div>
+                    헤드폰:
+                    <select id="he_sw" name="he_sw" title="he" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
 
-	<h2>유형</h2>
-	<div class="switch-field">
-      <input type="radio" id="radio-rent" name="rtype" value="rent" checked />
-      <label for="radio-rent">대여</label>
-      <input type="radio" id="radio-pass" name="rtype" value="pass" onclick="checkPassGrade();" />
-      <label for="radio-pass">자율</label>
-      <input type="radio" id="radio-vip" name="rtype" value="vip" onclick="checkVipGrade();"  >
-      <label for="radio-vip">강사</label>
-      <input type="radio" id="radio-visit" name="rtype" value="visit" >
-      <label for="radio-visit">현장</label>
-</div>
-      
-  
+                    오디오인터페이스:
+                    <select id="au_sw" name="au_sw" title="au" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
                 <div>
-  
-                    패키지할인:
-                    <select id="pkg" name="pkg" >
-                        <option value="no">없음</option>
-                        <option value="mo">새벽 1시~7시</option>
-                        <option value="am">오전 7시~12시</option>
-                        <option value="da">낮 12시~16시</option>
-                        <option value="pm">오후 16시~19시</option>
-                        <option value="di">저녁 19시~22시</option>
-                        <option value="ni">밤22시~01시</option>
-                        <option value="up4">4시간이상</option>
-                        <option value="up10">10시간이상</option>
-                        <!-- <option value="nu">신규전용이벤트</option> -->
-                    </select> <span style="font-size: 10px;">가격계산시 자동적용됩니다</span>
-                    
-                  </div>
-                  
-                  <!-- <div class="select_rn"  >
-                      방번호:
-                      <select
-                        id="rn_sw"
-                        name="rn_sw"
-                        title="rn"
-                        class="sel"
-                      >
-                        <option value="1">배정되지 않았다면 1번부터 순서대로 빈방을 사용하세요</option>
+                    마이크:
+                    <select id="mc_sw" name="mc_sw" title="mc" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    마이크스탠드:
+                    <select id="st_sw" name="st_sw" title="st" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <div>
+                    큐브앰프:
+                    <select id="cu_sw" name="cu_sw" title="cu" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
 
-                        <option value="1">1</option>                      
+                    SD앰프:
+                    <select id="sd_sw" name="sd_sw" title="sd" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                    보면대:
+                    <select id="bo_sw" name="bo_sw" title="bo" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
@@ -552,217 +357,403 @@
                         <option value="6">6</option>
                         <option value="7">7</option>
                         <option value="8">8</option>
+                    </select>
+                </div>
+                <div>
+                    통기타:
+                    <select id="gi_sw" name="gi_sw" title="gi" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
 
-                      </select>
-                      </div>
-       -->
+                        <option value="3">3</option>
+                    </select>
 
-            
-                        <div class="input_row" id="username_area">
-                            이름: <input type="text" id="username" name="username"
-                            placeholder="이름" class="int" maxlength="41" value="" /><span style="font-size: 10px;"> 로그인하면 자동입력됩니다.</span>
-                          </div>
-            
-                          <div class="input_row" id="mobile_area">
-                            휴대전화: <input type="text" id="mobile" name="mobile"
-                            placeholder="010-0000-0000" class="int" maxlength="41"
-                            value="" />
-                          </div>
-            
-                          <br>
-                          <span style="font-size: 10px;"> 
-                              <br> 하단의 가능확인 버튼을 누르면 자동계산됩니다 </span>
-                          <div class="input_row" id="price_area">
-                            가격: <input type="text" id="price" name="price"
-                            placeholder="가격계산을 누르세요"  maxlength="41"
+                    일렉기타:
+                    <select id="el_sw" name="el_sw" title="el" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+
+                    스틱:
+                    <select id="ds_sw" name="ds_sw" title="ds" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+                <div></div>
+                <div>
+                    의자:
+                    <select id="ch_sw" name="ch_sw" title="ch" class="sel">
+                        <!-- <option value="0">0</option> -->
+                        <option value="0">1</option>
+                        <option value="0">2</option>
+                        <option value="1">3</option>
+                        <option value="2">4</option>
+                        <option value="3">5</option>
+                        <option value="4">6</option>
+                        <option value="5">7</option>
+                        <option value="6">8</option>
+                        <option value="8">10</option>
+                        <option value="10">12</option>
+                        <option value="12">14</option>
+                        <option value="14">16</option>
+                        <option value="16">18</option>
+                    </select>
+                    테이블:
+                    <select id="ta_sw" name="ta_sw" title="ta" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    요가매트:
+                    <select id="yo_sw" name="yo_sw" title="yo" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+                <div>
+                    88건반:
+                    <select id="dp_sw" name="dp_sw" title="dp" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select>
+                    전자키보드:
+                    <select id="dk_sw" name="dk_sw" title="dk" class="sel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+
+                    <div>
+                        휴대폰삼각대:
+                        <select id="hs_sw" name="hs_sw" title="dp" class="sel">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                        <button onclick="go_cafe_option();" style="color: black;">
+                            옵션에 대해 자세히
+                        </button>
+                    </div>
+
+                    <h2>유형</h2>
+                    <div class="switch-field">
+                        <input
+                            type="radio"
+                            id="radio-rent"
+                            name="rtype"
+                            value="rent"
+                            checked="checked"/>
+                        <label for="radio-rent">대여</label>
+                        <input
+                            type="radio"
+                            id="radio-pass"
+                            name="rtype"
+                            value="pass"
+                            onclick="checkPassGrade();"/>
+                        <label for="radio-pass">자율</label>
+                        <input
+                            type="radio"
+                            id="radio-vip"
+                            name="rtype"
+                            value="vip"
+                            onclick="checkVipGrade();">
+                        <label for="radio-vip">강사</label>
+                        <input
+                            type="radio"
+                            id="radio-visit"
+                            name="rtype"
+                            value="visit"
+                            onclick="checkVisit();">
+                        <label for="radio-visit">현장</label>
+                    </div>
+
+                    <div>
+
+                        패키지할인:
+                        <select id="pkg" name="pkg">
+                            <option value="no">없음</option>
+                            <option value="mo">새벽 1시~7시</option>
+                            <option value="am">오전 7시~12시</option>
+                            <option value="da">낮 12시~16시</option>
+                            <option value="pm">오후 16시~19시</option>
+                            <option value="di">저녁 19시~22시</option>
+                            <option value="ni">밤22시~01시</option>
+                            <option value="up4">4시간이상</option>
+                            <option value="up10">10시간이상</option>
+                            <!-- <option value="nu">신규전용이벤트</option> -->
+                        </select>
+                        <span style="font-size: 10px;">가격계산시 자동적용됩니다</span>
+
+                    </div>
+
+                    <div class="input_row" id="username_area">
+                        이름:
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="이름"
+                            class="int"
+                            maxlength="41"
                             value=""/>
-                          </div>
+                        <span style="font-size: 10px;">
+                            로그인하면 자동입력됩니다.</span>
+                    </div>
 
+                    <div class="input_row" id="mobile_area">
+                        휴대전화:
+                        <input
+                            type="text"
+                            id="mobile"
+                            name="mobile"
+                            placeholder="010-0000-0000"
+                            class="int"
+                            maxlength="41"
+                            value=""/>
+                    </div>
 
-              
-                      <div class="input_row" id="possible_area">
-                          가능확인: <input type="text" id="possible" name="possible"
-                          placeholder="-OK가 나오면 예약가능-" maxlength="41"
-                          value="" />
+                    <br>
+                    <span style="font-size: 10px;">
+                        <br>
+                        하단의 가능확인 버튼을 누르면 자동계산됩니다
+                    </span>
+                    <div class="input_row" id="price_area">
+                        가격:
+                        <input
+                            type="text"
+                            id="price"
+                            name="price"
+                            placeholder="가격계산을 누르세요"
+                            maxlength="41"
+                            value=""/>
+                    </div>
+
+                    <div class="input_row" id="possible_area">
+                        가능확인:
+                        <input
+                            type="text"
+                            id="possible"
+                            name="possible"
+                            placeholder="-OK가 나오면 예약가능-"
+                            maxlength="41"
+                            value=""/>
+                    </div>
+
+                    <div class="select_rn">
+                        방번호:
+                        <select id="rn_sw" name="rn_sw" title="rn" class="sel">
+                            <option value="1">배정되지 않았다면 1번부터 순서대로 빈방을 사용하세요</option>
+
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+
+                        </select>
+                    </div>
+
+                    <!-- <div class="input_plus"> <div class="number"> 방번호: <span
+                    class="minus">-</span> <input class="number_input" type="text" id="rn_sw"
+                    name="rn_sw" value="1"/> <span class="plus">+</span> </div> </div> -->
+
+                </fieldset>
+
+                <div>
+
+                    <div class="reserve-content" id="content">
+
+                        <div>
+                            <br>
+                            <button
+                                onclick="check_possible();"
+                                style="background-color:yellow; color: black; height: 30px; ">
+                                <span style="font-size: 20px">1. 가격계산 & 가능확인</span>
+                            </button>
+
                         </div>
-          
 
+                        <div>
+                            <!-- <textarea id="account_number" cols="34" >하나은행 134-910094-25407
+                            이효원</textarea> <button onclick="copy_account_to_clipboard();" style="color:
+                            black;"> 계좌번호복사 </button> -->
+                        </div>
 
-                  <div class="select_rn"  >
-                      방번호:
-                      <select
-                        id="rn_sw"
-                        name="rn_sw"
-                        title="rn"
-                        class="sel"
-                      >
-                        <option value="1">배정되지 않았다면 1번부터 순서대로 빈방을 사용하세요</option>
+                        <div>
+                            <br>
+                            예약요청<br>
+                            <textarea
+                                onclick="copy_to_clipboard();"
+                                id="request_text"
+                                cols="34"
+                                rows="17"
+                                style="background-color: aliceblue"></textarea>
+                            <!-- <button onclick="copy_request_to_clipboard();"
+                            style="background-color:yellow; color: black; height: 30px"> <span
+                            style="font-size: 20px">2. 예약요청복사</span> </button> -->
 
-                        <option value="1">1</option>                      
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
+                        </div>
 
-                      </select>
-                      </div>
-      
-                        <!-- <div class="input_plus">
-                            
-                            <div class="number">
-                                방번호:
-                                <span class="minus">-</span>
-                                
-                                <input class="number_input" type="text" id="rn_sw" name="rn_sw" value="1"/>
-                                <span class="plus">+</span>
-                              </div>
-                        </div> -->
+                        <div>
 
-            </fieldset>
-          
-            <div>
+                            <span style="font-size: 10px;">
+                                <br>예약자는 변경&환불규정에 동의한것으로 간주됩니다.<br>예약내용 확인후 신중하게 이체해주세요.
+                            </span>
+                            <button
+                                onclick="check_refund_policy();"
+                                style="background-color: antiquewhite; color: black; ">
+                                변경&환불규정
+                            </button><br>
 
+                            <br>
 
-        <div class="reserve-content" id="content">
-          
-            <div>
-            <br>
-                <button onclick="check_possible();" style="background-color:yellow; color: black; height: 30px; ">
-                  <span style="font-size: 20px">1. 가격계산 & 가능확인</span>
-                </button>
-      
-                
-              </div>
-             
-          <div>
-              <!-- <textarea id="account_number" cols="34"  
-              >하나은행 134-910094-25407 이효원</textarea> 
-              <button onclick="copy_account_to_clipboard();" style="color: black;">
-                계좌번호복사
-              </button> -->
-          </div>
-  
-          
-          <div>
-            <br>
-            예약요청<br>
-              <textarea onclick="copy_to_clipboard();" id="request_text" cols="34" rows="17" style="background-color: aliceblue"
-              ></textarea> 
-              <!-- <button onclick="copy_request_to_clipboard();" style="background-color:yellow; color: black; height: 30px">
-                <span style="font-size: 20px">2. 예약요청복사</span>
-                
-              </button> -->
-  
-          </div>
+                            <button
+                                onclick="request_reserve();"
+                                style=" background-color:yellow; color: black; height: 40px; width: 200px">
+                                <span style="font-size: 20px">
+                                    2. 요청하기</span>
+                            </button>
 
-          <div>
+                        </div>
 
-              <span style="font-size: 10px;"> 
-                  <br>예약자는 변경&환불규정에 동의한것으로 간주됩니다.<br>예약내용 확인후 신중하게 이체해주세요. </span>
-                  <button onclick="check_refund_policy();" style="background-color: antiquewhite; color: black; ">
-                    변경&환불규정
-                  </button><br>
+                        <div>
 
-                  <br>
-                  
+                            <span style="font-size: 10px;">
 
-                <button onclick="request_reserve();"  style=" background-color:yellow; color: black; height: 40px; width: 200px">
-                    <span style="font-size: 20px">
-                    2. 요청하기</span>
-                  </button>
-                  
-            </div>
+                                <br>
+                                <br>
 
+                                <br>
+                                --혹시--<br>
+                                오류로 다음으로 진행이 안될때, 카톡으로 예약도 가능합니다.
+                                <br>
+                                1.금액을 이체하신 후 이체완료사잔을 캡쳐하고
+                                <br>
+                                2.예약요청을 복사하거나 요청이 보이게 화면을 캡쳐해서
+                                <br>
+                                [카톡열기]를 해서 1. 2.를 모두 전송해주세요<br>
+                                <br>
 
-          <div>
+                            </span>
 
+                            <div>
+                                <textarea
+                                    onclick="copy_account_to_clipboard();"
+                                    id="account_number"
+                                    cols="34"
+                                    style="background-color: aliceblue">하나은행 134-910094-25407 이효원</textarea>
+                            </div>
 
+                            <br>
+                            <button
+                                onclick="send_kakao();"
+                                style=" background-color:blanchedalmond; color: black; height: 24px ; width:140px">
+                                <span style="font-size: 14px">
+                                    카톡열기</span>
+                            </button>
 
-              <span style="font-size: 10px;"> 
-  
-                <br>
-                <br>
+                        </div>
+                        <br>
 
-                <br>
-              --혹시--<br>
-              오류로 다음으로 진행이 안될때, 카톡으로 예약도 가능합니다. <br>
-              1.금액을 이체하신 후 이체완료사잔을 캡쳐하고 <br>
-              2.예약요청을 복사하거나 요청이 보이게 화면을 캡쳐해서 <br>
-              [카톡열기]를 해서 1. 2.를 모두 전송해주세요<br>
-              <br>
-                  
-              </span>
-  
-            <div>
-                <textarea onclick="copy_account_to_clipboard();" id="account_number" cols="34" style="background-color: aliceblue" 
-                >하나은행 134-910094-25407 이효원</textarea> 
-            </div>
+                        <span style="font-size: 12px;">
 
-            <br>
-                <button onclick="send_kakao();"  style=" background-color:blanchedalmond; color: black; height: 24px ; width:140px">
-                    <span style="font-size: 14px">
-                    카톡열기</span>
-                  </button>
-                  
-            </div>
-            <br>
+                            오류가 발생하거나 진행이 어렵다면 화면을 캡쳐해서 카톡으로 문의주세요.<br>
 
-            <span style="font-size: 12px;"> 
-  
-            오류가 발생하거나 진행이 어렵다면 화면을 캡쳐해서 카톡으로 문의주세요.<br>
-  
-            </span> 
+                        </span>
+                    </div>
+                    <!-- //container -->
+                    <!-- footer -->
 
-          <!-- <div>   
-            <button  onclick="request_reserve();" style="color: black;">
-                예약요청
-              </button>
-          </div> -->
-          <!-- //content -->
-        </div>
-        <!-- //container -->
-        <!-- footer -->
+                </div>
 
-        </div>
-    
-    <script>
+                <script>
 
-    var grade = "";
+                    var grade = "";
 
-    function checkVipGrade(){
-      if(grade != "vip"){
-        alert("사용할수 있는 등급이 아닙니다. 관리자에게 등업을 요청해주세요.")
-        document.querySelector('input[name="rtype"]').checked = "rent";
-        document.querySelector('input[name="rtype"]').value = "rent";
-      }
-    }
-    
+                    function checkVipGrade() {
+                        if (grade != "vip") {
+                            alert("사용할수 있는 등급이 아닙니다. 관리자에게 등업을 요청해주세요.")
+                            document
+                                .querySelector('input[name="rtype"]')
+                                .checked = "rent";
+                            document
+                                .querySelector('input[name="rtype"]')
+                                .value = "rent";
+                        }
+                    }
 
-    function checkPassGrade(){
-      if(grade != "pass" && grade != "pass2"){
-        alert("사용할수 있는 등급이 아닙니다. 관리자에게 등업을 요청해주세요.")
-        document.querySelector('input[name="rtype"]').checked = "rent";
-        document.querySelector('input[name="rtype"]').value = "rent";
-      }
-    }
-    
+                    function checkPassGrade() {
+                        if (grade != "pass" && grade != "pass2") {
+                            alert("사용할수 있는 등급이 아닙니다. 관리자에게 등업을 요청해주세요.")
+                            document
+                                .querySelector('input[name="rtype"]')
+                                .checked = "rent";
+                            document
+                                .querySelector('input[name="rtype"]')
+                                .value = "rent";
+                        }
+                    }
 
+                    function checkVisit() {
 
-    init_date();
-    </script>
+                        var stype = document
+                            .querySelector('input[name="stype"]:checked')
+                            .value;
+                        var stype = document
+                            .querySelector('input[name="stype"]:checked')
+                            .value;
 
-    <% if(session && session.user && session.user.username) { %> 
-        <script>
-        document.querySelector('input[name="username"]').value = "<%=session.user.username%>";
-        document.querySelector('input[name="mobile"]').value = "<%=session.user.mobile%>";
+                        var hhn = parseInt(document.querySelector('select[name="hh_sw"]').value);
+                        if (grade == "" || grade == "new") {
+                            alert("사용할수 있는 등급이 아닙니다. 관리자에게 등업을 요청해주세요.")
+                            document
+                                .querySelector('input[name="rtype"]')
+                                .checked = "rent";
+                            document
+                                .querySelector('input[name="rtype"]')
+                                .value = "rent";
 
-        grade = "<%=session.user.grade%>";
-        
+                        } else if (stype.includes("H") || hhn < 13) {
+                            alert("논현점(4층) 에서 오후1시~10시 시간대만 현장결제 가능합니다.");
+                            document
+                                .querySelector('input[name="rtype"]')
+                                .checked = "rent";
+                            document
+                                .querySelector('input[name="rtype"]')
+                                .value = "rent";
+                        }
+                    }
 
-    </script>
+                    init_date();
+                </script>
 
+                <% if(session && session.user && session.user.username) { %>
+                    <script>
+                        document
+                            .querySelector('input[name="username"]')
+                            .value = "<%=session.user.username%>";
+                        document
+                            .querySelector('input[name="mobile"]')
+                            .value = "<%=session.user.mobile%>";
 
-    <% } %> 
+                        grade = "<%=session.user.grade%>";
+                    </script>
+
+                <% } %>
