@@ -18,6 +18,14 @@ function makeOnlyNumberString(str) {
   return strSimple;
 }
 
+
+const rtypeArray = {
+  pass : "자율",
+  vip : "VIP",
+  rent : "대여",
+  admin : "관리자",
+}
+
 const calendarIds = {
   NY: {
     id: "3v45ttcu6h58kho5vtibohf7g4@group.calendar.google.com",
@@ -362,7 +370,8 @@ exports.makeEvent = function (data, callback) {
       var gend = data.enddate.toISOString();
       //이름을 마스킹하는 다른 방법을 찾기
 
-      var summary = "" + data.stype + data.room + " " + data.username + "/ " + grade ;
+      var rtypeString = rtypeArray[data.rtype];
+      var summary = "" + data.stype + data.room + " " + data.username + "/" + rtypeString + "/" + data.price + "원";
 
       data.gstype = data.stype;
       //신규가입자이거나 등급이 없다면
@@ -454,8 +463,9 @@ exports.insertEventFromRequest = function (data, callback) {
       var gstart = data.start.toISOString();
       var gend = data.end.toISOString();
 
-      var summary =  "" + data.stype + data.room + " " + data.username + "/ " + grade ;
 
+      var rtypeString = data.from;
+      var summary = "" + data.stype + data.room + " " + data.username + "/" + rtypeString + "/" ;
 
       data.gstype = data.stype;
       //신규가입자이거나 등급이 없다면

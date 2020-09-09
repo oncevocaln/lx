@@ -95,8 +95,9 @@ exports.splitData = async function (rawData) {
         data.from = "naver";
         rawlist = rawData.split("확정");
         rawlist.forEach(function (rl) {
-            console.log('-------------------rl------');
+            console.log('-------------------rl---naver mobile ------------');
             var rlarray = rl.split("\n");
+            console.log(rlarray);
             var unit = {
                 stype: ""
             };
@@ -147,7 +148,7 @@ exports.splitData = async function (rawData) {
                   unit.paid = true;
                 }
                 unit.demandstr = rlarray[10];
-                unit.paystatus = paystatus;
+                // unit.paystatus = paystatus;
                 // unit.amountstr = rlarray[12];
                 unit.check = "";
                 unit.stype = "RQ";
