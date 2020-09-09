@@ -405,8 +405,8 @@ exports.makeEvent = function (data, callback) {
         reminders: {
           useDefault: false,
           overrides: [
-            { method: "email", minutes: 24 * 60 },
-            { method: "popup", minutes: 24 * 60 },
+            // { method: "email", minutes: 24 * 60 },
+            // { method: "popup", minutes: 24 * 60 },
           ],
         },
       };
@@ -500,8 +500,8 @@ exports.insertEventFromRequest = function (data, callback) {
         reminders: {
           useDefault: false,
           overrides: [
-            { method: "email", minutes: 24 * 60 },
-            { method: "popup", minutes: 60 },
+            // { method: "email", minutes: 24 * 60 },
+            // { method: "popup", minutes: 60 },
           ],
         },
       };
