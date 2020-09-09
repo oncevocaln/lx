@@ -2,6 +2,7 @@ const fs = require("fs");
 const readline = require("readline");
 const { google } = require("googleapis");
 
+const mailer = require("../logic/mailer");
 
 function makeOnlyNumberString(str) {
   var strSimple = "";
@@ -360,13 +361,14 @@ exports.makeEvent = function (data, callback) {
       var gstart = data.startdate.toISOString();
       var gend = data.enddate.toISOString();
       //이름을 마스킹하는 다른 방법을 찾기
-      var namemask =
-        data.username + " / " + data.mobile.substring(11, 7);
-      var summary = "" + data.stype + data.rn_sw + " " + namemask + "/ 등급-" + grade ;
 
+      var summary = "" + data.stype + data.room + " " + data.username + "/ " + grade ;
+
+      data.gstype = data.stype;
       //신규가입자이거나 등급이 없다면
       if(grade =="no" || grade == "new") {
         var calendarId = calendarIds["RQ"].id;
+        data.gstype = "RQ";
       } else {
         var calendarId = calendarIds[data.stype].id;  
       }
@@ -412,7 +414,20 @@ exports.makeEvent = function (data, callback) {
                 "There was an error contacting the Calendar service: " + err
               );
             }
-            console.log("Event created: %s", event.htmlLink);
+            console.log("Event created: %s", event.data.htmlLink);
+            console.log("===================================== created google event =================")
+
+            var viewStart = new Date(data.start);
+            var viewDateStr = viewStart.getMonth() + 1 + "월" + viewStart.getDate() + "일 / " + viewStart.getHours() + "시" + viewStart.getMinutes() + "분";
+            var mailData = {
+              title: "입력:" + data.gstype + " " + viewDateStr + " 요청:" + event.data.summary ,
+              data: data,
+              event, event
+            };
+            mailer.mailSend(mailData);
+
+
+
             callback(err, data);
           }
         );
@@ -438,14 +453,15 @@ exports.insertEventFromRequest = function (data, callback) {
 
       var gstart = data.start.toISOString();
       var gend = data.end.toISOString();
-      //이름을 마스킹하는 다른 방법을 찾기
-      var namemask =
-        data.username.substring(0, 3) + "/" + data.mobile.substring(11, 7);
-      var summary =  "" + data.stype + data.room + " " + namemask + "/등급-" + grade ;
 
+      var summary =  "" + data.stype + data.room + " " + data.username + "/ " + grade ;
+
+
+      data.gstype = data.stype;
       //신규가입자이거나 등급이 없다면
       if(grade =="no" || grade == "new") {
         var calendarId = calendarIds["RQ"].id;
+        data.gstype = "RQ";
       } else {
         var calendarId = calendarIds[data.stype].id;  
       }
@@ -492,7 +508,18 @@ exports.insertEventFromRequest = function (data, callback) {
                 "There was an error contacting the Calendar service: " + err
               );
             }
-            console.log("Event created: %s", event.htmlLink);
+            console.log("Event created: %s", event.data.htmlLink);
+            console.log("===================================== created google event =================")
+
+            var viewStart = new Date(data.start);
+            var viewDateStr = viewStart.getMonth() + 1 + "월" + viewStart.getDate() + "일 / " + viewStart.getHours() + "시" + viewStart.getMinutes() + "분";
+            var mailData = {
+              title: "입력:" + data.gstype + " " + viewDateStr + " 요청:" + event.data.summary ,
+              data: data,
+              event, event
+            };
+            mailer.mailSend(mailData);
+
             callback(err, data);
           }
         );
