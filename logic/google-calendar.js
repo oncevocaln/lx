@@ -24,6 +24,7 @@ const rtypeArray = {
   vip : "VIP",
   rent : "대여",
   admin : "관리자",
+  visit: "현장"
 }
 
 const calendarIds = {

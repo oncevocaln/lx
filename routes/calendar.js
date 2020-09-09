@@ -100,20 +100,12 @@ router.post("/request", async (req, res) => {
   if (r.possible == "NO") {
     res.json(r);
   } else {
-
     try {
-
       google.listUpcomingEvent(r, async (err, data) => {
         if (data.possible != "NO") {
           data.possible = "OK";
-  
           data.user = user;
           data.room = Number.parseInt(data.rn_sw);
-  
-          console.log(data.start);
-          console.log(data.end);
-  
-
 
           let r = Math.random().toString(36).substring(7);
           console.log("random", r);

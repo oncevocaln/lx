@@ -507,9 +507,9 @@
 	<div class="switch-field">
       <input type="radio" id="radio-rent" name="rtype" value="rent" checked />
       <label for="radio-rent">대여</label>
-      <input type="radio" id="radio-pass" name="rtype" value="pass" />
+      <input type="radio" id="radio-pass" name="rtype" value="pass" onclick="checkPassGrade();" />
       <label for="radio-pass">자율</label>
-      <input type="radio" id="radio-vip" name="rtype" value="vip" >
+      <input type="radio" id="radio-vip" name="rtype" value="vip" onclick="checkVipGrade();"  >
       <label for="radio-vip">강사</label>
       <input type="radio" id="radio-visit" name="rtype" value="visit" >
       <label for="radio-visit">현장</label>
@@ -730,6 +730,27 @@
     
     <script>
 
+    var grade = "";
+
+    function checkVipGrade(){
+      if(grade != "vip"){
+        alert("사용할수 있는 등급이 아닙니다. 관리자에게 등업을 요청해주세요.")
+        document.querySelector('input[name="rtype"]').checked = "rent";
+        document.querySelector('input[name="rtype"]').value = "rent";
+      }
+    }
+    
+
+    function checkPassGrade(){
+      if(grade != "pass" && grade != "pass2"){
+        alert("사용할수 있는 등급이 아닙니다. 관리자에게 등업을 요청해주세요.")
+        document.querySelector('input[name="rtype"]').checked = "rent";
+        document.querySelector('input[name="rtype"]').value = "rent";
+      }
+    }
+    
+
+
     init_date();
     </script>
 
@@ -738,6 +759,10 @@
         document.querySelector('input[name="username"]').value = "<%=session.user.username%>";
         document.querySelector('input[name="mobile"]').value = "<%=session.user.mobile%>";
 
+        grade = "<%=session.user.grade%>";
+        
+
     </script>
+
 
     <% } %> 

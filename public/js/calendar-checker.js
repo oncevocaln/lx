@@ -293,57 +293,7 @@ function request_reserve() {
         }
       });
   }
-  
 }
-
-
-
-function request_reserve2() {
-  // document.querySelector('input[name="price"]').value = "-----loading-----";
-  // document.querySelector('input[name="possible"]').value = "-----loading-----";
-
-  // var checkData = make_data();
-
-
-
-  var rid = document.querySelector('input[id="rid"]').value;
-
-
-
-
-  var data = {rid: rid};
-  fetch("/calendar/request2", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  })
-    .then((response) => response.json())
-    .then((json) => {
-
-      document.getElementById("price").value = json.price;
-      document.querySelector('select[name="dm_sw"]').value = json.dm_sw;
-
-      document.querySelector('select[name="hh_sw"]').value = json.hh_sw;
-      document.querySelector('select[name="pkg"]').value = json.pkg;
-      document.querySelector('select[name="rn_sw"]').value = json.rn_sw;
-
-      document.querySelector('input[name="possible"]').value = json.possible;
-      
-      if (json.possible == "NO") {
-      
-        alert("" + json.reason);
-      } else {
-        alert("요청완료 하였습니다.카톡을 보내주세요." );
-
-      }
-    });
-}
-
-
-
-
 
 
 function make_os(json) {
