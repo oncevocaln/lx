@@ -171,13 +171,6 @@ var priceTable = {
     2500,
     2500,
   ],
-
-  NV: [
-    //0~12
-    //12~17
-    //17~22
-    //22~24
-  ],
 };
 
 exports.rawDataChecker = function (rawData) {
