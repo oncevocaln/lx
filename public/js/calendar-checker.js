@@ -248,16 +248,22 @@ function request_reserve() {
 
   var checkData = make_data();
 
-
-
   var rtext = document.querySelector('textarea[id="request_text"]').value;
 
-  if(rtext.substr(0,1) != "[") {
+  var isAgree = document.getElementById("agree").checked;
+
+if(rtext.substr(0,1) != "[") {
     alert('가능확인을 먼저 해주세요');
   }else if( checkData.mobile.substr(0,3) != "010") {
     alert('로그인이 안되어 있거나 휴대폰번호가 바르지 않습니다.');
   }
-  else {
+  else
+  
+  if(!isAgree && checkData.rtype == "rent"){
+    alert("변경 & 환불 규정에 동의 해주세요");
+
+  } else 
+  {
 
     checkData.rtext = rtext;
     
@@ -498,7 +504,7 @@ function readURL(input) {
 }
 
 function insert_merchant(){
-  
+
 }
 
 
