@@ -242,6 +242,15 @@ function check_possible() {
     });
 }
 
+function click_agree() {
+  var isAgree = document.getElementById("agree").checked;
+  if(isAgree == true) {
+    document.getElementById("agree").checked = false;
+  } else {
+    document.getElementById("agree").checked = true;
+  }
+}
+
 function request_reserve() {
   // document.querySelector('input[name="price"]').value = "-----loading-----";
   // document.querySelector('input[name="possible"]').value = "-----loading-----";
