@@ -57,8 +57,8 @@ router.post("/", async function (req, res) {
 
         let session = req.session;
 
-        let cookies = req.cookies;
-        res.render("login", { cookies: req.cookies });
+        let cookies = {userObj: userObj};
+        res.render("login", { cookies: cookies });
 
 
         // let loginObj = {
