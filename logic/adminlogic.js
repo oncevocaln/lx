@@ -61,6 +61,7 @@ var stypelist = [
     "NP",
     "NM",
     "NX",
+    "NK",
     "ND",
     "NV",
     "HR",

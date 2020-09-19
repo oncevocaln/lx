@@ -8,10 +8,12 @@ const mailer = require("../logic/mailer");
 //route
 router.get("/logout", async (req, res) => {
   req.session.user = {};
+  
 
   let session = req.session;
 
-  res.render("logout", { session: session });
+  res.cookie("userObj", {});
+  res.render("logout", { session: session, cookies: req.cookies });
 });
 
 //route
@@ -20,7 +22,7 @@ router.get("/findid", async (req, res) => {
 
   let session = req.session;
 
-  res.render("logout", { session: session });
+  res.render("logout", { session: session, cookies: req.cookies });
 });
 
 //route
@@ -29,7 +31,7 @@ router.get("/findpw", async (req, res) => {
 
   let session = req.session;
 
-  res.render("logout", { session: session });
+  res.render("logout", { session: session, cookies: req.cookies });
 });
 
 //route

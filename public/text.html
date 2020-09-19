@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>원스 보컬</title>
+    <script
+        src="https://kit.fontawesome.com/2d323a629b.js"
+        crossorigin="anonymous"
+        ></script>
+        <script src="main.js" defer></script>
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <!--헤더-->
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <i class="fab fa-accusoft"></i>
+            <a href="">원스보컬</a>
+        </div>
+        <ul class="navbar__menu">
+            <li><a href="">Home</a></li>
+            <li><a href="">Gallery</a></li>
+            <li><a href="">sing</a></li>
+        </ul>
+        <ul class="navbar__icons">
+            <li class="fab fa-facebook-f"></li>
+        </ul>
+        <a href="#" class="navbar__toogleBtn">
+            <i class="fas fa-bars"></i>
+        </a>
+    </nav>
+    <!--헤더 끝-->
+  
+    <!--이미지 슬라이드-->
+    <div class="slider">
+        <div class="slide" style="background-image: url(./img1.jpg);"></div>
+        <div class="slide" style="background-image: url(./img2.jpg);"></div>
+        <div class="slide" style="background-image: url(./img3.jpg);"></div>
+        <a class="prev" onclick="button_click(-1)">&#10094</a>
+        <a class="next" onclick="button_click(1)">&#10095</a>
+    </div>
+    <script>
+        let currSlide = 1;
+        showSlide(currSlide);
+
+        function button_click(num) {
+            showSlide((currSlide += num));
+        }
+        function showSlide(num) {
+            const slides = document.querySelectorAll(".slide");
+            if(num>slides.length){
+                currSlide =1;
+            }if(num<1){
+                currSlide = slides.length;
+            }
+            for(let i=0; i<slides.length; i++) {
+                slides[i].style.display="none";
+            }slides[currSlide -1].style.display="block";
+        }
+    </script>
+    <!--이미지 슬라이드-->
+    
+    <!--내용 펼치기 시작-->
+    <div class="sing">
+        <details>
+        <summary>내용펼쳐 보기 ☜(클릭) </summary>
+        <p>사람은 항상 실수 하기 마련이다. 하지만 그 실수를 만회하는 사람이 되어야 한다.</p>
+    </details>
+    </div>
+    <!--내용펼치기 끝-->
+
+    <!--달력 구현시작--> 
+    <div class="dates">
+        <details>
+            <summary>날짜 선택하기</summary>
+        <form class="date1">
+            <label>날짜선택 : </label>
+            <input type="date">
+        </form>
+    </details>
+    </div>
+    <!--달력 구현 끝-->
+
+    <!-- 옵션 -->
+        <div class="option">
+            <details>
+                <summary>옵션선택</summary>
+            <button class="plus" onclick="plusFeature();">+</button>
+            <input type="text" value="0" class="textBox" readonly>
+            <button class="minus" onclick="minusFeature();">-</button>
+        </details>
+        </div>
+
+        <script>
+            var plus = $('.plus'),
+                minus = $('.minus')
+                count = Number($('.textBox').val()), //0
+                textBox = $('.textBox');
+
+            function plusFeature() {
+                count += 1;
+                textBox.val(count);
+            };
+
+            function minusFeature() {
+                count -= 1;
+                if (count < 0) {
+                    alert('0보다 작을 수 없습니다.');
+                    count = 0;
+                    return false;
+                }
+                textBox.val(count);
+            };
+
+        </script>
+        
+    <!-- 옵션 끝-->
+
+    <!-- 시간 -->
+    <div class="time">
+        <details>
+            <summary>시간</summary>
+            <select name="" id="">
+                <script>
+                    for (var time = 0; time <= 23; time++) {
+                        if (String(time).length == 1) {
+                            time = '0' + time;
+                        }
+                        document.write('<option value="' + time + '">' + time + ':00' + '</option>');
+                    }
+                </script>
+            </select>
+    </details>
+    </div>
+    <!-- 시간 끝 -->
+</body>
+</html>

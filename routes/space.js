@@ -50,7 +50,7 @@ const calendarIds = {
   },
   NB: {
     id: "94pkff5ut7b75i72dpecna9p54@group.calendar.google.com",
-    count: 2,
+    count: 3,
   },
   ND: {
     id: "n2jhd5rbhlu3k5fl77abojsef4@group.calendar.google.com",
@@ -72,6 +72,10 @@ const calendarIds = {
     id: "mj2te6b290tkr2ttea3u93iepk@group.calendar.google.com",
     count: 2,
   },
+  NK: {
+    id: "3445cc7o8hc72ljnkcri5sc08k@group.calendar.google.com",
+    count: 2,
+  },
   OP: {
     id: "6kbrfp74k5pu451vtj0sc206lg@group.calendar.google.com",
     count: 100,
@@ -79,7 +83,7 @@ const calendarIds = {
 };
 
 router.get("/1", function (req, res, next) {
-  res.render("frame", { session: req.session });
+  res.render("frame", { session: req.session , cookies: req.cookies});
 });
 
 router.get("/2/:mobile", async function (req, res, next) {

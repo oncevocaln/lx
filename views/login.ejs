@@ -19,10 +19,10 @@
     <link rel="stylesheet" type="text/css" href="/css/login.css" />
   </head>
   <body>
-    <% if(session && session.user && session.user.username){ %>
+    <% if(cookies && cookies.userObj && cookies.userObj.username){ %>
 
     <script>
-      alert("환영합니다. <%=session.user.username%> 님!");
+      alert("환영합니다. <%=cookies.userObj.username%> 님!");
       window.location.href = "/space/1";
     </script>
     <% } %>

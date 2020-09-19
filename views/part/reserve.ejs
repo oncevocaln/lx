@@ -38,24 +38,11 @@
                     <label for="radio-nb">NB</label>
                     <input
                         type="radio"
-                        id="radio-nx"
-                        name="stype"
-                        value="NX"
-                        onclick="src_selector();"/>
-                    <label for="radio-nx">NX</label>
-                    <input
-                        type="radio"
-                        id="radio-nd"
-                        name="stype"
-                        value="ND"
-                        onclick="src_selector();"/>
-                    <label for="radio-nd">ND</label>
-                    <input
-                        type="radio"
                         id="radio-nm"
                         name="stype"
                         value="NM"
                         onclick="src_selector();"/>
+                   
                     <label for="radio-nm">NM</label>
                     <input
                         type="radio"
@@ -73,6 +60,33 @@
                         checked="checked"/>
                     <label for="radio-nv">NV</label>
 
+                </div>
+
+                <h><span style="font-size: 14px;">논현2스튜디오 (지하) </span></h2>
+                <div class="switch-field">
+                    
+                    <input
+                        type="radio"
+                        id="radio-nx"
+                        name="stype"
+                        value="NX"
+                        onclick="src_selector();"/>
+                    <label for="radio-nx">NX</label>
+                    <input
+                        type="radio"
+                        id="radio-nd"
+                        name="stype"
+                        value="ND"
+                        onclick="src_selector();"/>
+                    <label for="radio-nd">ND</label>
+                    <input
+                        type="radio"
+                        id="radio-nk"
+                        name="stype"
+                        value="NK"
+                        onclick="src_selector();"/>
+                    <label for="radio-nk">NK</label>
+                 
                 </div>
 
                 <h2>홍대점</h2>
@@ -274,12 +288,16 @@
                 </div>
 
                 <br>
-                <span style="color: red; font-size: 15px">
+                <span style="color: red; font-size: 12px">
                     -여기 부터는 무관한 분들은 그대로 두셔도 됩니다.-
                 </span>
 
-                <div>
-                    [옵션] 블루투스스피커:
+                <br>
+                
+                [옵션] 
+                <span style=" font-size: 12px">
+
+                <div>블루투스스피커:
                     <select id="bl_sw" name="bl_sw" title="bl" class="sel">
                         <option value="0">0</option>
                         <option value="1">1</option>
@@ -447,6 +465,9 @@
                         </button>
                     </div>
 
+
+                </span>
+
                     <h2>유형</h2>
                     <div class="switch-field">
                         <input
@@ -554,7 +575,7 @@
                     <div class="select_rn">
                         방번호:
                         <select id="rn_sw" name="rn_sw" title="rn" class="sel">
-                            <option value="1">배정되지 않았다면 1번부터 순서대로 빈방을 사용하세요</option>
+                            <option value="1">방번호가 특정되지 않았다면, 1번부터 순서대로 빈방을 사용하세요</option>
 
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -601,7 +622,7 @@
                                 onclick="copy_to_clipboard();"
                                 id="request_text"
                                 cols="34"
-                                rows="17"
+                                rows="19"
                                 style="background-color: aliceblue"></textarea>
                             <!-- <button onclick="copy_request_to_clipboard();"
                             style="background-color:yellow; color: black; height: 30px"> <span
@@ -763,20 +784,17 @@ Copyright 2018 원스보컬 댄스&실용음악학원 - 1N1 Dance Studio all rig
                                 .value = "rent";
                         }
                     }
-
                     init_date();
                 </script>
-
-                <% if(session && session.user && session.user.username) { %>
+                <% if( cookies && cookies.userObj && cookies.userObj.username) { %>
                     <script>
                         document
                             .querySelector('input[name="username"]')
-                            .value = "<%=session.user.username%>";
+                            .value = "<%=cookies.userObj.username%>";
                         document
                             .querySelector('input[name="mobile"]')
-                            .value = "<%=session.user.mobile%>";
+                            .value = "<%=cookies.userObj.mobile%>";
 
-                        grade = "<%=session.user.grade%>";
+                        grade = "<%=cookies.userObj.grade%>";
                     </script>
-
                 <% } %>

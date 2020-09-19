@@ -676,7 +676,7 @@ exports.calcuratePrice = function (data) {
     )
   ) {
     priceType = "NX";
-  } else if (["NP", "NV", "NB", "HP", "HV"].includes(data.calendarId)) {
+  } else if (["NP", "NV", "NK", "NB", "HP", "HV"].includes(data.calendarId)) {
     priceType = "NP";
   } else {
     priceType = "NY";
@@ -836,12 +836,12 @@ exports.calcuratePrice = function (data) {
   if (["NY", "HR", "HS"].includes(data.calendarId)) {
     priceType = "NY";
   } else if (
-    ["NX", "NM", "NA", "NX", "ND", "HA", "HX", "HM", "HD"].includes(
+    ["NX", "NM", "NA", "ND", "HA", "HX", "HM", "HD"].includes(
       data.calendarId
     )
   ) {
     priceType = "NX";
-  } else if (["NP", "NV", "NB", "HP", "HV"].includes(data.calendarId)) {
+  } else if (["NP", "NV", "NB", "NK", "HP", "HV"].includes(data.calendarId)) {
     priceType = "NP";
   } else {
     priceType = "NY";
@@ -923,7 +923,7 @@ exports.calcuratePriceV2 = function (data) {
     ["NX", "NM", "NA", "ND", "HA", "HX", "HD", "HM"].includes(data.stype)
   ) {
     priceType = "NX";
-  } else if (["NP", "NV", "NB", "HP", "HV"].includes(data.stype)) {
+  } else if (["NP", "NK", "NV", "NB", "HP", "HV"].includes(data.stype)) {
     priceType = "NP";
   } else {
     priceType = "NY";
@@ -972,9 +972,6 @@ exports.calcuratePriceV2 = function (data) {
   } else if (data.pkg == "ni") {
     basePrice = basePrice * 0.9;
   }
-
-  console.log("-----------------this is cal price");
-  console.log(basePrice);
 
   if (data.rtype == "pass") {
     basePrice = 0;

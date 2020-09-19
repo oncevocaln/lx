@@ -50,7 +50,7 @@ const calendarIds = {
   },
   NB: {
     id: "94pkff5ut7b75i72dpecna9p54@group.calendar.google.com",
-    count: 2,
+    count: 3,
   },
   ND: {
     id: "n2jhd5rbhlu3k5fl77abojsef4@group.calendar.google.com",
@@ -72,6 +72,10 @@ const calendarIds = {
     id: "mj2te6b290tkr2ttea3u93iepk@group.calendar.google.com",
     count: 2,
   },
+  NK: {
+    id: "3445cc7o8hc72ljnkcri5sc08k@group.calendar.google.com",
+    count: 2,
+  },
   OP: {
     id: "6kbrfp74k5pu451vtj0sc206lg@group.calendar.google.com",
     count: 100,
@@ -82,23 +86,30 @@ router.get("/", async function (req, res, next) {
   var id = "";
   var user = {};
 
-  if (req.session && req.session.user && req.session.user.id) {
-    user = req.session.user;
-    id = req.session.user.id;
+  var cookies = req.cookies;
+
+  console.log('--------------------------------this is cookie');
+  
+
+  if (cookies && cookies.userObj && cookies.userObj.id) {
+    id = cookies.userObj.id;
+    user = cookies.userObj;
   }
 
   try {
+
     const reserve = await Reserve.find({
-      id: id,
-    }).sort({ start: -1 });
+      id: id
+    }).sort({ start: -1 }).limit(10);
 
     res.render("mypage", {
       session: req.session,
       user: user,
       reserve: reserve,
+      cookies: req.cookies
     });
   } catch (e) {
-    res.render("mypage", { session: req.session });
+    res.render("mypage", { session: req.session, cookies: req.cookies});
   }
 });
 

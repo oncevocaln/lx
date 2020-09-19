@@ -8,7 +8,7 @@ const User = require("../models/User");
 router.get("/", function (req, res) {
   let session = req.session;
 
-  res.render("login", { session: session });
+  res.render("login", { session: session, cookies: req.cookies });
 });
 
 router.get("/fail", function (req, res) {
@@ -32,8 +32,19 @@ router.post("/", async function (req, res) {
     } else {
       if (user.password == checkData.pw) {
         //로그인 완료
-        res.cookie("user", checkData.id, {
-          expires: new Date(Date.now() +  60*60*100*100),
+
+        var userObj = {
+          id: user.id,
+          mobile: user.mobile,
+          username: user.username,
+          grade: user.grade,
+          email: user.email
+        }
+
+        var expiryDate = new Date( Date.now() + 60 * 60 * 1000 * 24 * 7); // 24 hour 7일
+
+        res.cookie("userObj", userObj,   {
+          expires: expiryDate,
           httpOnly: true,
         });
         req.session.user = {
@@ -45,14 +56,27 @@ router.post("/", async function (req, res) {
         };
 
         let session = req.session;
-        
-        res.render("login", { session: session });
+
+        let cookies = req.cookies;
+        res.render("login", { cookies: req.cookies });
+
+
+        // let loginObj = {
+        //   id: user.id,
+        //   mobile: user.mobile,
+        //   username: user.username
+        // }
+
+
+        // console.log("=======================================cookie test");
+        // res.cookie('loginObj', loginObj, { expires: expiryDate, httpOnly: true, signed:true });
+
       } else {
-        res.render("login", { message: "로그인이 실패하였습니다" });
+        res.render("login", { cookies: req.cookies, message: "로그인이 실패하였습니다" });
       }
     }
   } catch (err) {
-    res.render("login", { message: "로그인이 실패하였습니다" });
+    res.render("login", {  cookies: req.cookies, message: "로그인이 실패하였습니다" });
   }
 });
 

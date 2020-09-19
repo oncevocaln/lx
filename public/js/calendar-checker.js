@@ -505,12 +505,6 @@ function readURL(input) {
     readURL(this);
  });
 
- function src_selector_na(){
-
-  var main_image = document.getElementById("main_image");
-  main_image.src = "/images/na.jpg";
-
-}
 
 function insert_merchant(){
 

@@ -70,7 +70,7 @@ const calendarIds = {
   },
   NB: {
     id: "94pkff5ut7b75i72dpecna9p54@group.calendar.google.com",
-    count: 2,
+    count: 3,
   },
   ND: {
     id: "n2jhd5rbhlu3k5fl77abojsef4@group.calendar.google.com",
@@ -90,6 +90,11 @@ const calendarIds = {
   },
   NX: {
     id: "mj2te6b290tkr2ttea3u93iepk@group.calendar.google.com",
+    count: 2,
+  },
+
+  NK: {
+    id: "3445cc7o8hc72ljnkcri5sc08k@group.calendar.google.com",
     count: 2,
   },
   OP: {
