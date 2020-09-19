@@ -83,13 +83,13 @@ const calendarIds = {
 };
 
 router.get("/1", function (req, res, next) {
-  res.render("s1", { session: req.session });
+  res.render("s1", { session: req.session, cookies: req.cookies });
 });
 
 
 
 router.get("/2", function (req, res, next) {
-  res.render("s2", { session: req.session });
+  res.render("s2", { session: req.session, cookies: req.cookies });
 });
 
 router.get("/2/:mobile", async function (req, res, next) {
@@ -108,7 +108,7 @@ router.get("/2/:mobile", async function (req, res, next) {
       reserve: reserve,
     });
   } catch (e) {
-    res.render("frame2", { session: req.session });
+    res.render("frame2", { session: req.session, cookies: req.cookies });
   }
 
 
@@ -124,7 +124,7 @@ router.get("/1/:stype", function (req, res, next) {
     session: req.session,
     data: {
       cid: cid,
-    },
+    },cookies: req.cookies
   });
 });
 

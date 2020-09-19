@@ -14,7 +14,7 @@ router.get("/1", function (req, res, next) {
 
   
 router.get("/2", function (req, res, next) {
-    res.render("admin", { session: req.session });
+    res.render("admin", { session: req.session, cookies: req.cookies});
 
 });
 

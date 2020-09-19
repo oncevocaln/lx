@@ -100,9 +100,10 @@ router.get("/2/:mobile", async function (req, res, next) {
       session: req.session,
       user: user,
       reserve: reserve,
+      cookies: req.cookies
     });
   } catch (e) {
-    res.render("frame2", { session: req.session });
+    res.render("frame2", { session: req.session, cookies: req.cookies });
   }
 
 
@@ -118,7 +119,7 @@ router.get("/1/:stype", function (req, res, next) {
     session: req.session,
     data: {
       cid: cid,
-    },
+    },cookies: req.cookies
   });
 });
 
