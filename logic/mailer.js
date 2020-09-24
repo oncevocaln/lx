@@ -17,7 +17,7 @@ exports.mailSend = function (mailData) {
   let mailOptions = {
     from: "oncevocaln@gmail.com", // 발송 메일 주소 (위에서 작성한 gmail 계정 아이디)
     to: email, // 수신 메일 주소
-    subject: "[OB]" + mailData.title, // 제목
+    subject: mailData.title, // 제목
     text: JSON.stringify(mailData), // 내용
   };
 

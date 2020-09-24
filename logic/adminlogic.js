@@ -226,7 +226,6 @@ exports.splitData = async function (rawData) {
                         console.log('saved data -' + e);
                     }
                 }
-
             })
         console.log('----------- this is naver list');
     } else if (from == "navertotal") {

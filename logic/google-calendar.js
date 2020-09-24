@@ -390,12 +390,16 @@ exports.makeEvent = function (data, callback) {
       
       
       var recurrence = "RRULE:FREQ=DAILY;COUNT=2";
+      
+      var requestDate = new Date().toLocaleString();
 
+      var description = "이름: " + data.username + " / 휴대폰: " + data.mobile + " / 방번호선택: " +data.room_requested
+      +"\n / 입력일시: " + requestDate;
       // var gend = data.endate.toISOString();
       var event = {
         summary: summary,
         location: "옵션:" + data.os,
-        description: "이름: " + data.username + " / 휴대폰: " + data.mobile + " / 방번호선택: " +data.room_requested,
+        description: description,
         start: {
           dateTime: gstart,
           timeZone: "Asia/Seoul",
@@ -435,7 +439,7 @@ exports.makeEvent = function (data, callback) {
             var viewStart = new Date(data.startdate);
             var viewDateStr = viewStart.getMonth() + 1 + "월" + viewStart.getDate() + "일/" + viewStart.getHours() + "시" + viewStart.getMinutes() + "분";
             var mailData = {
-              title: "입력:" + data.gstype + " " + viewDateStr + " 요청:" + event.data.summary ,
+              title: "" + rtypeString + ":" + data.gstype + " " + viewDateStr + " 요청:" + event.data.summary ,
               data: data,
               event, event
             };
@@ -454,7 +458,7 @@ exports.makeEvent = function (data, callback) {
 };
 
 
-
+// 네이버 스페이스클라우드 용 
 exports.insertEventFromRequest = function (data, callback) {
   fs.readFile("credentials.json", (err, content) => {
     if (err) return console.log("Error loading client secret file:", err);
@@ -484,6 +488,11 @@ exports.insertEventFromRequest = function (data, callback) {
       
       
       var recurrence = "RRULE:FREQ=DAILY;COUNT=2";
+
+      var requestDate = new Date().toLocaleString();
+
+      var description = "이름: " + data.username + " / 휴대폰: " + data.mobile 
+      +"\n / 입력일시: " + requestDate;
 
       // var gend = data.endate.toISOString();
       var event = {
@@ -530,7 +539,7 @@ exports.insertEventFromRequest = function (data, callback) {
             var viewStart = new Date(data.start);
             var viewDateStr = viewStart.getMonth() + 1 + "월" + viewStart.getDate() + "일/" + viewStart.getHours() + "시" + viewStart.getMinutes() + "분";
             var mailData = {
-              title: "입력:" + data.gstype + " " + viewDateStr + " 요청:" + event.data.summary ,
+              title: "" + rtypeString + "입력:" + data.gstype + " " + viewDateStr + " 요청:" + event.data.summary ,
               data: data,
               event, event
             };

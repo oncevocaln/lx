@@ -11,8 +11,159 @@
 
                 <span style="color: red; font-size: 15px">
                     -[필수사항] 선택후 가격계산&가능확인 을 누르세요 -
+                    <br><br>
                 </span>
 
+                <h2>유형</h2> 
+                    <div class="switch-field">
+                        <input
+                            type="radio"
+                            id="radio-rent"
+                            name="rtype"
+                            value="rent"
+                            checked="checked"/>
+                        <label for="radio-rent">대여</label>
+                        <input
+                            type="radio"
+                            id="radio-pass"
+                            name="rtype"
+                            value="pass"
+                            onclick="checkPassGrade();"/>
+                        <label for="radio-pass">자율사용자</label>
+                        <input
+                            type="radio"
+                            id="radio-vip"
+                            name="rtype"
+                            value="vip"
+                            onclick="checkVipGrade();">
+                        <label for="radio-vip">강사</label>
+                        <input
+                            type="radio"
+                            id="radio-visit"
+                            name="rtype"
+                            value="visit"
+                            onclick="checkVisit();">
+                        <label for="radio-visit">현장결제</label>
+                    </div>
+
+                <div class="select_date">
+                    날짜:
+                    <select id="yy_sw" name="yy_sw" title="yy" class="sel">
+                        <option value="2020">2020</option>
+                    </select>
+                    <select id="mm_sw" name="mm_sw" title="mm" class="sel">
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                    </select>
+
+                    <select id="dd_sw" name="dd_sw" title="dd" class="sel">
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                </div>
+
+                <div class="select_date">
+                    시간:
+
+                    <select id="hh_sw" name="hh_sw" title="hh" class="sel">
+                        <option value="00">오전 00시</option>
+                        <option value="01">오전 01시</option>
+                        <option value="02">오전 02시</option>
+                        <option value="03">오전 03시</option>
+                        <option value="04">오전 04시</option>
+                        <option value="05">오전 05시</option>
+                        <option value="06">오전 06시</option>
+                        <option value="07">오전 07시</option>
+                        <option value="08">오전 08시</option>
+                        <option value="09">오전 09시</option>
+                        <option value="10">오전 10시</option>
+                        <option value="11">오전 11시</option>
+                        <option value="12">오후 12시</option>
+                        <option value="13">오후 13시</option>
+                        <option value="14">오후 14시</option>
+                        <option value="15">오후 15시</option>
+                        <option value="16">오후 16시</option>
+                        <option value="17">오후 17시</option>
+                        <option value="18">오후 18시</option>
+                        <option value="19">오후 19시</option>
+                        <option value="20">오후 20시</option>
+                        <option value="21">오후 21시</option>
+                        <option value="22">오후 22시</option>
+                        <option value="23">오후 23시</option>
+                    </select>
+
+                    <select id="mi_sw" name="mi_sw" title="mi" class="sel">
+                        <option value="00">00분</option>
+                        <option value="30">30분</option>
+                    </select>
+                </div>
+
+                <div class="select_dm">
+                    사용분:
+                    <select id="dm_sw" name="dm_sw" title="dm" class="sel">
+                        <option value="30">30분</option>
+                        <option value="60" selected="selected">1시간00분</option>
+                        <option value="90">1시간30분</option>
+                        <option value="120">2시간00분</option>
+                        <option value="150">2시간30분</option>
+                        <option value="180">3시간00분</option>
+                        <option value="210">3시간30분</option>
+                        <option value="240">4시간00분</option>
+                        <option value="270">4시간30분</option>
+                        <option value="300">5시간00분</option>
+                        <option value="330">5시간30분</option>
+                        <option value="360">6시간00분</option>
+                        <option value="390">6시간30분</option>
+                        <option value="420">7시간00분</option>
+                        <!-- <option value="450">7시간30분</option> -->
+                        <option value="480">8시간00분</option>
+                        <!-- <option value="510">8시간30분</option> -->
+                        <option value="540">9시간00분</option>
+                        <!-- <option value="570">9시간30분</option> -->
+                        <option value="600">10시간00분</option>
+
+                        <option value="660">11시간00분</option>
+                        <option value="720">12시간00분</option>
+                    </select>
+                </div>
                 <h2>논현점</h2>
                 <div class="switch-field">
                     <input
@@ -62,7 +213,7 @@
 
                 </div>
 
-                <h><span style="font-size: 14px;">논현2스튜디오 (지하) </span></h2>
+                <h2><span style="font-size: 14px;">논현2스튜디오 (지하) </span></h2>
                 <div class="switch-field">
                     
                     <input
@@ -170,122 +321,7 @@
                     <img id="main_image" src="/images/nv.jpg" alt="your image" width="350"/>
                 </div>
 
-                <div class="select_date">
-                    날짜:
-                    <select id="yy_sw" name="yy_sw" title="yy" class="sel">
-                        <option value="2020">2020</option>
-                    </select>
-                    <select id="mm_sw" name="mm_sw" title="mm" class="sel">
-                        <option value="01">01</option>
-                        <option value="02">02</option>
-                        <option value="03">03</option>
-                        <option value="04">04</option>
-                        <option value="05">05</option>
-                        <option value="06">06</option>
-                        <option value="07">07</option>
-                        <option value="08">08</option>
-                        <option value="09">09</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                    </select>
-
-                    <select id="dd_sw" name="dd_sw" title="dd" class="sel">
-                        <option value="01">01</option>
-                        <option value="02">02</option>
-                        <option value="03">03</option>
-                        <option value="04">04</option>
-                        <option value="05">05</option>
-                        <option value="06">06</option>
-                        <option value="07">07</option>
-                        <option value="08">08</option>
-                        <option value="09">09</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-                    </select>
-                </div>
-
-                <div class="select_date">
-                    시간:
-
-                    <select id="hh_sw" name="hh_sw" title="hh" class="sel">
-                        <option value="00">오전 00시</option>
-                        <option value="01">오전 01시</option>
-                        <option value="02">오전 02시</option>
-                        <option value="03">오전 03시</option>
-                        <option value="04">오전 04시</option>
-                        <option value="05">오전 05시</option>
-                        <option value="06">오전 06시</option>
-                        <option value="07">오전 07시</option>
-                        <option value="08">오전 08시</option>
-                        <option value="09">오전 09시</option>
-                        <option value="10">오전 10시</option>
-                        <option value="11">오전 11시</option>
-                        <option value="12">오후 12시</option>
-                        <option value="13">오후 13시</option>
-                        <option value="14">오후 14시</option>
-                        <option value="15">오후 15시</option>
-                        <option value="16">오후 16시</option>
-                        <option value="17">오후 17시</option>
-                        <option value="18">오후 18시</option>
-                        <option value="19">오후 19시</option>
-                        <option value="20">오후 20시</option>
-                        <option value="21">오후 21시</option>
-                        <option value="22">오후 22시</option>
-                        <option value="23">오후 23시</option>
-                    </select>
-
-                    <select id="mi_sw" name="mi_sw" title="mi" class="sel">
-                        <option value="00">00분</option>
-                        <option value="30">30분</option>
-                    </select>
-                </div>
-
-                <div class="select_dm">
-                    사용분:
-                    <select id="dm_sw" name="dm_sw" title="dm" class="sel">
-                        <option value="30">30분</option>
-                        <option value="60" selected="selected">1시간00분</option>
-                        <option value="90">1시간30분</option>
-                        <option value="120">2시간00분</option>
-                        <option value="150">2시간30분</option>
-                        <option value="180">3시간00분</option>
-                        <!-- <option value="210">3시간30분</option> -->
-                        <option value="240">4시간00분</option>
-                        <!-- <option value="270">4시간30분</option> -->
-                        <option value="300">5시간00분</option>
-                        <!-- <option value="330">5시간30분</option> -->
-                        <option value="360">6시간00분</option>
-                        <!-- <option value="390">6시간30분</option> -->
-                        <!-- <option value="420">7시간00분</option> -->
-                        <!-- <option value="450">7시간30분</option> -->
-                        <option value="480">8시간00분</option>
-                        <!-- <option value="510">8시간30분</option> -->
-                        <!-- <option value="540">9시간00분</option> -->
-                        <!-- <option value="570">9시간30분</option> -->
-                        <option value="600">10시간00분</option>
-                        <option value="720">12시간00분</option>
-                    </select>
-                </div>
+                
 
                 <br>
                 <span style="color: red; font-size: 12px">
@@ -468,38 +504,7 @@
 
                 </span>
 
-                    <h2>유형</h2>
-                    <div class="switch-field">
-                        <input
-                            type="radio"
-                            id="radio-rent"
-                            name="rtype"
-                            value="rent"
-                            checked="checked"/>
-                        <label for="radio-rent">대여</label>
-                        <input
-                            type="radio"
-                            id="radio-pass"
-                            name="rtype"
-                            value="pass"
-                            onclick="checkPassGrade();"/>
-                        <label for="radio-pass">자율</label>
-                        <input
-                            type="radio"
-                            id="radio-vip"
-                            name="rtype"
-                            value="vip"
-                            onclick="checkVipGrade();">
-                        <label for="radio-vip">강사</label>
-                        <input
-                            type="radio"
-                            id="radio-visit"
-                            name="rtype"
-                            value="visit"
-                            onclick="checkVisit();">
-                        <label for="radio-visit">현장</label>
-                    </div>
-
+                    
                     <div>
 
                         패키지할인:
