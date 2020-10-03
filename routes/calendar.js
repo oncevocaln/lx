@@ -49,6 +49,18 @@ router.post("/checkpossible", async (req, res) => {
 
 
 
+router.post("/price_calcurate", async (req, res) => {
+  
+  let checkData = req.body;
+  var r = processor.completeData(checkData);
+
+  var price = processor.calcuratePriceV2(r);
+  r.price = price;
+
+  res.json(r);
+});
+
+
 router.post("/admin", async (req, res) => {
   
   let rawData = req.body.rtext;
@@ -97,6 +109,40 @@ router.post("/request", async (req, res) => {
     r.reason = "로그인해주세요";
   }
 
+  var userObj = req.cookies.userObj;
+
+  console.log(userObj);
+
+  if(userObj && userObj.grade) {
+    grade = userObj.grade;
+    
+  }
+
+  //자율사용자
+  if (grade == "pass") {
+    var id = userObj.id;
+
+    var nowString = new Date().toISOString();
+
+    const nextReserve = await Reserve.findOne({id: id, end: {$gte: nowString}}, {}  );
+
+    console.log('------------next reserve ');
+    console.log(nowString);
+    console.log(nextReserve);
+
+
+  
+    // try {
+    //   const reserve = await Reserve.findOne( {mobile: mobile} ,{}, { sort: { 'creationDate' : -1 } });
+  
+    
+    // } catch (e) {
+    // }
+
+    //자율사용자는 한개씩 예약할수 있게 변경
+  }
+
+
   if (r.possible == "NO") {
     res.json(r);
   } else {
@@ -111,10 +157,6 @@ router.post("/request", async (req, res) => {
           console.log("random", r);
 
           data.rid = data.user.id + r;
-          //자율사용자
-          if (grade == "pass") {
-            //자율사용자는 한개씩 예약할수 있게 변경
-          }
           var savedData = await insertReserve(data);
 
           // res.json(data);

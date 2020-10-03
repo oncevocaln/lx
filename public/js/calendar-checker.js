@@ -199,7 +199,7 @@ function make_data() {
 
   checkData.dm_sw = document.querySelector('select[name="dm_sw"]').value;
   checkData.rn_sw = document.querySelector('select[name="rn_sw"]').value;
-  checkData.pkg = document.querySelector('select[name="pkg"]').value;
+  // checkData.pkg = document.querySelector('select[name="pkg"]').value;
 
   checkData.price = document.querySelector('input[name="price"]').value;
 
@@ -210,8 +210,8 @@ function make_data() {
 }
 
 function check_possible() {
-  document.querySelector('input[name="price"]').value = "-----loading-----";
-  document.querySelector('input[name="possible"]').value = "-----loading-----";
+  document.querySelector('input[name="price"]').value = "계산중";
+  // document.querySelector('input[name="possible"]').value = "-----loading-----";
 
   var checkData = make_data();
 
@@ -228,10 +228,10 @@ function check_possible() {
       document.querySelector('select[name="dm_sw"]').value = json.dm_sw;
 
       document.querySelector('select[name="hh_sw"]').value = json.hh_sw;
-      document.querySelector('select[name="pkg"]').value = json.pkg;
+      // document.querySelector('select[name="pkg"]').value = json.pkg;
       document.querySelector('select[name="rn_sw"]').value = json.rn_sw;
 
-      document.querySelector('input[name="possible"]').value = json.possible;
+      // document.querySelector('input[name="possible"]').value = json.possible;
 
       if (json.possible == "NO") {
         alert("[예약불가] - " + json.reason);
@@ -255,16 +255,19 @@ function request_reserve() {
   // document.querySelector('input[name="price"]').value = "-----loading-----";
   // document.querySelector('input[name="possible"]').value = "-----loading-----";
 
+
+  // var check_result = await check_possible();
   var checkData = make_data();
 
   var rtext = document.querySelector('textarea[id="request_text"]').value;
 
   var isAgree = document.getElementById("agree").checked;
 
-if(rtext.substr(0,1) != "[") {
-    alert('가능확인을 먼저 해주세요');
-  }else if( checkData.mobile.substr(0,3) != "010") {
-    alert('로그인이 안되어 있거나 휴대폰번호가 바르지 않습니다.');
+// if(rtext.substr(0,1) != "[") {
+//     alert('가능확인을 먼저 해주세요');
+//   }else 
+  if( checkData.mobile.substr(0,2) != "01") {
+    alert('로그인을 하시거나 휴대폰 번호를 바르게 입력해주세요.');
   }
   else
   
@@ -293,13 +296,13 @@ if(rtext.substr(0,1) != "[") {
         document.querySelector('select[name="pkg"]').value = json.pkg;
         document.querySelector('select[name="rn_sw"]').value = json.rn_sw;
   
-        document.querySelector('input[name="possible"]').value = json.possible;
+        // document.querySelector('input[name="possible"]').value = json.possible;
         
         if (json.possible == "NO") {
         
           alert("" + json.reason);
         } else {
-          alert("요청하였습니다. 결제를 완료해주세요" );
+          // alert("요청하였습니다. 결제를 완료해주세요" );
   
           var uri = "/space/2/" + json.mobile;
   
@@ -308,6 +311,141 @@ if(rtext.substr(0,1) != "[") {
         }
       });
   }
+}
+
+
+function calcurate_price() {
+
+  document.querySelector('input[name="price"]').value = "계산중";
+  // document.querySelector('input[name="possible"]').value = "-----loading-----";
+
+  var checkData = make_data();
+
+  fetch("/calendar/price_calcurate", {
+    method: "POST",
+    body: JSON.stringify(checkData),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      document.getElementById("price").value = json.price;
+      document.querySelector('select[name="dm_sw"]').value = json.dm_sw;
+
+      document.querySelector('select[name="hh_sw"]').value = json.hh_sw;
+      // document.querySelector('select[name="pkg"]').value = json.pkg;
+      document.querySelector('select[name="rn_sw"]').value = json.rn_sw;
+
+      // document.querySelector('input[name="possible"]').value = json.possible;
+
+      if (json.possible == "NO") {
+        alert("[예약불가] - " + json.reason);
+      } else {
+        var rtext = make_rtext(json);
+        document.querySelector('textarea[id="request_text"]').value = rtext;
+      }
+    });
+
+}
+
+
+function check_and_request() {
+
+
+
+  document.querySelector('input[name="price"]').value = "계산중";
+  // document.querySelector('input[name="possible"]').value = "-----loading-----";
+
+  var checkData = make_data();
+
+  fetch("/calendar/checkpossible", {
+    method: "POST",
+    body: JSON.stringify(checkData),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      document.getElementById("price").value = json.price;
+      document.querySelector('select[name="dm_sw"]').value = json.dm_sw;
+
+      document.querySelector('select[name="hh_sw"]').value = json.hh_sw;
+      // document.querySelector('select[name="pkg"]').value = json.pkg;
+      document.querySelector('select[name="rn_sw"]').value = json.rn_sw;
+
+      // document.querySelector('input[name="possible"]').value = json.possible;
+
+      if (json.possible == "NO") {
+        alert("[예약불가] - " + json.reason);
+      } else {
+        var rtext = make_rtext(json);
+        document.querySelector('textarea[id="request_text"]').value = rtext;
+
+        var rtext = document.querySelector('textarea[id="request_text"]').value;
+
+  var isAgree = document.getElementById("agree").checked;
+
+// if(rtext.substr(0,1) != "[") {
+//     alert('가능확인을 먼저 해주세요');
+//   }else 
+  if( checkData.mobile.substr(0,2) != "01") {
+    alert('로그인을 하시거나 휴대폰 번호를 바르게 입력해주세요.');
+  }
+  else
+  
+  if(!isAgree && checkData.rtype == "rent"){
+    alert("변경 & 환불 규정에 동의 해주세요");
+
+  } else 
+  {
+
+    checkData.rtext = rtext;
+    
+    fetch("/calendar/request", {
+      method: "POST",
+      body: JSON.stringify(checkData),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+
+        document.getElementById("price").value = json.price;
+        document.querySelector('select[name="dm_sw"]').value = json.dm_sw;
+  
+        document.querySelector('select[name="hh_sw"]').value = json.hh_sw;
+        // document.querySelector('select[name="pkg"]').value = json.pkg;
+        document.querySelector('select[name="rn_sw"]').value = json.rn_sw;
+  
+        // document.querySelector('input[name="possible"]').value = json.possible;
+        
+        if (json.possible == "NO") {
+        
+          alert("" + json.reason);
+        } else {
+          // alert("요청하였습니다. 결제를 완료해주세요" );
+  
+          var uri = "/space/2/" + json.mobile;
+  
+          location.href = uri;
+          // window.open(uri);
+        }
+      });
+  }
+      }
+    });
+  // document.querySelector('input[name="price"]').value = "-----loading-----";
+  // document.querySelector('input[name="possible"]').value = "-----loading-----";
+
+
+  // var check_result = await check_possible();
+  var checkData = make_data();
+
+  
 }
 
 
@@ -374,11 +512,14 @@ function make_os(json) {
 
 function make_rtext(json) {
   json.notice = "";
-  if (json.stype == "ND" || json.stype == "NX") {
+  if (json.stype == "ND" || json.stype == "NX"|| json.stype == "NK") {
     json.notice =
       "주소 : 서울시 강남구 논현동 140-4 송월타올 지하 (비밀번호: 현관&화장실 6784, 연습실8763, 와이파이 24972497)";
   }
 
+  if(json.mi_sw != "0" ) {
+    json.notice = "마이크 사용자는 큐브EX앰프 또는 오디오인터페이스를 함께 대여해주세요."
+  }
   var rtype = rtypeName[json.rtype];
 
   var rtext =
@@ -422,7 +563,6 @@ function make_rtext(json) {
     // "\n" + json. +
     // "\n" + json. +
     // "\n" + json. +
-
     "";
   return rtext;
 }

@@ -30,6 +30,11 @@ router.post("/", async function (req, res) {
     if (!user) {
       res.json({ result: "NOUSER" });
     } else {
+      console.log('------------------------login pw check');
+      console.log(user);
+      console.log(checkData);
+      console.log(user.password);
+      console.log(checkData.pw);
       if (user.password == checkData.pw) {
         //로그인 완료
 
