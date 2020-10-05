@@ -512,13 +512,28 @@ function make_os(json) {
 
 function make_rtext(json) {
   json.notice = "";
-  if (json.stype == "ND" || json.stype == "NX"|| json.stype == "NK") {
-    json.notice =
-      "주소 : 서울시 강남구 논현동 140-4 송월타올 지하 (비밀번호: 현관&화장실 6784, 연습실8763, 와이파이 24972497)";
+  if ( ["ND","NX","NK"].includes( json.stype)) {
+    json.notice = json.notice + 
+      "\n주소 : 서울시 강남구 논현동 140-4 송월타올 지하 \n(비밀번호: 현관&화장실 6784, 연습실8763, 와이파이 24972497) \n주차불가(근처 유료주차장 있음)\n옵션은 헤드폰만 가능합니다.";
   }
 
-  if(json.mi_sw != "0" ) {
-    json.notice = "마이크 사용자는 큐브EX앰프 또는 오디오인터페이스를 함께 대여해주세요."
+  if ( ["NP","NV","NB","NA","NM"].includes( json.stype)) {
+    json.notice = json.notice + 
+      "\n주소 : 서울시 강남구 논현동 141-9 김밥천국 4층 \n비밀번호: 없음, 와이파이 academy123 \n주차불가(맞은편 건물 유료주차장 있음)";
+  }
+
+  if ( ["HA","HX","HR","HM","HP","HX"].includes( json.stype)) {
+    json.notice = json.notice + 
+      "\n주소 : 서울시 마포구 서교동 342-20 서교태권도 2층 \n비밀번호: 없음, 와이파이 academy123@ \n주차 시간당 3000원 가능(카톡문의)";
+  }
+
+    if ( ["HR"].includes( json.stype)) {
+    json.notice = json.notice + 
+      "녹음실 최소 예약 시간은 3시간입니다. 연장은 3시간 미만도 가능합니다.\n시퀀서는 로직프로만 가능합니다. 기본적인 사용법을 아시는 분만 예약해주세요.";
+  }
+
+  if( Number.parseInt( json.mc_sw)  != 0 ) {
+    json.notice = json.notice + "\n마이크 사용자는 큐브EX앰프 또는 오디오인터페이스를 함께 대여해주세요."
   }
   var rtype = rtypeName[json.rtype];
 
@@ -541,7 +556,7 @@ function make_rtext(json) {
     "월" +
     json.dd_sw +
     "일" +
-    "\n시간: " +
+    "\n시작시간: " +
     json.hh_sw +
     ":" +
     json.mi_sw +
@@ -554,14 +569,8 @@ function make_rtext(json) {
     json.os +
     "\n가격: " +
     json.price +
-    "\n사유: " +
-    "\n결제: " +
-    "\n적립금: " +
-    "\n비고: " +
     "\n알림:" +
     json.notice +
-    // "\n" + json. +
-    // "\n" + json. +
     // "\n" + json. +
     "";
   return rtext;
