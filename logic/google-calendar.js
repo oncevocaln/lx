@@ -18,13 +18,13 @@ function makeOnlyNumberString(str) {
   return strSimple;
 }
 
-
 const rtypeArray = {
   pass : "자율",
   vip : "VIP",
   rent : "대여",
   admin : "관리자",
-  visit: "현장"
+  visit: "현장",
+  naverpay: "네이버페이"
 }
 
 const calendarIds = {

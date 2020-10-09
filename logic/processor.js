@@ -1034,7 +1034,7 @@ exports.calcuratePriceV2 = function (data) {
   console.log(data.rtype);
   
   if (data.rtype == "naverpay") {
-    basePrice = basePrice + Math.round(basePrice*0.05,-1);
+    basePrice = basePrice + Math.round(basePrice*0.05/10)*10;
   }
 
   return basePrice;
