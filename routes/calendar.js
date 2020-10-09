@@ -188,6 +188,7 @@ async function insertReserve(data) {
     end: new Date(data.enddate),
     from: data.from,
     stype: data.stype,
+    rtype: data.rtype,
     room: data.room,
     rawData: data,
     rtext: data.rtext,

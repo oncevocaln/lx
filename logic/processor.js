@@ -1001,6 +1001,8 @@ exports.calcuratePriceV2 = function (data) {
     { name: "테이블", id: "ta_sw", price30: 1000, type: "day" },
     { name: "휴대폰삼각대", id: "hs_sw", price30: 1000, type: "day" },
     { name: "요가매트", id: "yo_sw", price30: 1000, type: "day" },
+    { name: "음료", id: "dr_sw", price30: 1000, type: "day" },
+    { name: "과자", id: "sn_sw", price30: 1000, type: "day" },
   ];
 
   var optionPrice = 0;
@@ -1026,6 +1028,13 @@ exports.calcuratePriceV2 = function (data) {
 
   if (data.rtype == "admin") {
     basePrice = 0;
+  }
+
+  console.log('-----------------------r type ');
+  console.log(data.rtype);
+  
+  if (data.rtype == "naverpay") {
+    basePrice = basePrice + Math.round(basePrice*0.05,-1);
   }
 
   return basePrice;

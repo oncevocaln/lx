@@ -24,7 +24,7 @@
                             checked="checked"
                             onclick="checkPassGrade(); calcurate_price();"
                             />
-                        <label for="radio-rent">대여</label>
+                        <label for="radio-rent">대여(이체)</label>
                         <input
                             type="radio"
                             id="radio-pass"
@@ -46,6 +46,14 @@
                             value="visit"
                             onclick="checkVisit();calcurate_price();">
                         <label for="radio-visit">현장결제</label>
+                        
+                        <input
+                            type="radio"
+                            id="radio-naverpay"
+                            name="rtype"
+                            value="naverpay"
+                            onclick="checkNaverpay();calcurate_price();">
+                        <label for="radio-naverpay">네이버결제</label>
                     </div>
 
                 <div class="select_date">
@@ -142,6 +150,7 @@
                 <div class="select_dm">
                     사용분:
                     <select id="dm_sw" name="dm_sw" title="dm" class="sel" onchange="calcurate_price();">
+                        
                         <option value="30">30분</option>
                         <option value="60" selected="selected">1시간00분</option>
                         <option value="90">1시간30분</option>
@@ -504,6 +513,31 @@
                         <option value="4">4</option>
                     </select>
    
+                    음료:
+                    <select id="dr_sw" name="dr_sw" title="dr" class="sel" onchange="calcurate_price();" >
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+   
+                    과자:
+                    <select id="sn_sw" name="sn_sw" title="sn" class="sel" onchange="calcurate_price();" >
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
                 </div>
 
                     <div>
@@ -758,6 +792,18 @@ Copyright 2018 원스보컬 댄스&실용음악학원 - 1N1 Dance Studio all rig
                         // }
                     }
 
+                    
+                    function checkNaverpay() {
+                        // if (grade != "pass" && grade != "pass2") {
+                        //     alert("사용할수 있는 등급이 아닙니다. 관리자에게 등업을 요청해주세요.")
+                        //     document
+                        //         .querySelector('input[name="rtype"]')
+                        //         .checked = "rent";
+                        //     document
+                        //         .querySelector('input[name="rtype"]')
+                        //         .value = "rent";
+                        // }
+                    }
                     function checkVisit() {
 
                         var stype = document

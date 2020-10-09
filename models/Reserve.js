@@ -23,6 +23,7 @@ const ReserveSchema = new mongoose.Schema({
   },
   from: String,
   stype: String, //공간타입 NP, NB
+  rtype: String,
   room: {
     type: Number,
     default: 0, // 방번호 0 이면 미배정인 상태

@@ -8,6 +8,7 @@ var rtypeName = {
   rent: "대여",
   admin: "관리자",
   visit: "현장",
+  naverpay: "네이버결제",
 };
 
 var pkgName = {
@@ -199,6 +200,10 @@ function make_data() {
 
   checkData.dm_sw = document.querySelector('select[name="dm_sw"]').value;
   checkData.rn_sw = document.querySelector('select[name="rn_sw"]').value;
+  
+  checkData.dr_sw = document.querySelector('select[name="dr_sw"]').value;
+  
+  checkData.sn_sw = document.querySelector('select[name="sn_sw"]').value;
   // checkData.pkg = document.querySelector('select[name="pkg"]').value;
 
   checkData.price = document.querySelector('input[name="price"]').value;
@@ -507,6 +512,12 @@ function make_os(json) {
     os = os + " 휴대폰삼각대" + json.hs_sw;
   }
 
+  if (parseInt(json.dr_sw) > 0) {
+    os = os + " 음료" + json.dr_sw;
+  }
+  if (parseInt(json.sn_sw) > 0) {
+    os = os + " 과자" + json.sn_sw;
+  }
   return os;
 }
 
@@ -610,6 +621,16 @@ function send_kakao() {
 
   // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
   window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
+}
+
+
+function open_naverpay() {
+  var copyText = document.getElementById("request_text");
+  copyText.select();
+  document.execCommand("Copy");
+
+  // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
+  window.open("https://booking.naver.com/booking/10/bizes/175195/items/3396671?preview=1", "_blank");
 }
 
 function check_refund_policy() {
