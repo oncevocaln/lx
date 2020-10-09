@@ -636,7 +636,7 @@ function open_naverpay() {
   document.execCommand("Copy");
 
   // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
-  window.open("https://booking.naver.com/booking/10/bizes/175195/items/3396671?preview=1", "_blank");
+  window.open("https://booking.naver.com/booking/10/bizes/175195/items/3614725?preview=1", "_blank");
 }
 
 function check_refund_policy() {
