@@ -6,26 +6,24 @@ const mailer = require("../logic/mailer");
 
 function makeOnlyNumberString(str) {
   var strSimple = "";
-  if (typeof(str) == "string") {
-      str
-          .split("")
-          .forEach(function (c) {
-              if ("0123456789".includes(c)) {
-                  strSimple = strSimple + c;
-              }
-          })
+  if (typeof str == "string") {
+    str.split("").forEach(function (c) {
+      if ("0123456789".includes(c)) {
+        strSimple = strSimple + c;
+      }
+    });
   }
   return strSimple;
 }
 
 const rtypeArray = {
-  pass : "자율",
-  vip : "VIP",
-  rent : "대여",
-  admin : "관리자",
+  pass: "자율",
+  vip: "VIP",
+  rent: "대여",
+  admin: "관리자",
   visit: "현장",
-  naverpay: "네이버페이"
-}
+  naverpay: "네이버페이",
+};
 
 const calendarIds = {
   NY: {
@@ -105,7 +103,7 @@ const calendarIds = {
   RQ: {
     id: "82fvjk2siqbb8hgv8i3efi0npk@group.calendar.google.com",
     count: 100,
-  }
+  },
 };
 
 // If modifying these scopes, delete token.json.
@@ -227,11 +225,10 @@ exports.listUpcomingEvent = function (data, callback) {
   var emptyroom = 0;
   var destroom = parseInt(data.rn_sw);
 
-
-  console.log('xxxxxxxx')
+  console.log("xxxxxxxx");
   console.log(destroom);
   console.log(rcount);
-  if(destroom > rcount) {
+  if (destroom > rcount) {
     destroom = 1;
     data.rn_sw = destroom.toString();
   }
@@ -298,7 +295,9 @@ exports.listUpcomingEvent = function (data, callback) {
 
                 dupCount = dupCount + 1;
 
-                var groomstr = makeOnlyNumberString(event.summary.substring(0, 4)) ;
+                var groomstr = makeOnlyNumberString(
+                  event.summary.substring(0, 4)
+                );
                 var groom = parseInt(groomstr) || 1;
 
                 console.log("--------------------this groom--------------");
@@ -310,7 +309,7 @@ exports.listUpcomingEvent = function (data, callback) {
                 //정확한 방 번호로 나오도록 고쳐야 함
                 data.reason =
                   data.reason +
-                  event.summary.substring(0,3) +
+                  event.summary.substring(0, 3) +
                   "* - " +
                   gstart.getHours() +
                   "시" +
@@ -321,7 +320,7 @@ exports.listUpcomingEvent = function (data, callback) {
                   "시" +
                   (gend.getMinutes() < 10 ? "0" : "") +
                   gend.getMinutes() +
-                  "분 일정 있음\n" ;
+                  "분 일정 있음\n";
               }
               console.log(`${start} - ${event.summary}`);
             });
@@ -335,15 +334,15 @@ exports.listUpcomingEvent = function (data, callback) {
                 }
               }
 
-              if (
-                occupiedroom[destroom] == "BOOK" 
-              ) {
+              if (occupiedroom[destroom] == "BOOK") {
                 destroom = emptyroom;
                 data.rn_sw = destroom.toString();
                 data.room = destroom;
               }
               console.log("------------------occupiedroom--------------");
-              console.log("------------------occupiedroom--------------"+occupiedroom);
+              console.log(
+                "------------------occupiedroom--------------" + occupiedroom
+              );
             }
 
             callback(err, data);
@@ -377,24 +376,40 @@ exports.makeEvent = function (data, callback) {
       //이름을 마스킹하는 다른 방법을 찾기
 
       var rtypeString = rtypeArray[data.rtype];
-      var summary = "" + data.stype + data.room + " " + data.username + "/" + rtypeString + "/" + data.price + "원";
+      var summary =
+        "" +
+        data.stype +
+        data.room +
+        " " +
+        data.username +
+        "/" +
+        rtypeString +
+        "/" +
+        data.price +
+        "원";
 
       data.gstype = data.stype;
       //신규가입자이거나 등급이 없다면
-      if(grade =="no" || grade == "new") {
+      if (grade == "no" || grade == "new") {
         var calendarId = calendarIds["RQ"].id;
         data.gstype = "RQ";
       } else {
-        var calendarId = calendarIds[data.stype].id;  
+        var calendarId = calendarIds[data.stype].id;
       }
-      
-      
+
       var recurrence = "RRULE:FREQ=DAILY;COUNT=2";
-      
+
       var requestDate = new Date().toLocaleString();
 
-      var description = "이름: " + data.username + " / 휴대폰: " + data.mobile + " / 방번호선택: " +data.room_requested
-      +"\n / 입력일시: " + requestDate;
+      var description =
+        "이름: " +
+        data.username +
+        " / 휴대폰: " +
+        data.mobile +
+        " / 방번호선택: " +
+        data.room_requested +
+        "\n / 입력일시: " +
+        requestDate;
       // var gend = data.endate.toISOString();
       var event = {
         summary: summary,
@@ -434,18 +449,39 @@ exports.makeEvent = function (data, callback) {
               );
             }
             console.log("Event created: %s", event.data.htmlLink);
-            console.log("===================================== created google event =================")
+            console.log(
+              "===================================== created google event ================="
+            );
 
             var viewStart = new Date(data.startdate);
-            var viewDateStr = viewStart.getMonth() + 1 + "월" + viewStart.getDate() + "일/" + viewStart.getHours() + "시" + viewStart.getMinutes() + "분";
+            var viewDateStr =
+              viewStart.getMonth() +
+              1 +
+              "월" +
+              viewStart.getDate() +
+              "일/" +
+              viewStart.getHours() +
+              "시" +
+              viewStart.getMinutes() +
+              "분";
+
+            var mtext = "이름 : " + data.username + "\n예약내용: " + data.rtext;
+
+            console.log(mtext);
             var mailData = {
-              title: "" + rtypeString + ":" + data.gstype + " " + viewDateStr + " 요청:" + event.data.summary ,
+              title:
+                "" +
+                rtypeString +
+                "입력:" +
+                data.gstype +
+                " " +
+                viewDateStr +
+                " 요청:" +
+                event.data.summary,
               data: data,
-              event, event
+              mtext: mtext,
             };
             mailer.mailSend(mailData);
-
-
 
             callback(err, data);
           }
@@ -457,8 +493,7 @@ exports.makeEvent = function (data, callback) {
   });
 };
 
-
-// 네이버 스페이스클라우드 용 
+// 네이버 스페이스클라우드 용
 exports.insertEventFromRequest = function (data, callback) {
   fs.readFile("credentials.json", (err, content) => {
     if (err) return console.log("Error loading client secret file:", err);
@@ -473,26 +508,37 @@ exports.insertEventFromRequest = function (data, callback) {
       var gstart = data.start.toISOString();
       var gend = data.end.toISOString();
 
-
       var rtypeString = data.from;
-      var summary = "" + data.stype + data.room + " " + data.username + "/" + rtypeString + "/" ;
+      var summary =
+        "" +
+        data.stype +
+        data.room +
+        " " +
+        data.username +
+        "/" +
+        rtypeString +
+        "/";
 
       data.gstype = data.stype;
       //신규가입자이거나 등급이 없다면
-      if(grade =="no" || grade == "new") {
+      if (grade == "no" || grade == "new") {
         var calendarId = calendarIds["RQ"].id;
         data.gstype = "RQ";
       } else {
-        var calendarId = calendarIds[data.stype].id;  
+        var calendarId = calendarIds[data.stype].id;
       }
-      
-      
+
       var recurrence = "RRULE:FREQ=DAILY;COUNT=2";
 
       var requestDate = new Date().toLocaleString();
 
-      var description = "이름: " + data.username + " / 휴대폰: " + data.mobile 
-      +"\n / 입력일시: " + requestDate;
+      var description =
+        "이름: " +
+        data.username +
+        " / 휴대폰: " +
+        data.mobile +
+        "\n / 입력일시: " +
+        requestDate;
 
       // var gend = data.endate.toISOString();
       var event = {
@@ -534,14 +580,72 @@ exports.insertEventFromRequest = function (data, callback) {
               );
             }
             console.log("Event created: %s", event.data.htmlLink);
-            console.log("===================================== created google event =================")
+            console.log(
+              "===================================== created google event ================="
+            );
 
             var viewStart = new Date(data.start);
-            var viewDateStr = viewStart.getMonth() + 1 + "월" + viewStart.getDate() + "일/" + viewStart.getHours() + "시" + viewStart.getMinutes() + "분";
+            var viewDateStr =
+              viewStart.getMonth() +
+              1 +
+              "월" +
+              viewStart.getDate() +
+              "일/" +
+              viewStart.getHours() +
+              "시" +
+              viewStart.getMinutes() +
+              "분";
+
+            var mtext =
+              "예약자 : " +
+              data.username +
+              "\n플랫폼 : " +
+              data.from +
+              "\n예약번호 : " +
+              data.rno +
+              "\n시작시간 : " +
+              viewDateStr +
+              "\n사용분 : " +
+              data.dur +
+              "\n공간 : " +
+              data.stype +
+              "\n방 : " +
+              data.room +
+              "\n옵션 : " +
+              data.os +
+              "\n휴대폰 : " +
+              data.mobile;
+
+            /*
+            
+                    var preparedData = {
+                        from: unit.from,
+                        rno: unit.rno,
+                        username: unit.username,
+                        mobile: unit.mobile,
+                        start: unit.startdate,
+                        end: unit.enddate,
+                        dur: unit.dur,
+                        stype: unit.stype,
+                        room: unit.room,
+                        os: unit.os
+                    }
+
+                    */
+
+            console.log(mtext);
             var mailData = {
-              title: "" + rtypeString + "입력:" + data.gstype + " " + viewDateStr + " 요청:" + event.data.summary ,
+              title:
+                "" +
+                rtypeString +
+                "입력:" +
+                data.gstype +
+                " " +
+                viewDateStr +
+                " 요청:" +
+                event.data.summary,
               data: data,
-              event, event
+              mtext: mtext,
             };
             mailer.mailSend(mailData);
 

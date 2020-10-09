@@ -359,7 +359,6 @@ function calcurate_price() {
 function check_and_request() {
 
 
-
   document.querySelector('input[name="price"]').value = "계산중";
   // document.querySelector('input[name="possible"]').value = "-----loading-----";
 
@@ -407,6 +406,9 @@ function check_and_request() {
   } else 
   {
 
+    
+  document.querySelector('button[id="btn-req"]').style = " background-color:green; color: black; height: 50px; width: 250px";
+
     checkData.rtext = rtext;
     
     fetch("/calendar/request", {
@@ -431,6 +433,10 @@ function check_and_request() {
         if (json.possible == "NO") {
         
           alert("" + json.reason);
+          
+    
+  document.querySelector('button[id="btn-req"]').style = " background-color:yellow; color: black; height: 50px; width: 250px";
+
         } else {
           // alert("요청하였습니다. 결제를 완료해주세요" );
   
