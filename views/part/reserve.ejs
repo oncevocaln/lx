@@ -770,15 +770,16 @@ Copyright 2018 원스보컬 댄스&실용음악학원 - 1N1 Dance Studio all rig
                     var grade = "";
 
                     function checkVipGrade() {
-                        if (grade != "vip") {
-                            alert("사용할수 있는 등급이 아닙니다. 관리자에게 등업을 요청해주세요.")
-                            document
-                                .querySelector('input[name="rtype"]')
-                                .checked = "rent";
-                            document
-                                .querySelector('input[name="rtype"]')
-                                .value = "rent";
-                        }
+                        alert("학원 정규수업만을 위해서 사용 가능합니다.")
+                        // if (grade != "vip") {
+                        //     alert("학원 정규수업만을 위해서 사용 가능합니다.")
+                        //     document
+                        //         .querySelector('input[name="rtype"]')
+                        //         .checked = "rent";
+                        //     document
+                        //         .querySelector('input[name="rtype"]')
+                        //         .value = "rent";
+                        // }
                     }
 
                     function checkPassGrade() {
