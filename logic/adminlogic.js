@@ -450,6 +450,8 @@ exports.splitData = async function (rawData) {
 
         // data.result = result + "[대상]" + data.list.length + "개 데이터 중 새로 입력건\n";
 
+        console.log("----------------입력 리스트-----------");
+        console.log(data.list);
         data
             .list
             .forEach(async function (unit) {
@@ -687,8 +689,18 @@ function convertTimeDataNaverMobile(datestr, timestr) {
 
 function convertTimeDataSpace(str) {
 
+    console.log("----------타임스트링");
+    console.log(str);
+
     var data = {};
 
+    console.log(str.substring(5,2));
+
+    var durtimestr = str.substring(str.length , str.length-2 );
+
+    var durtimeint = Number.parseInt(durtimestr);
+    console.log("-----경과시간");
+    console.log(durtimestr);
     var dIndex = str.indexOf(")");
 
     var datestr = str
@@ -716,6 +728,7 @@ function convertTimeDataSpace(str) {
         .substring(fIndex + 1)
         .trim();
 
+
     var starthourstr = makeOnlyNumberString(starttimestr);
 
     var starthour24 = parseInt(starthourstr);
@@ -741,13 +754,16 @@ function convertTimeDataSpace(str) {
         startminute
     );
 
-    var enddate = new Date(
-        parseInt(yystr),
-        parseInt(mmstr) - 1,
-        parseInt(ddstr),
-        endhour24,
-        endminute
-    );
+
+    var enddate = new Date(startdate.getTime() + durtimeint * 60 * 60 * 1000)
+
+    // var enddate = new Date(
+    //     parseInt(yystr),
+    //     parseInt(mmstr) - 1,
+    //     parseInt(ddstr),
+    //     endhour24,
+    //     endminute
+    // );
 
     var dur = parseInt(Math.round((enddate - startdate) / (1000 * 60)));
 

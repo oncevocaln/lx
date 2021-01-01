@@ -565,7 +565,8 @@ exports.insertEventFromRequest = function (data, callback) {
           ],
         },
       };
-
+      console.log("-----구글 인서트-----");
+      console.log(event);
       try {
         calendar.events.insert(
           {
