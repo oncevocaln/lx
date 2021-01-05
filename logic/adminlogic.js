@@ -1,5 +1,4 @@
 const Request = require("../models/Request");
-
 const google = require("../logic/google-calendar");
 
 String.prototype.indexOfRegex = function (regex, fromIndex) {
