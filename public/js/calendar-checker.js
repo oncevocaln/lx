@@ -534,10 +534,12 @@ function make_rtext(json) {
       "\n주소 : 서울시 강남구 논현동 140-4 송월타올 지하 \n(비밀번호: 현관&화장실 6784, 연습실8763, 와이파이 24972497) \n주차불가(근처 유료주차장 있음)\n옵션은 헤드폰만 가능합니다.";
   }
 
-  if ( ["NP","NV","NB","NA","NM"].includes( json.stype)) {
+  if ( ["NP","NV","NB","NA","NM","NY"].includes( json.stype)) {
     json.notice = json.notice + 
-      "\n주소 : 서울시 강남구 논현동 141-9 김밥천국 4층 \n비밀번호: 없음, 와이파이 academy123 \n주차불가(맞은편 건물 유료주차장 있음)";
+      "\n주소 : 서울시 강남구 논현동 141-9 김밥천국 4층 \n비밀번호: 없음, 와이파이 academy123 \n주차불가(맞은편 건물 유료주차장 있음)\n 야간( 밤10시 ~ 오전8시 ) 스피커/앰프 사용불가";
   }
+
+
 
   if ( ["HA","HX","HR","HM","HP","HX"].includes( json.stype)) {
     json.notice = json.notice + 
@@ -548,6 +550,8 @@ function make_rtext(json) {
     json.notice = json.notice + 
       "녹음실 최소 예약 시간은 3시간입니다. 연장은 3시간 미만도 가능합니다.\n시퀀서는 로직프로만 가능합니다. 기본적인 사용법을 아시는 분만 예약해주세요.";
   }
+
+
 
   if( Number.parseInt( json.mc_sw)  != 0 ) {
     json.notice = json.notice + "\n마이크 사용자는 큐브EX앰프 또는 오디오인터페이스를 함께 대여해주세요."
