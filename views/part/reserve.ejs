@@ -115,7 +115,7 @@
                 <div class="select_date">
                     시작시간:
 
-                    <select id="hh_sw" name="hh_sw" title="hh" class="sel" onchange="calcurate_price();">
+                    <select id="hh_sw" name="hh_sw" title="hh" class="sel" onchange="night_check(); calcurate_price();">
                         <option value="00">오전 00시</option>
                         <option value="01">오전 01시</option>
                         <option value="02">오전 02시</option>
@@ -176,7 +176,18 @@
                         <option value="660">11시간00분</option>
                         <option value="720">12시간00분</option>
                     </select>
+
+
                 </div>
+
+                <div>
+
+                    <span style="font-size: 14px" onclick="click_allnight();">야간정액 (클릭)</span> 
+
+                    <!-- <input type="checkbox" id="allnight" value="" size="30px" style="zoom:1.5; width: 20px;"> -->
+
+                </div>
+                
 
                 <br><br>
                 <div class="switch-field">

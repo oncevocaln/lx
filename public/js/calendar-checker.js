@@ -256,6 +256,21 @@ function click_agree() {
   }
 }
 
+
+
+function night_check() {
+
+
+  // var hh = document.querySelector('select[name="hh_sw"]').value ;
+  // var dm = document.querySelector('select[name="dm_sw"]').value ;
+
+  // alert("" + hh  + "  " +  dm);
+
+  // alert("소음신고로 인해 일반 대여자는 NY, NA, NP, NV, NM 는 22~08시 사이는 야간 정액만 사용가능하도록 변경 되었습니다. 조용히 사용하셔도 괜찮으신 분은 야간 정액을 이용해주세요. 스피커를 사용하시거나 큰 소리로 연주하셔야 하는 분은 08~22시 사이에 사용해주세요.")
+
+}
+
+
 function request_reserve() {
   // document.querySelector('input[name="price"]').value = "-----loading-----";
   // document.querySelector('input[name="possible"]').value = "-----loading-----";
@@ -352,6 +367,18 @@ function calcurate_price() {
         document.querySelector('textarea[id="request_text"]').value = rtext;
       }
     });
+
+}
+
+
+function click_allnight() {
+
+  alert('야간정액 사용시 스피커 사용이 불가능합니다. 조용히 사용하실 분만 이용해주세요. (조용히 부르는 노래, 약음페달 사용한 피아노, 휴대폰으로 트는 노래 정도 가능) 소음민원이 접수될 경우 퇴실조치 되며 환불 되지 않습니다.')
+
+  document.querySelector('select[name="hh_sw"]').value = 22;
+
+  document.querySelector('select[name="mi_sw"]').value = "00";
+  document.querySelector('select[name="dm_sw"]').value = "600";
 
 }
 
@@ -536,9 +563,9 @@ function make_rtext(json) {
 
   if ( ["NP","NV","NB","NA","NM","NY"].includes( json.stype)) {
     json.notice = json.notice + 
-      "\n주소 : 서울시 강남구 논현동 141-9 김밥천국 4층 \n비밀번호: 없음, 와이파이 academy123 \n주차불가(맞은편 건물 유료주차장 있음)\n 야간( 밤10시 ~ 오전8시 ) 스피커/앰프 사용불가";
+    "\n주소 : 서울시 강남구 논현동 141-9 김밥천국 4층 \n비밀번호: 없음, 와이파이 academy123 \n주차불가(맞은편 건물 유료주차장 있음)\n 야간( 밤10시 ~ 오전8시 ) 스피커/앰프 사용불가\n"+
+    "\n소음신고로 인해 NY,NA,NB,NV,NP,NM 은 22~08시 사이 야간 정액만 사용가능합니다\n";
   }
-
 
 
   if ( ["HA","HX","HR","HM","HP","HX"].includes( json.stype)) {
