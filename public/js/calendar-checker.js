@@ -373,8 +373,6 @@ function calcurate_price() {
 
 function click_allnight() {
 
-  alert('야간정액 사용시 스피커 사용이 불가능합니다. 조용히 사용하실 분만 이용해주세요. (조용히 부르는 노래, 약음페달 사용한 피아노, 휴대폰으로 트는 노래 정도 가능) 소음민원이 접수될 경우 퇴실조치 되며 환불 되지 않습니다.')
-
   document.querySelector('select[name="hh_sw"]').value = 22;
 
   document.querySelector('select[name="mi_sw"]').value = "00";
@@ -564,7 +562,7 @@ function make_rtext(json) {
   if ( ["NP","NV","NB","NA","NM","NY"].includes( json.stype)) {
     json.notice = json.notice + 
     "\n주소 : 서울시 강남구 논현동 141-9 김밥천국 4층 \n비밀번호: 없음, 와이파이 academy123 \n주차불가(맞은편 건물 유료주차장 있음)\n 야간( 밤10시 ~ 오전8시 ) 스피커/앰프 사용불가\n"+
-    "\n소음신고로 인해 NY,NA,NB,NV,NP,NM 은 22~08시 사이 야간 정액만 사용가능합니다\n";
+    "\n소음신고로 인해 NY,NA,NB,NV,NP,NM 은 22~08시 사이는 조용히 사용해 주셔야합니다. (피아노 약음페달, 조용히 부르는 노래, 휴대폰 스피커 소리 정도만 가능) 층간 소음 발생시 퇴실 조치 됩니다\n";
   }
 
 
