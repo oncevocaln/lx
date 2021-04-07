@@ -89,7 +89,7 @@ exports.splitData = async function (rawData) {
         from = "navermobile";
     } else if (rawData.includes("NSPACE")) {
         from = "spacetotal"
-    }
+    } 
 
     if (from == "navermobile") {
         data.from = "naver";
@@ -383,8 +383,10 @@ exports.splitData = async function (rawData) {
 
                 var firstIndex = rl.search(/20[0-9]+.[0-9]+.[0-9]+/g);
 
+                var yearStringIndex = rl.search("2021.");
+
                 var spacestr = rl
-                    .substring(0, firstIndex)
+                    .substring(0, yearStringIndex)
                     .trim();
                 unit.spacestr = spacestr;
 
@@ -400,9 +402,16 @@ exports.splitData = async function (rawData) {
                     }
                 });
 
+                //예약번호 넘김
+
                 var afterstr = rl
-                    .substring(firstIndex)
+                    .substring(yearStringIndex)
                     .split("시간");
+
+
+                    console.log("------------xxxxxxxxxxxxx-----this rl")
+                    console.log(rl);
+                    console.log(afterstr);
 
                 unit.username = makeNoSpaceString(
                     afterstr[1].substring(0, afterstr[1].indexOf("010")).trim()
@@ -433,6 +442,10 @@ exports.splitData = async function (rawData) {
                 console.log(afterstr[0]);
 
                 console.log(afterstr[1]);
+
+                console.log("========================after 0 ")
+
+                console.log(afterstr[0]);
 
                 var timedata = convertTimeDataSpace(afterstr[0]);
 
@@ -705,6 +718,9 @@ function convertTimeDataSpace(str) {
     var datestr = str
         .substring(dIndex + 1, 0)
         .trim();
+
+        console.log("========datestr==================");
+        console.log(datestr);
 
     var datestrArray = datestr.split(".");
 
