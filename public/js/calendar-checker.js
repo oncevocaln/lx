@@ -568,7 +568,7 @@ function make_rtext(json) {
 
   if ( ["HA","HX","HR","HM","HP","HX"].includes( json.stype)) {
     json.notice = json.notice + 
-      "\n주소 : 서울시 마포구 서교동 342-20 서교태권도 2층 \n비밀번호: 없음, 와이파이 academy123@ \n주차 시간당 3000원 가능(카톡문의)";
+      "\n주소 : 서울시 마포구 서교동 342-20 서교태권도 2층 \n비밀번호: 01235* , 와이파이 academy123@ \n주차 시간당 3000원 가능(카톡문의)";
   }
 
     if ( ["HR"].includes( json.stype)) {
