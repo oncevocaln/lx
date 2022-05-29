@@ -913,8 +913,8 @@ exports.calcuratePriceV2 = function (data) {
     if (priceIndex >= 48) {
       priceIndex = priceIndex - 48;
     }
-    console.log("-------------가격 더하기 ");
-    console.log(priceTable[priceType][priceIndex]);
+    // console.log("-------------가격 더하기 ");
+    // console.log(priceTable[priceType][priceIndex]);
     basePrice = basePrice + priceTable[priceType][priceIndex];
     priceIndex++;
   }
