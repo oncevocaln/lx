@@ -93,14 +93,9 @@ router.post("/request", async (req, res) => {
 
   let checkData = req.body;
 
-  console.log("--------------------------queryv-----------------------------");
-  console.log(checkData.v);
   var r = processor.completeData(checkData);
   var price = processor.calcuratePriceV2(r);
 
-  console.log("------------------rrrrrrrrrrrrrrr");
-
-  console.log(r.enddate);
   let resData = r;
   r.price = price;
 
@@ -202,8 +197,6 @@ async function insertReserve(data) {
     
     return savedData;
   } catch (e) {
-    console.log('---------------------');
-    console.log(e);
     return data;
   }
 }

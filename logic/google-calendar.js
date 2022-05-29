@@ -264,10 +264,10 @@ exports.listUpcomingEvent = function (data, callback) {
 
               const end = event.end.dateTime || event.end.date;
 
-              console.log("-----------------compare----------data start");
-              console.log(data.startdate);
-              console.log(end);
-              console.log(start);
+              // console.log("-----------------compare----------data start");
+              // console.log(data.startdate);
+              // console.log(end);
+              // console.log(start);
 
               var dstart = data.startdate;
 
@@ -276,12 +276,10 @@ exports.listUpcomingEvent = function (data, callback) {
               var gstart = new Date(start);
               var gend = new Date(end);
 
-              console.log("------------------------g end ");
-
-              console.log(gstart);
-              console.log(gend);
-
-              console.log("-------------------------------ssee");
+              // console.log("------------------------g end ");
+              // console.log(gstart);
+              // console.log(gend);
+              // console.log("-------------------------------ssee");
 
               //겹치는 시간이 있는지 조사
               //   if (data.startdate > gstart && data.start < gend) {
@@ -290,19 +288,13 @@ exports.listUpcomingEvent = function (data, callback) {
                 (data.startdate >= gstart && data.startdate < gend) ||
                 (data.enddate > gstart && data.enddate <= gend)
               ) {
-                console.log("------------startdate big-----------------");
-                // data.possible = "NO";
-
+               
                 dupCount = dupCount + 1;
 
                 var groomstr = makeOnlyNumberString(
                   event.summary.substring(0, 4)
                 );
                 var groom = parseInt(groomstr) || 1;
-
-                console.log("--------------------this groom--------------");
-                console.log(groomstr);
-                console.log(groom);
 
                 occupiedroom[groom] = "BOOK";
 
@@ -322,7 +314,6 @@ exports.listUpcomingEvent = function (data, callback) {
                   gend.getMinutes() +
                   "분 일정 있음\n";
               }
-              console.log(`${start} - ${event.summary}`);
             });
 
             if (dupCount >= rcount) {
@@ -339,10 +330,6 @@ exports.listUpcomingEvent = function (data, callback) {
                 data.rn_sw = destroom.toString();
                 data.room = destroom;
               }
-              console.log("------------------occupiedroom--------------");
-              console.log(
-                "------------------occupiedroom--------------" + occupiedroom
-              );
             }
 
             callback(err, data);

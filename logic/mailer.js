@@ -14,8 +14,6 @@ exports.mailSend = function (mailData) {
 
   // mailData.admin = "http://bx.onbeat.kr/m?v=ad11";
 
-  console.log('----------------------------mail data text');
-  console.log(mailData.mtext);
   let mailOptions = {
     from: "oncevocaln@gmail.com", // 발송 메일 주소 (위에서 작성한 gmail 계정 아이디)
     to: email, // 수신 메일 주소

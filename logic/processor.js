@@ -464,8 +464,6 @@ exports.rawDataChecker = function (rawData) {
 
     var startdate = new Date(r.year, parseInt(r.month) - 1, r.day, sh, sm);
 
-    console.log("-------------start date");
-    console.log(startdate);
     r.startdate = startdate;
 
     var laststr = r.datestr.substr(ii + 1, 20);
@@ -533,8 +531,6 @@ exports.rawDataChecker = function (rawData) {
     r.calendarId = r.product;
 
     var roomstr = ss.substr(i + 5, 1);
-    console.log("------------------- room string-------");
-    console.log(roomstr);
     if (parseInt(roomstr) < 10) {
       r.room = parseInt(roomstr);
     } else {
@@ -559,8 +555,6 @@ exports.rawDataChecker = function (rawData) {
 
     var am = r.startstr.indexOf("전");
 
-    console.log("-------------start str --------");
-    console.log(r.startstr);
     var starthmstr = r.startstr;
     var starthm = ["0", "0"];
 
@@ -695,15 +689,11 @@ exports.calcuratePrice = function (data) {
     if (priceIndex >= 48) {
       priceIndex = priceIndex - 48;
     }
-    console.log("-------------가격 더하기 ");
-    console.log(priceTable[priceType][priceIndex]);
     basePrice = basePrice + priceTable[priceType][priceIndex];
     priceIndex++;
   }
 
   var o = data.option;
-  console.log("-----------------this is cal price");
-  console.log(basePrice);
   var optionPriceTable = [
     { name: "큐", price30: 1000, type: "hour" },
     { name: "마", price30: 500, type: "hour" },
@@ -726,10 +716,6 @@ exports.calcuratePrice = function (data) {
     var optionIndex = o.indexOf(op.name);
     if (optionIndex > -1) {
       var optionCount = parseInt(o.substr(optionIndex + 1, 1));
-      console.log("------------this option");
-      // console.log(op);
-      // console.log(optionIndex);
-      // console.log(optionCount);
 
       if (optionCount > 0) {
         if (op.type == "hour") {
@@ -744,9 +730,6 @@ exports.calcuratePrice = function (data) {
   if (priceCountIndex >= 8) {
     basePrice = basePrice - 500 * priceCountIndex;
   }
-
-  console.log("-----------------this is cal price");
-  console.log(basePrice);
 
   return basePrice;
 };
@@ -816,14 +799,10 @@ exports.completeData = function (rawData) {
   r.rn_sw = rawData.rn_sw;
 
   r.enddate = new Date(r.startdate.getTime() + 1000 * 60 * r.durMin);
-
-  console.log("-------------------------------r.end");
-  console.log(r.enddate);
   return r;
 };
 
 exports.calcuratePrice = function (data) {
-  console.log("---------------------------------------가격 계산");
 
   // console.log(data);
 
@@ -860,15 +839,11 @@ exports.calcuratePrice = function (data) {
     if (priceIndex >= 48) {
       priceIndex = priceIndex - 48;
     }
-    console.log("-------------가격 더하기 ");
-    console.log(priceTable[priceType][priceIndex]);
     basePrice = basePrice + priceTable[priceType][priceIndex];
     priceIndex++;
   }
 
   var o = data.option;
-  console.log("-----------------this is cal price");
-  console.log(basePrice);
   var optionPriceTable = [
     { name: "큐", price30: 1000, type: "hour" },
     { name: "마", price30: 500, type: "hour" },
@@ -891,10 +866,6 @@ exports.calcuratePrice = function (data) {
     var optionIndex = o.indexOf(op.name);
     if (optionIndex > -1) {
       var optionCount = parseInt(o.substr(optionIndex + 1, 1));
-      console.log("------------this option");
-      // console.log(op);
-      console.log(optionIndex);
-      console.log(optionCount);
 
       if (optionCount > 0) {
         if (op.type == "hour") {

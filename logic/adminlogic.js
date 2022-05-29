@@ -427,26 +427,17 @@ exports.splitData = async function (rawData) {
                 unit.amountstr = x3.substring(0, x3.indexOf("0원") + 2);
                 unit.os = "";
 
-                // unit.mobile = makeOnlyNumberString(
-                // afterstr[1].substring(afterstr[1].indexOf("010")).trim().substring(0,13) );
-                console.log('---------------------formated unit ---------');
-                // console.log(firstIndex);
-
-                console.log(unit.rno);
-                // console.log(unit.spacestr);
-
-                console.log(unit.username);
-                console.log(unit.mobile);
-                console.log(unit.amountstr);
-                console.log(unit.stype);
-                console.log(unit.room);
-                console.log(afterstr[0]);
-
-                console.log(afterstr[1]);
-
-                console.log("========================after 0 ")
-
-                console.log(afterstr[0]);
+                // console.log('---------------------formated unit ---------');
+                // console.log(unit.rno);
+                // console.log(unit.username);
+                // console.log(unit.mobile);
+                // console.log(unit.amountstr);
+                // console.log(unit.stype);
+                // console.log(unit.room);
+                // console.log(afterstr[0]);
+                // console.log(afterstr[1]);
+                // console.log("========================after 0 ")
+                // console.log(afterstr[0]);
 
                 var timedata = convertTimeDataSpace(afterstr[0]);
 
