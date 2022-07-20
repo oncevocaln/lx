@@ -44,7 +44,7 @@ const calendarIds = {
   },
   HP: {
     id: "2g2aafkknaic3hbhms2s9ioe0s@group.calendar.google.com",
-    count: 3,
+    count: 5,
   },
   HR: {
     id: "tuhanmpfe7rp38o3sgjsihv25s@group.calendar.google.com",
@@ -552,8 +552,6 @@ exports.insertEventFromRequest = function (data, callback) {
           ],
         },
       };
-      console.log("-----구글 인서트-----");
-      console.log(event);
       try {
         calendar.events.insert(
           {
