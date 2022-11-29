@@ -359,7 +359,6 @@ exports.splitData = async function (rawData) {
                 }
 
             })
-        console.log('----------- this is naver list');
     } else if (from == "spacetotal") {
         data.from = "space";
 
@@ -371,20 +370,17 @@ exports.splitData = async function (rawData) {
             var unit = {
                 stype: "RQ"
             };
-            console.log('-------------------rl--');
             if (rl.includes("예약번호") && rl.includes("010-") && rl.includes("0원")) {
 
                 unit.from = "space";
                 unit.formated = true;
-
-                console.log('----------formated data from space');
 
                 unit.rno = "s" + makeOnlyNumberString(rl.substring(15, 3));
 
                 var firstIndex = rl.search(/20[0-9]+.[0-9]+.[0-9]+/g);
 
                 // var yearStringIndex = rl.search("2021.");
-                var yearStringIndex = rl.search("2022.");
+                var yearStringIndex = rl.search("2022.") || rl.search("2023.") || rl.search("2024.") ;
 
                 var spacestr = rl
                     .substring(0, yearStringIndex)
@@ -408,11 +404,6 @@ exports.splitData = async function (rawData) {
                 var afterstr = rl
                     .substring(yearStringIndex)
                     .split("시간");
-
-
-                    console.log("------------xxxxxxxxxxxxx-----this rl")
-                    console.log(rl);
-                    console.log(afterstr);
 
                 unit.username = makeNoSpaceString(
                     afterstr[1].substring(0, afterstr[1].indexOf("010")).trim()
@@ -454,14 +445,10 @@ exports.splitData = async function (rawData) {
 
         // data.result = result + "[대상]" + data.list.length + "개 데이터 중 새로 입력건\n";
 
-        console.log("----------------입력 리스트-----------");
-        console.log(data.list);
         data
             .list
             .forEach(async function (unit) {
 
-                console.log('--------------print unit')
-                console.log(unit);
                 // inserting
                 if (unit.formated == true) {
 
@@ -492,20 +479,16 @@ exports.splitData = async function (rawData) {
                             unit.status = prevOne.status;
 
                         } else {
-                            console.log('----------------------------has no prev one ---------------');
                             const savedData = await request.save();
                             data
                                 .insert
                                 .push(unit);
-                            // data.result = data.result +  request.rno + "/" + request.username + "/" +
-                            // request.mobile + + "/" + request.startdate + "/" + request.stype + "\n" ;
 
                             await google.insertEventFromRequest(preparedData, (err, data) => {
                                 console.log('-----------make event after---------------');
                                 console.log(data);
 
                             });
-
                             console.log('saved data -' + savedData);
                         }
 
@@ -515,8 +498,6 @@ exports.splitData = async function (rawData) {
                 }
 
             })
-        console.log('----------- this is naver list');
-
     }
 
     return await data;
@@ -710,9 +691,6 @@ function convertTimeDataSpace(str) {
     var datestr = str
         .substring(dIndex + 1, 0)
         .trim();
-
-        console.log("========datestr==================");
-        console.log(datestr);
 
     var datestrArray = datestr.split(".");
 
