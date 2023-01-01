@@ -380,7 +380,17 @@ exports.splitData = async function (rawData) {
                 var firstIndex = rl.search(/20[0-9]+.[0-9]+.[0-9]+/g);
 
                 // var yearStringIndex = rl.search("2021.");
-                var yearStringIndex = rl.search("2022.") || rl.search("2023.") || rl.search("2024.") ;
+                var yearStringIndex = rl.search("2022.") ;
+                
+                if(yearStringIndex < 1) {
+                    yearStringIndex = rl.search("2023.");
+                }
+                
+                
+                if(yearStringIndex < 1) {
+                    yearStringIndex = rl.search("2024.");
+                }
+                
 
                 var spacestr = rl
                     .substring(0, yearStringIndex)

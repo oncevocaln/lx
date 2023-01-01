@@ -24,7 +24,7 @@ function request_reserve_admin() {
     .then((json) => {
 
       console.log(json);
-      alert("완료\n" + json );
+      alert("완료\n" );
     });
 }
 
