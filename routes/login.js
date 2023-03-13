@@ -65,17 +65,6 @@ router.post("/", async function (req, res) {
         let cookies = {userObj: userObj};
         res.render("login", { cookies: cookies });
 
-
-        // let loginObj = {
-        //   id: user.id,
-        //   mobile: user.mobile,
-        //   username: user.username
-        // }
-
-
-        // console.log("=======================================cookie test");
-        // res.cookie('loginObj', loginObj, { expires: expiryDate, httpOnly: true, signed:true });
-
       } else {
         res.render("login", { cookies: req.cookies, message: "로그인이 실패하였습니다" });
       }

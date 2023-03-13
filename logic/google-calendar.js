@@ -209,7 +209,6 @@ function listEvents(auth) {
 }
 
 exports.listUpcomingEvent = function (data, callback) {
-  console.log("--------------------------- list up comming event ");
 
   var calendarId = calendarIds[data.stype].id;
   data.calendarId = calendarId;
@@ -217,17 +216,12 @@ exports.listUpcomingEvent = function (data, callback) {
   data.reason = "";
   data.room_requested = data.rn_sw;
 
-  console.log(calendarId);
-
   var dupCount = 0;
 
   var occupiedroom = [];
   var emptyroom = 0;
   var destroom = parseInt(data.rn_sw);
 
-  console.log("xxxxxxxx");
-  console.log(destroom);
-  console.log(rcount);
   if (destroom > rcount) {
     destroom = 1;
     data.rn_sw = destroom.toString();
