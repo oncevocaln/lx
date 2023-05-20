@@ -9,6 +9,7 @@ var rtypeName = {
   admin: "관리자",
   visit: "현장",
   naverpay: "네이버결제",
+  option: "OPTION",
 };
 
 var pkgName = {

@@ -23,6 +23,7 @@ const rtypeArray = {
   admin: "관리자",
   visit: "현장",
   naverpay: "네이버페이",
+  option: "OPTION",
 };
 
 const calendarIds = {

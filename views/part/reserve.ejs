@@ -50,7 +50,16 @@
                             value="visit"
                             onclick="checkVisit();calcurate_price();">
                         <label for="radio-visit">현장결제</label>
-<!--                         
+
+                        <input
+                            type="radio"
+                            id="radio-option"
+                            name="rtype"
+                            value="option"
+                            onclick="checkOptionGrade();calcurate_price();">
+                            
+                        <label for="radio-option">옵션만</label>
+<!--                       
                         <input
                             type="radio"
                             id="radio-naverpay"
@@ -544,7 +553,7 @@
                         <option value="8">8</option>
                     </select>
    
-                    과자:
+                    생수:
                     <select id="sn_sw" name="sn_sw" title="sn" class="sel" onchange="calcurate_price();" >
                         <option value="0">0</option>
                         <option value="1">1</option>
@@ -796,6 +805,18 @@ Copyright 2021 원비트아카데미 all rights reserved.
                     }
 
                     function checkPassGrade() {
+                        // if (grade != "pass" && grade != "pass2") {
+                        //     alert("사용할수 있는 등급이 아닙니다. 관리자에게 등업을 요청해주세요.")
+                        //     document
+                        //         .querySelector('input[name="rtype"]')
+                        //         .checked = "rent";
+                        //     document
+                        //         .querySelector('input[name="rtype"]')
+                        //         .value = "rent";
+                        // }
+                    }
+
+                    function checkOptionGrade() {
                         // if (grade != "pass" && grade != "pass2") {
                         //     alert("사용할수 있는 등급이 아닙니다. 관리자에게 등업을 요청해주세요.")
                         //     document

@@ -198,6 +198,8 @@ exports.rawDataChecker = function (rawData) {
     //Web발신 스트링 있음, 예약번호 있음 네이버문자
   } else if (ss.indexOf("[Web발신]") == 0 || ss.indexOf("예약번호") > 0) {
     r.type = "네문";
+  } else if (ss.indexOf("내 업체") == 0 || ss.indexOf("이용일옵션보기") > 0) {
+    r.type = "네모";
   } else if (ss.indexOf("인원수") == 0 || ss.indexOf("사용목적") > 0) {
     r.type = "스클";
   } else if (ss.indexOf("휴대폰") > 0 && ss.indexOf("사용분") > 0) {
@@ -207,6 +209,11 @@ exports.rawDataChecker = function (rawData) {
     // 양식이 없는 경우
     r.type = "기본";
   }
+
+  console.log('================================= 스트링 세부적인 처리 ');
+
+  console.log(ss);
+  console.log(r.type);
 
   if (r.type == "네웹") {
     //네웹 - 네이버예약웹
@@ -301,7 +308,96 @@ exports.rawDataChecker = function (rawData) {
       " / " +
       r.type;
     r.isOK = true;
-  } else if (r.type == "네문") {
+  } else if (r.type == "네모") {
+    /*
+예약자	한창희
+전화번호	010-3336-3522
+예약번호	421621763
+예약유형	일반
+서비스	원스연습실 강남논현점
+상품	NY (와이홀) 댄스연습실
+이용일시	2023. 5. 19.(금)
+오전 9:00~오전 11:00(2시간)
+수량	1
+결제상태	결제완료
+확정	
+김덕영
+완료 45, 취소 1
+
+    */
+
+      var i = 0;
+      var ii = 0;
+      i = ss.indexOf("예약자");
+      r.name = ss.substr(i + 4, 3);
+      i = ss.indexOf("상품");
+      r.product = ss.substr(i + 3, 2);
+      i = ss.indexOf("전화번호");
+      ii = ss.indexOf("예약번호");
+      r.phone = ss.substr(i + 5, ii - i - 5);
+      i = ss.indexOf("이용일시");
+      ii = ss.indexOf("수량");
+  
+      r.datestr = ss.substr(i + 5, ii - i - 5);
+      var ymd = r.datestr.split(".");
+      r.year = ymd[0];
+      r.month = ymd[1];
+      r.day = ymd[2];
+  
+      i = r.datestr.indexOf("(");
+      r.yoil = r.datestr.substr(i + 1, 1);
+  
+      i = r.datestr.indexOf(")");
+      ii = r.datestr.indexOf("~");
+  
+      r.startstr = r.datestr.substr(i + 1, ii - i - 1);
+  
+      var ampm = r.startstr.indexOf("후");
+
+      console.log('----------------시간 스트링');
+      console.log(r.startstr);
+      var starthm = r.startstr.substr(2, 10).split(":");
+  
+      var sh = parseInt(starthm[0]);
+      var sm = parseInt(starthm[1]);
+  
+      //12시는 0시로 치환
+      if (sh == 12) sh = 0;
+      //오후라면 12더하기
+      if (ampm > 0) {
+        sh = sh + 12;
+      }
+  
+      var startdate = new Date(r.year, parseInt(r.month) - 1, r.day, sh, sm);
+  
+      r.startdate = startdate;
+      var laststr = r.datestr.substr(ii + 1, 20);
+      i = laststr.indexOf("(");
+      ii = laststr.indexOf(")");
+      r.durstr = laststr.substr(i + 1, ii - i - 1);
+      i = r.durstr.indexOf("시간");
+      var durHour = r.durstr.substr(0, i);
+      ii = r.durstr.indexOf("분");
+      var durMinute = r.durstr.substr(i + 2, ii - i - 1);
+      r.durMin = (parseInt(durHour) || 0) * 60 + (parseInt(durMinute) || 0);
+      r.enddate = new Date(startdate.getTime() + r.durMin * 60000);
+      i = ss.indexOf("방번호선택");
+  
+      if (i > 0) {
+        r.room = ss.substr(i + 5, 1);
+      }
+  
+      r.title =
+        r.product +
+        r.room +
+        " / " +
+        r.name.substr(0, 2) +
+        "* / 010-****-" +
+        r.phone.substr(9, 4) +
+        " / " +
+        r.type;
+      r.isOK = true;
+    } else if (r.type == "네문") {
     //네문 - 네이버예약문자
     //     [Web발신]
     // 원스연습실 강남논현점, 새로운 예약이 확정되었습니다. 예약 내역을 확인해 보세요.
@@ -948,6 +1044,9 @@ exports.calcuratePriceV2 = function (data) {
     basePrice = 0;
   }
 
+  if (data.rtype == "option") {
+    basePrice = 0;
+  }
 
   if (data.rtype == "visit") {
     basePrice = basePrice + 1000;
@@ -973,7 +1072,7 @@ exports.calcuratePriceV2 = function (data) {
     { name: "휴대폰삼각대", id: "hs_sw", price30: 1000, type: "day" },
     { name: "요가매트", id: "yo_sw", price30: 1000, type: "day" },
     { name: "음료", id: "dr_sw", price30: 1000, type: "day" },
-    { name: "과자", id: "sn_sw", price30: 1000, type: "day" },
+    { name: "생수", id: "sn_sw", price30: 300, type: "day" },
   ];
 
   var optionPrice = 0;
@@ -996,6 +1095,7 @@ exports.calcuratePriceV2 = function (data) {
   if (data.rtype == "vip") {
     basePrice = 0;
   }
+  
 
   if (data.rtype == "admin") {
     basePrice = 0;

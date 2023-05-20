@@ -79,6 +79,39 @@ exports.splitData = async function (rawData) {
         insert: []
     };
 
+
+    /*
+내 업체
+업체
+예약·주문
+예약·주문자
+예약·주문 통계
+이용일옵션보기
+이전
+23.5.19.금 ~ 6. 18.일
+다음
+예약자명
+입력후 검색하세요
+검색
+확정18 명
+확정	
+한창희
+완료 280, 취소 48
+예약자	한창희
+전화번호	010-3336-3522
+예약번호	421621763
+예약유형	일반
+서비스	원스연습실 강남논현점
+상품	NY (와이홀) 댄스연습실
+이용일시	2023. 5. 19.(금)
+오전 9:00~오전 11:00(2시간)
+수량	1
+결제상태	결제완료
+확정	
+김덕영
+완료 45, 취소 1
+
+    */
     var from = "";
 
     if (rawData.includes("[Web]발신")) {
@@ -86,7 +119,9 @@ exports.splitData = async function (rawData) {
     } else if (rawData.includes("NAVER Corp. All Rights Reserved")) {
         from = "navertotal";
     } else if (rawData.includes("NAVER예약파트너센터") && rawData.includes("빠른순늦은순")) {
-        from = "navermobile";
+        from = "navermobile"; // 모바일 ui 변경되어 사용하지 않음
+    } else if (rawData.includes("내 업체") && rawData.includes("이용일옵션보기")) {
+        from = "navermobile2";
     } else if (rawData.includes("NSPACE")) {
         from = "spacetotal"
     } 
@@ -227,6 +262,148 @@ exports.splitData = async function (rawData) {
                 }
             })
         console.log('----------- this is naver list');
+    } else if (from == "navermobile2") {
+
+       
+        data.from = "naver";
+        rawlist = rawData.split("예약자");
+        rawlist.forEach(function (rl) {
+            console.log('-------------------rl---naver mobile 2 ------------');
+
+            var rlarray = rl.split("\n");
+            console.log(rlarray);
+            var unit = {
+                stype: ""
+            };
+            //휴대폰 번호가 없으면 처리불가능
+            unit.mobile = "";
+
+            unit.mobile = makeOnlyNumberString(rlarray[1]);
+
+
+            
+            console.log(unit.mobile);
+
+
+            if (unit.mobile && unit.mobile.indexOf("010") > -1) {
+                unit.formated = true;
+
+                unit.from = "naver";
+                unit.username = rlarray[0];
+                unit.rno = "n" + makeOnlyNumberString(rlarray[2]);
+
+                unit.timestr = rlarray[6] + "@" + rlarray[7];
+
+                var timedata = convertTimeDataNaverMobile(rlarray[6], rlarray[7]);
+                unit.startdate = timedata.startdate;
+                unit.enddate = timedata.enddate;
+                unit.dur = timedata.dur;
+
+                unit.placestr = rlarray[4];
+                unit.spacestr = rlarray[5];
+
+                unit.spacecount = 1;
+
+                unit.optionstr = "";
+                unit.room = 1;
+
+                if (unit.optionstr.includes("방번호")) {
+                    var xIndex = unit
+                        .optionstr
+                        .indexOf("방번호");
+                    console.log(xIndex);
+                    var roomstr = makeOnlyNumberString(
+                        unit.optionstr.substring(xIndex + 3, xIndex + 10)
+                    );
+                    console.log(roomstr);
+                    unit.room = parseInt(roomstr) || 1;
+                }
+
+                unit.paid = false;
+                if(rl.includes("결제완료")) {
+                  unit.paid = true;
+                }
+                unit.demandstr = "";
+                // unit.paystatus = paystatus;
+                // unit.amountstr = rlarray[12];
+                unit.check = "";
+                unit.stype = "RQ";
+                // unit.room = 1;
+                unit.os = "";
+                //방번호
+
+                stypelist.forEach(function (st) {
+                    if (unit.spacestr.includes(st)) {
+                        unit.stype = st;
+                    }
+                });
+                unit.rawData = rl;
+                unit.formated = true;
+
+            } else {
+                unit.formated = false;
+            }
+
+            
+            data
+                .list
+                .push(unit);
+        })
+
+        data
+            .list
+            .forEach(async function (unit) {
+
+                console.log("-----------------formated unit status ");
+                console.log(unit);
+                // inserting
+                if (unit.formated == true && unit.paid == true) {
+
+                    var preparedData = {
+                        from: unit.from,
+                        rno: unit.rno,
+                        username: unit.username,
+                        mobile: unit.mobile,
+                        start: unit.startdate,
+                        end: unit.enddate,
+                        dur: unit.dur,
+                        stype: unit.stype,
+                        room: unit.room,
+                        os: unit.os
+                    }
+
+                    var request = new Request(preparedData);
+                    try {
+                        const prevOne = await Request.findOne({
+                            rno: request.rno
+                        }, {}, {
+                            sort: {
+                                'creationDate': -1
+                            }
+                        });
+
+                        if (prevOne) {
+                            unit.status = prevOne.status;
+
+                        } else {
+                            console.log('----------------------------has no prev one ---------------');
+                            const savedData = await request.save();
+
+                            google.insertEventFromRequest(preparedData, (err, data) => {
+                                console.log('-----------make event after---------------');
+                                console.log(data);
+
+                            });
+
+                            console.log('saved data -' + savedData);
+                        }
+
+                    } catch (e) {
+                        console.log('saved data -' + e);
+                    }
+                }
+            })
+        console.log('----------- this is naver mobile2 list');
     } else if (from == "navertotal") {
         data.from = "naver";
         rawlist = rawData.split("확정");
@@ -362,6 +539,7 @@ exports.splitData = async function (rawData) {
     } else if (from == "spacetotal") {
         data.from = "space";
 
+        console.log("============================================spacecloud parse data ");
         console.log(rawData);
 
         rawlist = rawData.split("예약확정");
