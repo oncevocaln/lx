@@ -548,7 +548,7 @@ function make_os(json) {
     os = os + " 음료" + json.dr_sw;
   }
   if (parseInt(json.sn_sw) > 0) {
-    os = os + " 과자" + json.sn_sw;
+    os = os + "생수" + json.sn_sw;
   }
   return os;
 }
