@@ -555,12 +555,12 @@ function make_os(json) {
 
 function make_rtext(json) {
   json.notice = "";
-  if ( ["ND","NX","NK"].includes( json.stype)) {
+  if ( ["ND"].includes( json.stype)) {
     json.notice = json.notice + 
-      "\n주소 : 서울시 강남구 논현동 140-4 송월타올 지하 \n(비밀번호: 현관&화장실 6784, 연습실8763, 와이파이 24972497) \n주차불가(근처 유료주차장 있음)\n옵션은 헤드폰만 가능합니다.";
+      "\n주소 : 서울시 강남구 강남대로 120길 28 지하1층 뮤직하우스 강남논현점\n(비밀번호: 현관 - 15987* / 연습실 - 8763 / 와이파이 - CSY11@0522) \n주차불가(근처에 논현초교 공영주차장 있습니다)";
   }
 
-  if ( ["NP","NV","NB","NA","NM","NY"].includes( json.stype)) {
+  if ( ["NP","NV","NB","NA","NM","NY","NX","NK"].includes( json.stype)) {
     json.notice = json.notice + 
     "\n주소 : 서울시 강남구 논현동 141-9 김밥천국 4층 \n비밀번호: 없음, 와이파이 academy123 \n주차불가(맞은편 건물 유료주차장 있음)\n 야간( 밤10시 ~ 오전8시 ) 스피커/앰프 사용불가\n"+
     "\n소음신고로 인해 NY,NA,NB,NV,NP,NM 은 22~08시 사이는 조용히 사용해 주셔야합니다. (피아노 약음페달, 조용히 부르는 노래, 휴대폰 스피커 소리 정도만 가능) 층간 소음 발생시 퇴실 조치 됩니다\n";
