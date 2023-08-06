@@ -557,7 +557,7 @@ function make_rtext(json) {
   json.notice = "";
   if ( ["ND"].includes( json.stype)) {
     json.notice = json.notice + 
-      "\n주소 : 서울시 강남구 강남대로 120길 28 지하1층 뮤직하우스 강남논현점\n(비밀번호: 현관 - 15987* / 연습실 - 8763 / 와이파이 - CSY11@0522) \n주차불가(근처에 논현초교 공영주차장 있습니다)";
+      "\n주소 : 서울시 강남구 강남대로 120길 28 지하1층 뮤직하우스 강남논현점\n(비밀번호: 현관 - 15987* / 연습실 - 8763 / 와이파이 - CSY11@0522) \n주차불가(근처에 논현초교 공영주차장 있습니다)\n";
   }
 
   if ( ["NP","NV","NB","NA","NM","NY","NX","NK"].includes( json.stype)) {
@@ -569,12 +569,12 @@ function make_rtext(json) {
 
   if ( ["HA","HX","HR","HM","HP","HX","HD","HS","HV"].includes( json.stype)) {
     json.notice = json.notice + 
-      "\n주소 : 서울시 마포구 서교동 342-20 서교태권도 2층 \n비밀번호: 01235* , 와이파이 academy123@ \n주차불가";
+      "\n주소 : 서울시 마포구 서교동 342-20 서교태권도 2층 \n비밀번호: 01235* , 와이파이 academy123@ \n주차불가\n";
   }
 
     if ( ["HR"].includes( json.stype)) {
     json.notice = json.notice + 
-      "녹음실 최소 예약 시간은 3시간입니다. 연장은 3시간 미만도 가능합니다.\n시퀀서는 로직프로만 가능합니다. 기본적인 사용법을 아시는 분만 예약해주세요.";
+      "\n녹음실 최소 예약 시간은 3시간입니다. 연장은 3시간 미만도 가능합니다.\n시퀀서는 로직프로만 가능합니다. 기본적인 사용법을 아시는 분만 예약해주세요.\n";
   }
 
 
