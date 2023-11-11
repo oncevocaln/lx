@@ -91,11 +91,27 @@ const calendarIds = {
     id: "mj2te6b290tkr2ttea3u93iepk@group.calendar.google.com",
     count: 2,
   },
-
-  NK: {
-    id: "3445cc7o8hc72ljnkcri5sc08k@group.calendar.google.com",
-    count: 2,
+  SD: {
+    id: "1843d7c0e667b7a107d3fd7f5057e501ad72a0a9b3aa632dac3cffcf8905990e@group.calendar.google.com",
+    count: 1,
   },
+  SM: {
+    id: "f6c9f8a9446032ada778ca924784b24c7e3a1281a77e2902d39fc94d93a961b6@group.calendar.google.com",
+    count: 1,
+  },
+  SP: {
+    id: "fb4aa8d23e5461d48403f74a8f9b9362c208eadf32eddf6ebd865a32dec49e4a@group.calendar.google.com",
+    count: 1,
+  },
+  SX: {
+    id: "9f4ac065e865199ba0366e5c7d47690bfbff345cc9fdd1c4e48a05171c9282ea@group.calendar.google.com",
+    count: 1,
+  },
+  SV: {
+    id: "0332f7592636b54b2814e188a802d8b9e24c6b47c110e60a2c9448ac1ca28351@group.calendar.google.com",
+    count: 1,
+  },
+
   OP: {
     id: "6kbrfp74k5pu451vtj0sc206lg@group.calendar.google.com",
     count: 100,

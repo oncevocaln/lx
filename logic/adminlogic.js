@@ -70,7 +70,12 @@ var stypelist = [
     "HX",
     "HM",
     "HP",
-    "HV"
+    "HV",
+    "SP",
+    "SM",
+    "SD",
+    "SX",
+    "SV"
 ]
 
 exports.splitData = async function (rawData) {

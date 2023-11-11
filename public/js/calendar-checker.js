@@ -566,14 +566,20 @@ function make_rtext(json) {
     "\n소음신고로 인해 NY,NA,NB,NV,NP,NM 은 22~08시 사이는 조용히 사용해 주셔야합니다. (피아노 약음페달, 조용히 부르는 노래, 휴대폰 스피커 소리 정도만 가능) 층간 소음 발생시 퇴실 조치 됩니다\n";
   }
 
-
+  
   if ( ["HA","HX","HR","HM","HP","HX","HD","HS","HV"].includes( json.stype)) {
     json.notice = json.notice + 
-      "\n주소 : 서울시 마포구 서교동 342-20 서교태권도 2층 \n비밀번호: 01235* , 와이파이 academy123@ \n주차불가\n";
+    "\n주소 : 서울시 마포구 서교동 342-20 서교태권도 2층 \n비밀번호: 01235* , 와이파이 cats123@ \n주차불가\n";
+  }
+  
+
+  if ( ["SP","SM","SV","SX","SD"].includes( json.stype)) {
+    json.notice = json.notice + 
+    "\n주소 : 서울특별시 양천구 신월로 327 양천에이스신경외과 지층 \n현관 비밀번호: 359024* 연습방 비밀번호: 8763* \n 와이파이 cats123@ \n주차가능\n";
   }
 
     if ( ["HR"].includes( json.stype)) {
-    json.notice = json.notice + 
+    json.notice = json.notice +    
       "\n녹음실 최소 예약 시간은 3시간입니다. 연장은 3시간 미만도 가능합니다.\n시퀀서는 로직프로만 가능합니다. 기본적인 사용법을 아시는 분만 예약해주세요.\n";
   }
 
@@ -655,42 +661,42 @@ function send_kakao() {
   copyText.select();
   document.execCommand("Copy");
 
-  // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
   window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
 }
 
+function send_kakao_sinjung() {
+  var copyText = document.getElementById("request_text");
+  copyText.select();
+  document.execCommand("Copy");
+
+  window.open("http://pf.kakao.com/_xhDxbbG/chat", "_blank");
+}
 
 function open_naverpay() {
   var copyText = document.getElementById("request_text");
   copyText.select();
   document.execCommand("Copy");
 
-  // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
   window.open("https://booking.naver.com/booking/10/bizes/175195/items/3614725?preview=1", "_blank");
 }
 
 function check_refund_policy() {
-  // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
   window.open("https://cafe.naver.com/oncevocal/66", "_blank");
 }
 
 function go_cafe_nonhyun() {
-  // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
   window.open("https://cafe.naver.com/oncevocal/47", "_blank");
 }
 
 function go_cafe_hongdae() {
-  // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
   window.open("https://cafe.naver.com/oncevocal/49", "_blank");
 }
 
 function go_cafe_price() {
-  // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
   window.open("https://cafe.naver.com/oncevocal/88", "_blank");
 }
 
 function go_cafe_option() {
-  // window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
   window.open("https://cafe.naver.com/oncevocal/76", "_blank");
 }
 

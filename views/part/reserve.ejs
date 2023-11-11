@@ -8,16 +8,15 @@
 
         <fieldset class="id_form" id="midside_panel">
             <div class="" id="midside_panel_inner">
-<!-- 
-                <span style="color: red; font-size: 15px">
-                    -[필수사항] 선택후 가격계산&가능확인 을 누르세요 -
-                    <br><br>
-                </span> -->
 
-                
+                <div>
+                    <img id="banner_image" src="/images/banner02.jpeg" alt="your image" width="350" onclick="send_kakao_sinjung();"/>
+                </div>
+                    
                 <div>
                     <img id="banner_image" src="/images/banner01.jpeg" alt="your image" width="350" onclick="send_kakao();"/>
                 </div>
+                                 
                 <h2>유형</h2> 
                     <div class="switch-field">
                         <input
@@ -43,13 +42,6 @@
                             value="vip"
                             onclick="checkVipGrade();calcurate_price();">
                         <label for="radio-vip">강사</label>
-                        <input
-                            type="radio"
-                            id="radio-visit"
-                            name="rtype"
-                            value="visit"
-                            onclick="checkVisit();calcurate_price();">
-                        <label for="radio-visit">현장결제</label>
 
                         <input
                             type="radio"
@@ -59,14 +51,15 @@
                             onclick="checkOptionGrade();calcurate_price();">
                             
                         <label for="radio-option">옵션만</label>
-<!--                       
+
                         <input
-                            type="radio"
-                            id="radio-naverpay"
-                            name="rtype"
-                            value="naverpay"
-                            onclick="checkNaverpay();calcurate_price();">
-                        <label for="radio-naverpay">네이버결제</label> -->
+                        type="radio"
+                        id="radio-month"
+                        name="rtype"
+                        value="month"
+                        onclick="send_kakao_sinjung(); calcurate_price();">
+                    <label for="radio-month">월대여</label>
+                    
                     </div>
 
                 <div class="select_date">
@@ -338,9 +331,47 @@
                         value="HV"
                         onclick="src_selector(); calcurate_price();"/>
                     <label for="radio-hv">HV</label>
-
                 </div>
 
+                <div class="switch-field">
+                    신정네거리점
+                    <input
+                        type="radio"
+                        id="radio-sd"
+                        name="stype"
+                        value="SD"
+                        onclick="src_selector(); calcurate_price();"/>
+                    <label for="radio-sd">SD</label>
+                    <input
+                        type="radio"
+                        id="radio-sm"
+                        name="stype"
+                        value="SM"
+                        onclick="src_selector(); calcurate_price();"/>
+                    <label for="radio-sm">SM</label>
+                    <input
+                        type="radio"
+                        id="radio-sp"
+                        name="stype"
+                        value="SP"
+                        onclick="src_selector(); calcurate_price();"/>
+                    <label for="radio-sp">SP</label>
+                    <input
+                        type="radio"
+                        id="radio-sv"
+                        name="stype"
+                        value="SV"
+                        onclick="src_selector(); calcurate_price();"/>
+                    <label for="radio-sv">SV</label>
+                    
+                    <input
+                        type="radio"
+                        id="radio-sx"
+                        name="stype"
+                        value="SX"
+                        onclick="src_selector(); calcurate_price();"/>
+                    <label for="radio-sx">SX</label>
+                </div>
                 <div>
 
                     <button onclick="go_cafe_nonhyun();" style="color: black;">
@@ -366,6 +397,8 @@
                 <br>
                 <span style="color: red; font-size: 12px">
                     -기본 옵션은 '옵션에 대해 자세히'를 클릭해 확인해주세요-
+                    <br>
+                    *신정네거리점은 옵션 선택 불가
                 </span>
 
                 <br>
@@ -755,29 +788,25 @@
                             오류가 발생하거나 진행이 어렵다면 예약내용이 보이게 화면을 캡쳐해서 카톡으로 문의주세요.<br>
 
                         </span>
-
-
-                      
                     </div>
                     <div>
 
                       <span style="font-size: 12px;">
 
-
                         <br>
-                      원비트아카데미 | 대표 : 이효원 | 전화 : 010-5613-4820
-                      <br>
-                      사업자번호 : 887-97-00367
-                      <br>
-                      통신판매업신고번호 : 2017-서울강남-03469
+                      원비트연습실 | 대표 : 이효원 | 전화 : 010-5613-4820
                       <br>
 강남논현점 : 서울시 강남구 논현동 141-9(학동로4길 20) 4층
 <br>
+논현2스튜디오 : 서울특별시 강남구 논현동 182-31 지층 뮤직하우스
+<br>
 홍대점 : 서울시 마포구 서교동 342-20(와우산로23길 20-30) 2층
+<br>
+신정네거리점 : 서울특별시 양천구 신정동 978-17(신월로 327) 양천에이스신경외과 지층
 <br>
 E-mail : oncevocal@naver.com
 <br>
-Copyright 2021 원비트아카데미 all rights reserved.
+Copyright 2021 원비트연습실 all rights reserved.
 <br>
 
 </span>

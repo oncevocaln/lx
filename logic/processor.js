@@ -171,6 +171,7 @@ var priceTable = {
     2500,
     2500,
   ],
+
 };
 
 exports.rawDataChecker = function (rawData) {
@@ -749,87 +750,6 @@ exports.rawDataChecker = function (rawData) {
   return r;
 };
 
-exports.calcuratePrice = function (data) {
-
-
-  data.startstr = "오후6:30";
-
-  var startime = 630;
-
-  var priceType = "NY";
-
-  if (["NY", "HR", "HS"].includes(data.calendarId)) {
-    priceType = "NY";
-  } else if (
-    ["NX", "NM", "NA", "NX", "ND", "HA", "HX", "HM", "HD"].includes(
-      data.calendarId
-    )
-  ) {
-    priceType = "NX";
-  } else if (["NP", "NV", "NK", "NB", "HP", "HV"].includes(data.calendarId)) {
-    priceType = "NP";
-  } else {
-    priceType = "NY";
-  }
-
-  var priceStartIndex = parseInt(Math.round(data.hm24 / 50));
-  var priceCountIndex = parseInt(Math.round(data.durMin / 30));
-
-  console.log(priceStartIndex);
-  console.log(priceCountIndex);
-
-  var basePrice = 0;
-
-  var priceIndex = priceStartIndex;
-  for (var i = 0; i < priceCountIndex; i++) {
-    if (priceIndex >= 48) {
-      priceIndex = priceIndex - 48;
-    }
-    basePrice = basePrice + priceTable[priceType][priceIndex];
-    priceIndex++;
-  }
-
-  var o = data.option;
-  var optionPriceTable = [
-    { name: "큐", price30: 1000, type: "hour" },
-    { name: "마", price30: 500, type: "hour" },
-    { name: "헤", price30: 500, type: "hour" },
-    { name: "피", price30: 500, type: "hour" },
-    { name: "키", price30: 500, type: "hour" },
-    { name: "일", price30: 500, type: "hour" },
-    { name: "기", price30: 500, type: "hour" },
-
-    { name: "블", price30: 1000, type: "day" },
-    { name: "스", price30: 1000, type: "day" },
-    { name: "보", price30: 1000, type: "day" },
-    { name: "의", price30: 1000, type: "day" },
-    { name: "인", price30: 1000, type: "day" },
-    { name: "삼", price30: 1000, type: "day" },
-    { name: "요", price30: 1000, type: "day" },
-  ];
-
-  optionPriceTable.forEach(function (op) {
-    var optionIndex = o.indexOf(op.name);
-    if (optionIndex > -1) {
-      var optionCount = parseInt(o.substr(optionIndex + 1, 1));
-
-      if (optionCount > 0) {
-        if (op.type == "hour") {
-          basePrice = basePrice + optionCount * op.price30 * priceCountIndex;
-        } else {
-          basePrice = basePrice + optionCount * op.price30;
-        }
-      }
-    }
-  });
-
-  if (priceCountIndex >= 8) {
-    basePrice = basePrice - 500 * priceCountIndex;
-  }
-
-  return basePrice;
-};
-
 exports.completeData = function (rawData) {
   //자율사용자
   var r = rawData;
@@ -898,88 +818,6 @@ exports.completeData = function (rawData) {
   return r;
 };
 
-exports.calcuratePrice = function (data) {
-
-  // console.log(data);
-
-  data.startstr = "오후6:30";
-
-  var startime = 630;
-
-  var priceType = "NY";
-
-  if (["NY", "HR", "HS"].includes(data.calendarId)) {
-    priceType = "NY";
-  } else if (
-    ["NX", "NM", "NA", "ND", "HA", "HX", "HM", "HD"].includes(
-      data.calendarId
-    )
-  ) {
-    priceType = "NX";
-  } else if (["NP", "NV", "NB", "NK", "HP", "HV"].includes(data.calendarId)) {
-    priceType = "NP";
-  } else {
-    priceType = "NY";
-  }
-
-  var priceStartIndex = parseInt(Math.round(data.hm24 / 50));
-  var priceCountIndex = parseInt(Math.round(data.durMin / 30));
-
-  console.log(priceStartIndex);
-  console.log(priceCountIndex);
-
-  var basePrice = 0;
-
-  var priceIndex = priceStartIndex;
-  for (var i = 0; i < priceCountIndex; i++) {
-    if (priceIndex >= 48) {
-      priceIndex = priceIndex - 48;
-    }
-    basePrice = basePrice + priceTable[priceType][priceIndex];
-    priceIndex++;
-  }
-
-  var o = data.option;
-  var optionPriceTable = [
-    { name: "큐", price30: 1000, type: "hour" },
-    { name: "마", price30: 500, type: "hour" },
-    { name: "헤", price30: 500, type: "hour" },
-    { name: "피", price30: 500, type: "hour" },
-    { name: "키", price30: 500, type: "hour" },
-    { name: "일", price30: 500, type: "hour" },
-    { name: "기", price30: 500, type: "hour" },
-
-    { name: "블", price30: 1000, type: "day" },
-    { name: "스", price30: 1000, type: "day" },
-    { name: "보", price30: 1000, type: "day" },
-    { name: "의", price30: 1000, type: "day" },
-    { name: "인", price30: 1000, type: "day" },
-    { name: "삼", price30: 1000, type: "day" },
-    { name: "요", price30: 1000, type: "day" },
-  ];
-
-  optionPriceTable.forEach(function (op) {
-    var optionIndex = o.indexOf(op.name);
-    if (optionIndex > -1) {
-      var optionCount = parseInt(o.substr(optionIndex + 1, 1));
-
-      if (optionCount > 0) {
-        if (op.type == "hour") {
-          basePrice = basePrice + optionCount * op.price30 * priceCountIndex;
-        } else {
-          basePrice = basePrice + optionCount * op.price30;
-        }
-      }
-    }
-  });
-
-  if (priceCountIndex >= 8) {
-    basePrice = basePrice - 500 * priceCountIndex;
-  }
-
-  return basePrice;
-};
-
 exports.calcuratePriceV2 = function (data) {
 
   var priceType = "NY";
@@ -990,7 +828,7 @@ exports.calcuratePriceV2 = function (data) {
     ["NX", "NM", "NA", "ND", "HA", "HX", "HD", "HM"].includes(data.stype)
   ) {
     priceType = "NX";
-  } else if (["NP", "NK", "NV", "NB", "HP", "HV"].includes(data.stype)) {
+  } else if (["NP", "NK", "NV", "NB", "HP", "HV", "SP", "SM", "SD", "SX", "SV"].includes(data.stype)) {
     priceType = "NP";
   } else {
     priceType = "NY";
@@ -1023,7 +861,7 @@ exports.calcuratePriceV2 = function (data) {
   if (data.pkg == "nu") {
     basePrice = basePrice / 2;
   } else if (data.pkg == "up10") {
-    basePrice = basePrice * 0.6;
+    basePrice = basePrice * 0.5;
   } else if (data.pkg == "up4") {
     basePrice = basePrice * 0.8;
   } else if (data.pkg == "mo") {
