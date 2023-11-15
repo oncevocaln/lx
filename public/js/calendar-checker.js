@@ -669,7 +669,7 @@ function send_kakao_sinjung() {
   copyText.select();
   document.execCommand("Copy");
 
-  window.open("http://pf.kakao.com/_xhDxbbG/chat", "_blank");
+  window.open("http://pf.kakao.com/_fqxjbG/chat", "_blank");
 }
 
 function open_naverpay() {
