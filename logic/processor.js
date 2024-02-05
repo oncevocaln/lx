@@ -910,7 +910,7 @@ exports.calcuratePriceV2 = function (data) {
     { name: "휴대폰삼각대", id: "hs_sw", price30: 1000, type: "day" },
     { name: "요가매트", id: "yo_sw", price30: 1000, type: "day" },
     { name: "음료", id: "dr_sw", price30: 1000, type: "day" },
-    { name: "생수", id: "sn_sw", price30: 300, type: "day" },
+    { name: "생수", id: "sn_sw", price30: 500, type: "day" },
   ];
 
   var optionPrice = 0;
