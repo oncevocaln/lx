@@ -661,7 +661,7 @@ function send_kakao() {
   copyText.select();
   document.execCommand("Copy");
 
-  window.open("http://pf.kakao.com/_YmerC/chat", "_blank");
+  window.open("http://pf.kakao.com/_YBWZK/chat", "_blank");
 }
 
 function send_kakao_sinjung() {
