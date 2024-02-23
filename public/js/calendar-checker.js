@@ -575,7 +575,7 @@ function make_rtext(json) {
 
   if ( ["SP","SM","SV","SX","SD"].includes( json.stype)) {
     json.notice = json.notice + 
-    "\n주소 : 서울특별시 양천구 신월로 327 양천에이스신경외과 지층 \n현관 비밀번호: 359024* 연습방 비밀번호: 8763* \n 와이파이 cats123@ \n주차가능\n";
+    "\n주소 : 서울특별시 양천구 신월로 327 양천에이스신경외과 지층 \n현관 비밀번호: 356824* 연습방 비밀번호: 8763* \n 와이파이 cats123@ \n주차가능\n";
   }
 
     if ( ["HR"].includes( json.stype)) {
