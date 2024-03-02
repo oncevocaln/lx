@@ -93,7 +93,7 @@ const calendarIds = {
   },
   SD: {
     id: "1843d7c0e667b7a107d3fd7f5057e501ad72a0a9b3aa632dac3cffcf8905990e@group.calendar.google.com",
-    count: 1,
+    count: 2,
   },
   SM: {
     id: "f6c9f8a9446032ada778ca924784b24c7e3a1281a77e2902d39fc94d93a961b6@group.calendar.google.com",
