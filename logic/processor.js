@@ -238,581 +238,585 @@ var priceTable = {
 
 };
 
-exports.rawDataChecker = function (rawData) {
-  //자율사용자
-  var r = {
-    isOK: false,
-    type: "",
-    room: 0,
-  };
-  if (rawData.id) {
-    rawData.id = "request";
-  }
-  if (rawData.category) {
-    rawData.category = "time";
-  }
+// exports.rawDataChecker = function (rawData) {
+//   //자율사용자
+//   var r = {
+//     isOK: false,
+//     type: "",
+//     room: 0,
+//   };
+//   if (rawData.id) {
+//     rawData.id = "request";
+//   }
+//   if (rawData.category) {
+//     rawData.category = "time";
+//   }
 
-  //s 는 원래 스트링 ss 는 공백을 제거한 스트링
-  var ss = rawData.title;
+//   //s 는 원래 스트링 ss 는 공백을 제거한 스트링
+//   var ss = rawData.title;
 
-  ss = ss.replace(/ /gi, "");
+//   ss = ss.replace(/ /gi, "");
 
-  //예약번호 스트링이 있음, 이용일시 스트링이 있음 = 네이버웹
-  if (ss.indexOf("예약번호") > 0 && ss.indexOf("이용일시") > 0) {
-    r.type = "네웹";
-    //Web발신 스트링 있음, 예약번호 있음 네이버문자
-  } else if (ss.indexOf("[Web발신]") == 0 || ss.indexOf("예약번호") > 0) {
-    r.type = "네문";
-  } else if (ss.indexOf("내 업체") == 0 || ss.indexOf("이용일옵션보기") > 0) {
-    r.type = "네모";
-  } else if (ss.indexOf("인원수") == 0 || ss.indexOf("사용목적") > 0) {
-    r.type = "스클";
-  } else if (ss.indexOf("휴대폰") > 0 && ss.indexOf("사용분") > 0) {
-    // 수동등록
-    r.type = "요청";
-  } else {
-    // 양식이 없는 경우
-    r.type = "기본";
-  }
+//   //예약번호 스트링이 있음, 이용일시 스트링이 있음 = 네이버웹
+//   if (ss.indexOf("예약번호") > 0 && ss.indexOf("이용일시") > 0) {
+//     r.type = "네웹";
+//     //Web발신 스트링 있음, 예약번호 있음 네이버문자
+//   // } else if (ss.indexOf("[Web발신]") == 0 || ss.indexOf("예약번호") > 0) {
+//   //   r.type = "네문";
+//   // } else if (ss.indexOf("내 업체") == 0 || ss.indexOf("이용일옵션보기") > 0) {
+//   //   r.type = "네모";
+//   } else if (ss.indexOf("인원수") == 0 || ss.indexOf("사용목적") > 0) {
+//     r.type = "스클";
+//   // } else if (ss.indexOf("휴대폰") > 0 && ss.indexOf("사용분") > 0) {
+//   //   // 수동등록
+//     r.type = "요청";
+//   } else {
+//     // 양식이 없는 경우
+//     r.type = "기본";
+//   }
 
-  console.log('================================= 스트링 세부적인 처리 ');
+//   console.log('================================= 스트링 세부적인 처리 ');
 
-  console.log(ss);
-  console.log(r.type);
+//   console.log(ss);
+//   console.log(r.type);
 
-  if (r.type == "네웹") {
-    //네웹 - 네이버예약웹
-    //   확정
-    // 백승숙
-    // 완료 6
-    // 예약자	백승숙
-    // 전화번호	010-8945-1379
-    // 예약번호	101396012
-    // 예약유형	일반
-    // 이메일	hotcola81@naver.com
-    // 예약내역
-    // 서비스	원스연습실 강남논현점
-    // 상품	NM1~3 (미디)
-    // 이용일시	2020. 8. 16.(일)
-    // 오후 4:30~오후 5:30(1시간)
-    // 수량	1
-    // 유입경로	네이버 - 기타
-    // 결제정보
-    // 결제상태	결제완료
-    // NPay주문	2020081479544830
-    // 결제수단	포인트결제
-    // 결제금액	8,400원
-    // NM1~3 (미디)
-    // 8,400원
+//   if (r.type == "네웹") {
+//     //네웹 - 네이버예약웹
+//     //   확정
+//     // 백승숙
+//     // 완료 6
+//     // 예약자	백승숙
+//     // 전화번호	010-8945-1379
+//     // 예약번호	101396012
+//     // 예약유형	일반
+//     // 이메일	hotcola81@naver.com
+//     // 예약내역
+//     // 서비스	원스연습실 강남논현점
+//     // 상품	NM1~3 (미디)
+//     // 이용일시	2020. 8. 16.(일)
+//     // 오후 4:30~오후 5:30(1시간)
+//     // 수량	1
+//     // 유입경로	네이버 - 기타
+//     // 결제정보
+//     // 결제상태	결제완료
+//     // NPay주문	2020081479544830
+//     // 결제수단	포인트결제
+//     // 결제금액	8,400원
+//     // NM1~3 (미디)
+//     // 8,400원
 
-    var i = 0;
-    var ii = 0;
-    i = ss.indexOf("예약자");
-    r.name = ss.substr(i + 4, 3);
-    i = ss.indexOf("상품");
-    r.product = ss.substr(i + 3, 2);
-    i = ss.indexOf("전화번호");
-    ii = ss.indexOf("예약번호");
-    r.phone = ss.substr(i + 5, ii - i - 5);
-    i = ss.indexOf("이용일시");
-    ii = ss.indexOf("수량");
+//     var i = 0;
+//     var ii = 0;
+//     i = ss.indexOf("예약자");
+//     r.name = ss.substr(i + 4, 3);
+//     i = ss.indexOf("상품");
+//     r.product = ss.substr(i + 3, 2);
+//     i = ss.indexOf("전화번호");
+//     ii = ss.indexOf("예약번호");
+//     r.phone = ss.substr(i + 5, ii - i - 5);
+//     i = ss.indexOf("이용일시");
+//     ii = ss.indexOf("수량");
 
-    r.datestr = ss.substr(i + 5, ii - i - 5);
-    var ymd = r.datestr.split(".");
-    r.year = ymd[0];
-    r.month = ymd[1];
-    r.day = ymd[2];
+//     r.datestr = ss.substr(i + 5, ii - i - 5);
+//     var ymd = r.datestr.split(".");
+//     r.year = ymd[0];
+//     r.month = ymd[1];
+//     r.day = ymd[2];
 
-    i = r.datestr.indexOf("(");
-    r.yoil = r.datestr.substr(i + 1, 1);
+//     i = r.datestr.indexOf("(");
+//     r.yoil = r.datestr.substr(i + 1, 1);
 
-    i = r.datestr.indexOf(")");
-    ii = r.datestr.indexOf("~");
+//     i = r.datestr.indexOf(")");
+//     ii = r.datestr.indexOf("~");
 
-    r.startstr = r.datestr.substr(i + 1, ii - i - 1);
+//     r.startstr = r.datestr.substr(i + 1, ii - i - 1);
 
-    var ampm = r.startstr.indexOf("후");
-    var starthm = r.startstr.substr(2, 10).split(":");
+//     var ampm = r.startstr.indexOf("후");
+//     var starthm = r.startstr.substr(2, 10).split(":");
 
-    var sh = parseInt(starthm[0]);
-    var sm = parseInt(starthm[1]);
+//     var sh = parseInt(starthm[0]);
+//     var sm = parseInt(starthm[1]);
 
-    //12시는 0시로 치환
-    if (sh == 12) sh = 0;
-    //오후라면 12더하기
-    if (ampm > 0) {
-      sh = sh + 12;
-    }
+//     //12시는 0시로 치환
+//     if (sh == 12) sh = 0;
+//     //오후라면 12더하기
+//     if (ampm > 0) {
+//       sh = sh + 12;
+//     }
 
-    var startdate = new Date(r.year, parseInt(r.month) - 1, r.day, sh, sm);
+//     var startdate = new Date(r.year, parseInt(r.month) - 1, r.day, sh, sm);
 
-    r.startdate = startdate;
-    var laststr = r.datestr.substr(ii + 1, 20);
-    i = laststr.indexOf("(");
-    ii = laststr.indexOf(")");
-    r.durstr = laststr.substr(i + 1, ii - i - 1);
-    i = r.durstr.indexOf("시간");
-    var durHour = r.durstr.substr(0, i);
-    ii = r.durstr.indexOf("분");
-    var durMinute = r.durstr.substr(i + 2, ii - i - 1);
-    r.durMin = (parseInt(durHour) || 0) * 60 + (parseInt(durMinute) || 0);
-    r.enddate = new Date(startdate.getTime() + r.durMin * 60000);
-    i = ss.indexOf("방번호선택");
+//     r.startdate = startdate;
+//     var laststr = r.datestr.substr(ii + 1, 20);
+//     i = laststr.indexOf("(");
+//     ii = laststr.indexOf(")");
+//     r.durstr = laststr.substr(i + 1, ii - i - 1);
+//     i = r.durstr.indexOf("시간");
+//     var durHour = r.durstr.substr(0, i);
+//     ii = r.durstr.indexOf("분");
+//     var durMinute = r.durstr.substr(i + 2, ii - i - 1);
+//     r.durMin = (parseInt(durHour) || 0) * 60 + (parseInt(durMinute) || 0);
+//     r.enddate = new Date(startdate.getTime() + r.durMin * 60000);
+//     i = ss.indexOf("방번호선택");
 
-    if (i > 0) {
-      r.room = ss.substr(i + 5, 1);
-    }
+//     if (i > 0) {
+//       r.room = ss.substr(i + 5, 1);
+//     }
 
-    r.title =
-      r.product +
-      r.room +
-      " / " +
-      r.name.substr(0, 2) +
-      "* / 010-****-" +
-      r.phone.substr(9, 4) +
-      " / " +
-      r.type;
-    r.isOK = true;
-  } else if (r.type == "네모") {
-    /*
-예약자	한창희
-전화번호	010-3336-3522
-예약번호	421621763
-예약유형	일반
-서비스	원스연습실 강남논현점
-상품	NY (와이홀) 댄스연습실
-이용일시	2023. 5. 19.(금)
-오전 9:00~오전 11:00(2시간)
-수량	1
-결제상태	결제완료
-확정	
-김덕영
-완료 45, 취소 1
+//     r.title =
+//       r.product +
+//       r.room +
+//       " / " +
+//       r.name.substr(0, 2) +
+//       "* / 010-****-" +
+//       r.phone.substr(9, 4) +
+//       " / " +
+//       r.type;
+//     r.isOK = true;
+//   } else if (r.type == "네모") {
+//     /*
+// 예약자	한창희
+// 전화번호	010-3336-3522
+// 예약번호	421621763
+// 예약유형	일반
+// 서비스	원스연습실 강남논현점
+// 상품	NY (와이홀) 댄스연습실
+// 이용일시	2023. 5. 19.(금)
+// 오전 9:00~오전 11:00(2시간)
+// 수량	1
+// 결제상태	결제완료
+// 확정	
+// 김덕영
+// 완료 45, 취소 1
 
-    */
+//     */
 
-      var i = 0;
-      var ii = 0;
-      i = ss.indexOf("예약자");
-      r.name = ss.substr(i + 4, 3);
-      i = ss.indexOf("상품");
-      r.product = ss.substr(i + 3, 2);
-      i = ss.indexOf("전화번호");
-      ii = ss.indexOf("예약번호");
-      r.phone = ss.substr(i + 5, ii - i - 5);
-      i = ss.indexOf("이용일시");
-      ii = ss.indexOf("수량");
+//       var i = 0;
+//       var ii = 0;
+//       i = ss.indexOf("예약자");
+//       r.name = ss.substr(i + 4, 3);
+//       i = ss.indexOf("상품");
+//       r.product = ss.substr(i + 3, 2);
+//       i = ss.indexOf("전화번호");
+//       ii = ss.indexOf("예약번호");
+//       r.phone = ss.substr(i + 5, ii - i - 5);
+//       i = ss.indexOf("이용일시");
+//       ii = ss.indexOf("수량");
   
-      r.datestr = ss.substr(i + 5, ii - i - 5);
-      var ymd = r.datestr.split(".");
-      r.year = ymd[0];
-      r.month = ymd[1];
-      r.day = ymd[2];
+//       r.datestr = ss.substr(i + 5, ii - i - 5);
+//       var ymd = r.datestr.split(".");
+//       r.year = ymd[0];
+//       r.month = ymd[1];
+//       r.day = ymd[2];
   
-      i = r.datestr.indexOf("(");
-      r.yoil = r.datestr.substr(i + 1, 1);
+//       i = r.datestr.indexOf("(");
+//       r.yoil = r.datestr.substr(i + 1, 1);
   
-      i = r.datestr.indexOf(")");
-      ii = r.datestr.indexOf("~");
+//       i = r.datestr.indexOf(")");
+//       ii = r.datestr.indexOf("~");
   
-      r.startstr = r.datestr.substr(i + 1, ii - i - 1);
+//       r.startstr = r.datestr.substr(i + 1, ii - i - 1);
   
-      var ampm = r.startstr.indexOf("후");
+//       var ampm = r.startstr.indexOf("후");
 
-      console.log('----------------시간 스트링');
-      console.log(r.startstr);
-      var starthm = r.startstr.substr(2, 10).split(":");
+//       console.log('----------------시간 스트링');
+//       console.log(r.startstr);
+//       var starthm = r.startstr.substr(2, 10).split(":");
   
-      var sh = parseInt(starthm[0]);
-      var sm = parseInt(starthm[1]);
+//       var sh = parseInt(starthm[0]);
+//       var sm = parseInt(starthm[1]);
   
-      //12시는 0시로 치환
-      if (sh == 12) sh = 0;
-      //오후라면 12더하기
-      if (ampm > 0) {
-        sh = sh + 12;
-      }
+//       //12시는 0시로 치환
+//       if (sh == 12) sh = 0;
+//       //오후라면 12더하기
+//       if (ampm > 0) {
+//         sh = sh + 12;
+//       }
   
-      var startdate = new Date(r.year, parseInt(r.month) - 1, r.day, sh, sm);
+//       var startdate = new Date(r.year, parseInt(r.month) - 1, r.day, sh, sm);
   
-      r.startdate = startdate;
-      var laststr = r.datestr.substr(ii + 1, 20);
-      i = laststr.indexOf("(");
-      ii = laststr.indexOf(")");
-      r.durstr = laststr.substr(i + 1, ii - i - 1);
-      i = r.durstr.indexOf("시간");
-      var durHour = r.durstr.substr(0, i);
-      ii = r.durstr.indexOf("분");
-      var durMinute = r.durstr.substr(i + 2, ii - i - 1);
-      r.durMin = (parseInt(durHour) || 0) * 60 + (parseInt(durMinute) || 0);
-      r.enddate = new Date(startdate.getTime() + r.durMin * 60000);
-      i = ss.indexOf("방번호선택");
+//       r.startdate = startdate;
+//       var laststr = r.datestr.substr(ii + 1, 20);
+//       i = laststr.indexOf("(");
+//       ii = laststr.indexOf(")");
+//       r.durstr = laststr.substr(i + 1, ii - i - 1);
+//       i = r.durstr.indexOf("시간");
+//       var durHour = r.durstr.substr(0, i);
+//       ii = r.durstr.indexOf("분");
+//       var durMinute = r.durstr.substr(i + 2, ii - i - 1);
+//       r.durMin = (parseInt(durHour) || 0) * 60 + (parseInt(durMinute) || 0);
+//       r.enddate = new Date(startdate.getTime() + r.durMin * 60000);
+//       i = ss.indexOf("방번호선택");
   
-      if (i > 0) {
-        r.room = ss.substr(i + 5, 1);
-      }
+//       if (i > 0) {
+//         r.room = ss.substr(i + 5, 1);
+//       }
   
-      r.title =
-        r.product +
-        r.room +
-        " / " +
-        r.name.substr(0, 2) +
-        "* / 010-****-" +
-        r.phone.substr(9, 4) +
-        " / " +
-        r.type;
-      r.isOK = true;
-    } else if (r.type == "네문") {
-    //네문 - 네이버예약문자
-    //     [Web발신]
-    // 원스연습실 강남논현점, 새로운 예약이 확정되었습니다. 예약 내역을 확인해 보세요.
-
-    // - 예약번호: 101510963
-    // - 예약자명: 차정수
-    // - 전화번호: 01086169252
-    // - 예약상품: NX1~2 (디제이)
-    // - 이용기간: 2020.08.15.(토) 오전 11:00~오후 12:30
-    // - 네이버페이 결제상태: 결제완료
-    // - 결제수단: 포인트결제
-    // - 결제금액: NX1~2 (디제이)(1) 7,875원 + 방번호 선택(2) 0원 = 7,875원
-
-    // * 예약 내역 자세히 보기: http://naver.me/xmfvqMXh
-    var i = 0;
-    var ii = 0;
-    i = ss.indexOf("예약자명");
-    r.name = ss.substr(i + 5, 3);
-    i = ss.indexOf("상품");
-    r.product = ss.substr(i + 3, 2);
-    i = ss.indexOf("전화번호");
-    r.phone = ss.substr(i + 5, 11);
-    i = ss.indexOf("이용기간");
-    ii = ss.indexOf("네이버페이");
-
-    r.datestr = ss.substr(i + 5, ii - i - 5);
-    var ymd = r.datestr.split(".");
-    r.year = ymd[0];
-    r.month = ymd[1];
-    r.day = ymd[2];
-
-    i = r.datestr.indexOf("(");
-    r.yoil = r.datestr.substr(i + 1, 1);
-
-    i = r.datestr.indexOf(")");
-    ii = r.datestr.indexOf("~");
-
-    r.startstr = r.datestr.substr(i + 1, ii - i - 1);
-
-    var ampm = r.startstr.indexOf("후");
-    var starthm = r.startstr.substr(2, 10).split(":");
-
-    var sh = parseInt(starthm[0]);
-    var sm = parseInt(starthm[1]);
-
-    //12시는 0시로 치환
-    if (sh == 12) sh = 0;
-    //오후라면 12더하기
-    if (ampm > 0) {
-      sh = sh + 12;
-    }
-
-    var startdate = new Date(r.year, parseInt(r.month) - 1, r.day, sh, sm);
-    r.startdate = startdate;
-
-    var laststr = r.datestr.substr(ii + 1, 20);
-
-    ampm = laststr.indexOf("후");
-    var endhm = laststr.substr(2, 10).split(":");
-
-    var eh = parseInt(endhm[0]);
-    var em = parseInt(endhm[1]);
-
-    //12시는 0시로 치환
-    if (eh == 12) eh = 0;
-    //오후라면 12더하기
-    if (ampm > 0) {
-      eh = eh + 12;
-    }
-
-    var enddate = new Date(r.year, parseInt(r.month) - 1, r.day, eh, em);
-    r.enddate = enddate;
-    var diff = enddate - startdate;
-    var durMinute = parseInt(diff / 60000);
-
-    r.durMin = durMinute;
-
-    i = ss.indexOf("방번호선택");
-
-    if (i > 0) {
-      r.room = ss.substr(i + 6, 1);
-    }
-
-    r.title =
-      r.product +
-      r.room +
-      " / " +
-      r.name.substr(0, 2) +
-      "* / 010-****-" +
-      r.phone.substr(9, 4) +
-      " / " +
-      r.type;
-    r.isOK = true;
-  } else if (r.type == "스클") {
-    //   신청일	2020.08.19
-    // 공간명	원스연습실강남논현점-댄스Y홀, NY(댄스Y홀)
-    // 예약내용	2020.08.20 (목) 20시 ~ 22시
-    // 인원수	1명
-    // 추가옵션	없음
-    // 요청사항	-
-    // 사용목적	-
-    // 예약자 정보
-    // 예약자명	한보람
-    // 연락처	010-9739-8910
-    // 이메일	o_boram_o@naver.com
-    var i = 0;
-    var ii = 0;
-    i = ss.indexOf("공간명");
-    ii = ss.indexOf("예약내용");
-    var productstr = ss.substr(i + 4, ii - i - 4);
-
-    var parts = productstr.split(",");
-
-    var productroom = parts[1];
-    var calendarId = productroom.substr(0, 2);
-    var roomstr = productroom.substr(2, 1);
-
-    if (parseInt(roomstr) < 10) {
-      r.room = parseInt(roomstr);
-    } else {
-      r.room = 0;
-    }
-
-    r.name = ss.substr(i + 5, 3);
-
-    i = ss.indexOf("예약내용");
-
-    r.product = ss.substr(i + 3, 2);
-    i = ss.indexOf("전화번호");
-    r.phone = ss.substr(i + 5, 11);
-    i = ss.indexOf("예약내용");
-    ii = ss.indexOf("인원수");
-
-    r.datestr = ss.substr(i + 5, ii - i - 5);
-    var ymd = r.datestr.split(".");
-    r.year = ymd[0];
-    r.month = ymd[1];
-    r.day = ymd[2];
-
-    i = r.datestr.indexOf("(");
-    r.yoil = r.datestr.substr(i + 1, 1);
-
-    i = r.datestr.indexOf(")");
-    ii = r.datestr.indexOf("~");
-
-    r.startstr = r.datestr.substr(i + 1, ii - i - 1);
-
-    var ampm = r.startstr.indexOf("후");
-    var starthm = r.startstr.substr(2, 10).split(":");
-
-    var sh = parseInt(starthm[0]);
-    var sm = parseInt(starthm[1]);
-
-    //12시는 0시로 치환
-    if (sh == 12) sh = 0;
-    //오후라면 12더하기
-    if (ampm > 0) {
-      sh = sh + 12;
-    }
-
-    var startdate = new Date(r.year, parseInt(r.month) - 1, r.day, sh, sm);
-
-    r.startdate = startdate;
-
-    var laststr = r.datestr.substr(ii + 1, 20);
-
-    ampm = laststr.indexOf("후");
-    var endhm = laststr.substr(2, 10).split(":");
-
-    var eh = parseInt(endhm[0]);
-    var em = parseInt(endhm[1]);
-
-    //12시는 0시로 치환
-    if (eh == 12) eh = 0;
-    //오후라면 12더하기
-    if (ampm > 0) {
-      eh = eh + 12;
-    }
-
-    var enddate = new Date(r.year, parseInt(r.month) - 1, r.day, eh, em);
-    r.enddate = enddate;
-    var diff = enddate - startdate;
-    var durMinute = parseInt(diff / 60000);
-
-    r.durMin = durMinute;
-
-    i = ss.indexOf("방번호선택");
-
-    if (i > 0) {
-      r.room = ss.substr(i + 6, 1);
-    }
-
-    r.title =
-      r.product +
-      r.room +
-      " / " +
-      r.name.substr(0, 2) +
-      "* / 010-****-" +
-      r.phone.substr(9, 4) +
-      " / " +
-      r.type;
-    r.isOK = true;
-  } else if (r.type == "요청") {
-    // 유형: 대여
-    // 공간: HM1
-    // 이름: 박선생
-    // 휴대폰: 010-4924-1123
-    // 날짜: 2020.08.12
-    // 시간: 오후12:30
-    // 사용분: 2시간30분
-    // 옵션: 큐1마2
-    // 사유: 개인레슨
-    // 결제: 이체완료
-    // 금액:  44000
-    // 적립금:
-    // 비고: 캡쳐전송
-
-    var i = 0;
-    var ii = 0;
-
-    i = ss.indexOf("이름");
-    r.type = r.type + "-" + ss.substr(ss.indexOf("유형") + 3, 2);
-
-    r.name = ss.substr(i + 3, 3);
-    i = ss.indexOf("공간");
-    r.product = ss.substr(i + 3, 2).toUpperCase();
-    r.calendarId = r.product;
-
-    var roomstr = ss.substr(i + 5, 1);
-    if (parseInt(roomstr) < 10) {
-      r.room = parseInt(roomstr);
-    } else {
-      r.room = 0;
-    }
-
-    i = ss.indexOf("휴대폰");
-    r.phone = ss.substr(i + 4, 13);
-    i = ss.indexOf("날짜");
-    ii = ss.indexOf("시간");
-
-    r.datestr = ss.substr(i + 3, ii - i - 3);
-    var ymd = r.datestr.split(".");
-    r.year = ymd[0];
-    r.month = ymd[1];
-    r.day = ymd[2].substr(0, 2);
-
-    i = ss.indexOf("사용분");
-    r.startstr = ss.substr(ii + 3, i - ii - 3);
-
-    var pm = r.startstr.indexOf("후");
-
-    var am = r.startstr.indexOf("전");
-
-    var starthmstr = r.startstr;
-    var starthm = ["0", "0"];
-
-    if (r.startstr[0] == "오") {
-      //오전오후를 표시했을때
-      starthmstr = starthmstr.substr(2);
-    }
-
-    if (r.startstr.indexOf(":") > -1) {
-      starthm = starthmstr.substr(0, 8).split(":");
-    } else {
-      starthm = starthmstr.substr(0, 8).split("시");
-    }
-
-    console.log(starthm[1]);
-
-    if (starthm[1].length > 2) {
-      starthm[1] = starthm[1].substr(0, 2);
-    } else if (starthm[1].length < 2) {
-      starthm[1] = "0";
-    }
-
-    r.hm24 = 0;
-
-    var sh = parseInt(starthm[0]);
-    var sm = parseInt(starthm[1]);
-
-    //오전이라면 12더하기
-    if (am > 0) {
-      sh = sh + 12;
-    }
-
-    //오후이고 12시가 아니라면 12를 더하기
-    if (pm > 0 && sh < 12) {
-      sh = sh + 12;
-    }
-
-    r.hm24 = r.hm24 + sh * 100;
-    r.hm24 = r.hm24 + sm * 1;
-
-    console.log(sh);
-    console.log(sm);
-    var startdate = new Date(r.year, parseInt(r.month) - 1, r.day, sh, sm);
-    r.startdate = startdate;
-
-    ii = ss.indexOf("옵션");
-
-    r.durstr = ss.substr(i + 4, ii - i - 4);
-
-    i = ss.indexOf("사유");
-
-    r.option = ss.substr(ii + 3, i - ii - 3);
-
-    i = r.durstr.indexOf("시간");
-    var durHour = r.durstr.substr(0, i);
-    ii = r.durstr.indexOf("분");
-    var durMinute = r.durstr.substr(i + 2, ii - i - 1);
-    r.durMin = (parseInt(durHour) || 0) * 60 + (parseInt(durMinute) || 0);
-    r.enddate = new Date(startdate.getTime() + r.durMin * 60000);
-
-    r.title =
-      r.product +
-      r.room +
-      " / " +
-      r.name.substr(0, 2) +
-      "* / 010-****-" +
-      r.phone.substr(9, 4) +
-      " / " +
-      r.type;
-    r.isOK = true;
-  } else if (r.type == "기본") {
-    r.product = rawData.calendarId;
-    r.room = 0;
-    r.name = rawData.title;
-    r.phone = rawData.title;
-
-    if (rawData.start._date) {
-      r.startdate = new Date(rawData.start._date);
-    }
-    if (rawData.end._date) {
-      r.enddate = new Date(rawData.end._date);
-    }
-
-    r.title =
-      r.product +
-      r.room +
-      " / " +
-      r.name.substr(0, 2) +
-      "* / 010-****-" +
-      r.phone.substr(9, 4) +
-      " / " +
-      r.type;
-    r.isOK = true;
-  }
-
-  return r;
-};
+//       r.title =
+//         r.product +
+//         r.room +
+//         " / " +
+//         r.name.substr(0, 2) +
+//         "* / 010-****-" +
+//         r.phone.substr(9, 4) +
+//         " / " +
+//         r.type;
+//       r.isOK = true;
+//     // } else if (r.type == "네문") {
+//     // //네문 - 네이버예약문자
+//     // //     [Web발신]
+//     // // 원스연습실 강남논현점, 새로운 예약이 확정되었습니다. 예약 내역을 확인해 보세요.
+
+//     // // - 예약번호: 101510963
+//     // // - 예약자명: 차정수
+//     // // - 전화번호: 01086169252
+//     // // - 예약상품: NX1~2 (디제이)
+//     // // - 이용기간: 2020.08.15.(토) 오전 11:00~오후 12:30
+//     // // - 네이버페이 결제상태: 결제완료
+//     // // - 결제수단: 포인트결제
+//     // // - 결제금액: NX1~2 (디제이)(1) 7,875원 + 방번호 선택(2) 0원 = 7,875원
+
+//     // // * 예약 내역 자세히 보기: http://naver.me/xmfvqMXh
+//     // var i = 0;
+//     // var ii = 0;
+//     // i = ss.indexOf("예약자명");
+//     // r.name = ss.substr(i + 5, 3);
+//     // i = ss.indexOf("상품");
+//     // r.product = ss.substr(i + 3, 2);
+//     // i = ss.indexOf("전화번호");
+//     // r.phone = ss.substr(i + 5, 11);
+//     // i = ss.indexOf("이용기간");
+//     // ii = ss.indexOf("네이버페이");
+
+//     // r.datestr = ss.substr(i + 5, ii - i - 5);
+//     // var ymd = r.datestr.split(".");
+//     // r.year = ymd[0];
+//     // r.month = ymd[1];
+//     // r.day = ymd[2];
+
+//     // i = r.datestr.indexOf("(");
+//     // r.yoil = r.datestr.substr(i + 1, 1);
+
+//     // i = r.datestr.indexOf(")");
+//     // ii = r.datestr.indexOf("~");
+
+//     // r.startstr = r.datestr.substr(i + 1, ii - i - 1);
+
+//     // var ampm = r.startstr.indexOf("후");
+//     // var starthm = r.startstr.substr(2, 10).split(":");
+
+//     // var sh = parseInt(starthm[0]);
+//     // var sm = parseInt(starthm[1]);
+
+//     // //12시는 0시로 치환
+//     // if (sh == 12) sh = 0;
+//     // //오후라면 12더하기
+//     // if (ampm > 0) {
+//     //   sh = sh + 12;
+//     // }
+
+//     // var startdate = new Date(r.year, parseInt(r.month) - 1, r.day, sh, sm);
+//     // r.startdate = startdate;
+
+//     // var laststr = r.datestr.substr(ii + 1, 20);
+
+//     // ampm = laststr.indexOf("후");
+//     // var endhm = laststr.substr(2, 10).split(":");
+
+//     // var eh = parseInt(endhm[0]);
+//     // var em = parseInt(endhm[1]);
+
+//     // //12시는 0시로 치환
+//     // if (eh == 12) eh = 0;
+//     // //오후라면 12더하기
+//     // if (ampm > 0) {
+//     //   eh = eh + 12;
+//     // }
+
+//     // var enddate = new Date(r.year, parseInt(r.month) - 1, r.day, eh, em);
+//     // r.enddate = enddate;
+//     // var diff = enddate - startdate;
+//     // var durMinute = parseInt(diff / 60000);
+
+//     // r.durMin = durMinute;
+
+//     // i = ss.indexOf("방번호선택");
+
+//     // if (i > 0) {
+//     //   r.room = ss.substr(i + 6, 1);
+//     // }
+
+//     // r.title =
+//     //   r.product +
+//     //   r.room +
+//     //   " / " +
+//     //   r.name.substr(0, 2) +
+//     //   "* / 010-****-" +
+//     //   r.phone.substr(9, 4) +
+//     //   " / " +
+//     //   r.type;
+//     // r.isOK = true;
+//   } else if (r.type == "스클") {
+//     //   신청일	2020.08.19
+//     // 공간명	원스연습실강남논현점-댄스Y홀, NY(댄스Y홀)
+//     // 예약내용	2020.08.20 (목) 20시 ~ 22시
+//     // 인원수	1명
+//     // 추가옵션	없음
+//     // 요청사항	-
+//     // 사용목적	-
+//     // 예약자 정보
+//     // 예약자명	한보람
+//     // 연락처	010-9739-8910
+//     // 이메일	o_boram_o@naver.com
+//     var i = 0;
+//     var ii = 0;
+//     i = ss.indexOf("공간명");
+//     ii = ss.indexOf("예약내용");
+//     var productstr = ss.substr(i + 4, ii - i - 4);
+
+//     var parts = productstr.split(",");
+
+//     var productroom = parts[1];
+//     var calendarId = productroom.substr(0, 2);
+//     var roomstr = productroom.substr(2, 1);
+
+//     if (parseInt(roomstr) < 10) {
+//       r.room = parseInt(roomstr);
+//     } else {
+//       r.room = 0;
+//     }
+
+//     r.name = ss.substr(i + 5, 3);
+
+//     i = ss.indexOf("예약내용");
+
+//     r.product = ss.substr(i + 3, 2);
+//     i = ss.indexOf("전화번호");
+//     r.phone = ss.substr(i + 5, 11);
+
+//     r.price = ss.substr(i + 16)
+//     console.log("---------------------- data price : " + r.price );
+
+//     i = ss.indexOf("예약내용");
+//     ii = ss.indexOf("인원수");
+
+//     r.datestr = ss.substr(i + 5, ii - i - 5);
+//     var ymd = r.datestr.split(".");
+//     r.year = ymd[0];
+//     r.month = ymd[1];
+//     r.day = ymd[2];
+
+//     i = r.datestr.indexOf("(");
+//     r.yoil = r.datestr.substr(i + 1, 1);
+
+//     i = r.datestr.indexOf(")");
+//     ii = r.datestr.indexOf("~");
+
+//     r.startstr = r.datestr.substr(i + 1, ii - i - 1);
+
+//     var ampm = r.startstr.indexOf("후");
+//     var starthm = r.startstr.substr(2, 10).split(":");
+
+//     var sh = parseInt(starthm[0]);
+//     var sm = parseInt(starthm[1]);
+
+//     //12시는 0시로 치환
+//     if (sh == 12) sh = 0;
+//     //오후라면 12더하기
+//     if (ampm > 0) {
+//       sh = sh + 12;
+//     }
+
+//     var startdate = new Date(r.year, parseInt(r.month) - 1, r.day, sh, sm);
+
+//     r.startdate = startdate;
+
+//     var laststr = r.datestr.substr(ii + 1, 20);
+
+//     ampm = laststr.indexOf("후");
+//     var endhm = laststr.substr(2, 10).split(":");
+
+//     var eh = parseInt(endhm[0]);
+//     var em = parseInt(endhm[1]);
+
+//     //12시는 0시로 치환
+//     if (eh == 12) eh = 0;
+//     //오후라면 12더하기
+//     if (ampm > 0) {
+//       eh = eh + 12;
+//     }
+
+//     var enddate = new Date(r.year, parseInt(r.month) - 1, r.day, eh, em);
+//     r.enddate = enddate;
+//     var diff = enddate - startdate;
+//     var durMinute = parseInt(diff / 60000);
+
+//     r.durMin = durMinute;
+
+//     i = ss.indexOf("방번호선택");
+
+//     if (i > 0) {
+//       r.room = ss.substr(i + 6, 1);
+//     }
+
+//     r.title =
+//       r.product +
+//       r.room +
+//       " / " +
+//       r.name.substr(0, 2) +
+//       "* / 010-****-" +
+//       r.phone.substr(9, 4) +
+//       " / " +
+//       r.type;
+//     r.isOK = true;
+//   } else if (r.type == "요청") {
+//     // 유형: 대여
+//     // 공간: HM1
+//     // 이름: 박선생
+//     // 휴대폰: 010-4924-1123
+//     // 날짜: 2020.08.12
+//     // 시간: 오후12:30
+//     // 사용분: 2시간30분
+//     // 옵션: 큐1마2
+//     // 사유: 개인레슨
+//     // 결제: 이체완료
+//     // 금액:  44000
+//     // 적립금:
+//     // 비고: 캡쳐전송
+
+//     var i = 0;
+//     var ii = 0;
+
+//     i = ss.indexOf("이름");
+//     r.type = r.type + "-" + ss.substr(ss.indexOf("유형") + 3, 2);
+
+//     r.name = ss.substr(i + 3, 3);
+//     i = ss.indexOf("공간");
+//     r.product = ss.substr(i + 3, 2).toUpperCase();
+//     r.calendarId = r.product;
+
+//     var roomstr = ss.substr(i + 5, 1);
+//     if (parseInt(roomstr) < 10) {
+//       r.room = parseInt(roomstr);
+//     } else {
+//       r.room = 0;
+//     }
+
+//     i = ss.indexOf("휴대폰");
+//     r.phone = ss.substr(i + 4, 13);
+//     i = ss.indexOf("날짜");
+//     ii = ss.indexOf("시간");
+
+//     r.datestr = ss.substr(i + 3, ii - i - 3);
+//     var ymd = r.datestr.split(".");
+//     r.year = ymd[0];
+//     r.month = ymd[1];
+//     r.day = ymd[2].substr(0, 2);
+
+//     i = ss.indexOf("사용분");
+//     r.startstr = ss.substr(ii + 3, i - ii - 3);
+
+//     var pm = r.startstr.indexOf("후");
+
+//     var am = r.startstr.indexOf("전");
+
+//     var starthmstr = r.startstr;
+//     var starthm = ["0", "0"];
+
+//     if (r.startstr[0] == "오") {
+//       //오전오후를 표시했을때
+//       starthmstr = starthmstr.substr(2);
+//     }
+
+//     if (r.startstr.indexOf(":") > -1) {
+//       starthm = starthmstr.substr(0, 8).split(":");
+//     } else {
+//       starthm = starthmstr.substr(0, 8).split("시");
+//     }
+
+//     console.log(starthm[1]);
+
+//     if (starthm[1].length > 2) {
+//       starthm[1] = starthm[1].substr(0, 2);
+//     } else if (starthm[1].length < 2) {
+//       starthm[1] = "0";
+//     }
+
+//     r.hm24 = 0;
+
+//     var sh = parseInt(starthm[0]);
+//     var sm = parseInt(starthm[1]);
+
+//     //오전이라면 12더하기
+//     if (am > 0) {
+//       sh = sh + 12;
+//     }
+
+//     //오후이고 12시가 아니라면 12를 더하기
+//     if (pm > 0 && sh < 12) {
+//       sh = sh + 12;
+//     }
+
+//     r.hm24 = r.hm24 + sh * 100;
+//     r.hm24 = r.hm24 + sm * 1;
+
+//     console.log(sh);
+//     console.log(sm);
+//     var startdate = new Date(r.year, parseInt(r.month) - 1, r.day, sh, sm);
+//     r.startdate = startdate;
+
+//     ii = ss.indexOf("옵션");
+
+//     r.durstr = ss.substr(i + 4, ii - i - 4);
+
+//     i = ss.indexOf("사유");
+
+//     r.option = ss.substr(ii + 3, i - ii - 3);
+
+//     i = r.durstr.indexOf("시간");
+//     var durHour = r.durstr.substr(0, i);
+//     ii = r.durstr.indexOf("분");
+//     var durMinute = r.durstr.substr(i + 2, ii - i - 1);
+//     r.durMin = (parseInt(durHour) || 0) * 60 + (parseInt(durMinute) || 0);
+//     r.enddate = new Date(startdate.getTime() + r.durMin * 60000);
+
+//     r.title =
+//       r.product +
+//       r.room +
+//       " / " +
+//       r.name.substr(0, 2) +
+//       "* / 010-****-" +
+//       r.phone.substr(9, 4) +
+//       " / " +
+//       r.type;
+//     r.isOK = true;
+//   } else if (r.type == "기본") {
+//     r.product = rawData.calendarId;
+//     r.room = 0;
+//     r.name = rawData.title;
+//     r.phone = rawData.title;
+
+//     if (rawData.start._date) {
+//       r.startdate = new Date(rawData.start._date);
+//     }
+//     if (rawData.end._date) {
+//       r.enddate = new Date(rawData.end._date);
+//     }
+
+//     r.title =
+//       r.product +
+//       r.room +
+//       " / " +
+//       r.name.substr(0, 2) +
+//       "* / 010-****-" +
+//       r.phone.substr(9, 4) +
+//       " / " +
+//       r.type;
+//     r.isOK = true;
+//   }
+
+//   return r;
+// };
 
 exports.completeData = function (rawData) {
   //자율사용자
@@ -890,9 +894,7 @@ exports.calcuratePriceV2 = function (data) {
     priceType = "NY";
   } else if (["HR", "HS"].includes(data.stype)) {
     priceType = "HR";
-  } else if
-  
-  (
+  } else if (
     ["NX", "NM", "NA", "ND", "HA", "HX", "HD", "HM", "SP", "SM", "SD", "SX", "SV"].includes(data.stype)
   ) {
     priceType = "NX";

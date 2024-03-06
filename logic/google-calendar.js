@@ -373,6 +373,9 @@ exports.makeEvent = function (data, callback) {
       var gend = data.enddate.toISOString();
       //이름을 마스킹하는 다른 방법을 찾기
 
+      console.log('-----------------google api data');
+      console.log(data);
+
       var rtypeString = rtypeArray[data.rtype];
       var summary =
         "" +
@@ -515,7 +518,9 @@ exports.insertEventFromRequest = function (data, callback) {
         data.username +
         "/" +
         rtypeString +
-        "/";
+        "/" +
+        data.price +
+        "원";
 
       data.gstype = data.stype;
       //신규가입자이거나 등급이 없다면

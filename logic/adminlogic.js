@@ -25,6 +25,14 @@ function makeOnlyNumberString(str) {
     return strSimple;
 }
 
+function extractNumbers(inputString) {
+    // 정규 표현식을 사용하여 숫자만 추출
+    var numbersOnly = inputString.replace(/[^0-9]/g, '');
+  
+    // 추출된 숫자를 반환
+    return numbersOnly;
+  }
+  
 function makeNoSpaceString(str) {
     var strSimple = "";
     if (typeof(str) == "string") {
@@ -123,158 +131,16 @@ exports.splitData = async function (rawData) {
         from = "navertext";
     } else if (rawData.includes("NAVER Corp. All Rights Reserved")) {
         from = "navertotal";
-    } else if (rawData.includes("NAVER예약파트너센터") && rawData.includes("빠른순늦은순")) {
-        from = "navermobile"; // 모바일 ui 변경되어 사용하지 않음
     } else if (rawData.includes("내 업체") && rawData.includes("이용일옵션보기")) {
         from = "navermobile2";
     } else if (rawData.includes("NSPACE")) {
         from = "spacetotal"
     } 
 
-    if (from == "navermobile") {
-        data.from = "naver";
-        rawlist = rawData.split("확정");
-        rawlist.forEach(function (rl) {
-            console.log('-------------------rl---naver mobile ------------');
-            var rlarray = rl.split("\n");
-            console.log(rlarray);
-            var unit = {
-                stype: ""
-            };
-
-            //휴대폰 번호가 없으면 처리불가능
-            unit.mobile = "";
-
-            unit.mobile = makeOnlyNumberString(rlarray[4]);
-
-            if (unit.mobile && unit.mobile.indexOf("010") > -1) {
-                unit.formated = true;
-
-                unit.from = "naver";
-                unit.username = rlarray[1];
-                unit.rno = "n" + makeOnlyNumberString(rlarray[5].trim());
-
-                unit.timestr = rlarray[9] + "@" + rlarray[10];
-
-                var timedata = convertTimeDataNaverMobile(rlarray[9], rlarray[10]);
-                unit.startdate = timedata.startdate;
-                unit.enddate = timedata.enddate;
-                unit.dur = timedata.dur;
-
-                unit.placestr = rlarray[7];
-                unit.spacestr = rlarray[8];
-
-                unit.spacecount = rlarray[11];
-
-                unit.optionstr = rlarray[12];
-                unit.room = 1;
-
-                console.log('--------------option str');
-                console.log(unit.optionstr);
-                if (unit.optionstr.includes("방번호")) {
-                    var xIndex = unit
-                        .optionstr
-                        .indexOf("방번호");
-                    console.log(xIndex);
-                    var roomstr = makeOnlyNumberString(
-                        unit.optionstr.substring(xIndex + 3, xIndex + 10)
-                    );
-                    console.log(roomstr);
-                    unit.room = parseInt(roomstr) || 1;
-                }
-
-                unit.paid = false;
-                if(rl.includes("결제완료")) {
-                  unit.paid = true;
-                }
-                unit.demandstr = rlarray[10];
-                // unit.paystatus = paystatus;
-                // unit.amountstr = rlarray[12];
-                unit.check = "";
-                unit.stype = "RQ";
-                // unit.room = 1;
-                unit.os = "";
-                //방번호
-
-                stypelist.forEach(function (st) {
-                    if (unit.spacestr.includes(st)) {
-                        unit.stype = st;
-                    }
-                });
-                unit.rawData = rl;
-                unit.formated = true;
-
-            } else {
-                unit.formated = false;
-            }
-
-            data
-                .list
-                .push(unit);
-        })
-
-        data
-            .list
-            .forEach(async function (unit) {
-
-                console.log("-----------------formated unit status ");
-                console.log(unit);
-                // inserting
-                if (unit.formated == true && unit.paid == true) {
-
-                    var preparedData = {
-                        from: unit.from,
-                        rno: unit.rno,
-                        username: unit.username,
-                        mobile: unit.mobile,
-                        start: unit.startdate,
-                        end: unit.enddate,
-                        dur: unit.dur,
-                        stype: unit.stype,
-                        room: unit.room,
-                        os: unit.os
-                    }
-
-                    var request = new Request(preparedData);
-                    try {
-                        const prevOne = await Request.findOne({
-                            rno: request.rno
-                        }, {}, {
-                            sort: {
-                                'creationDate': -1
-                            }
-                        });
-
-                        if (prevOne) {
-                            unit.status = prevOne.status;
-
-                        } else {
-                            console.log('----------------------------has no prev one ---------------');
-                            const savedData = await request.save();
-
-                            google.insertEventFromRequest(preparedData, (err, data) => {
-                                console.log('-----------make event after---------------');
-                                console.log(data);
-
-                            });
-
-                            console.log('saved data -' + savedData);
-                        }
-
-                    } catch (e) {
-                        console.log('saved data -' + e);
-                    }
-                }
-            })
-        console.log('----------- this is naver list');
-    } else if (from == "navermobile2") {
-
-       
+    if (from == "navermobile2") {
         data.from = "naver";
         rawlist = rawData.split("예약자");
         rawlist.forEach(function (rl) {
-            console.log('-------------------rl---naver mobile 2 ------------');
-
             var rlarray = rl.split("\n");
             console.log(rlarray);
             var unit = {
@@ -284,10 +150,6 @@ exports.splitData = async function (rawData) {
             unit.mobile = "";
 
             unit.mobile = makeOnlyNumberString(rlarray[1]);
-
-
-            
-            console.log(unit.mobile);
 
 
             if (unit.mobile && unit.mobile.indexOf("010") > -1) {
@@ -359,8 +221,6 @@ exports.splitData = async function (rawData) {
             .list
             .forEach(async function (unit) {
 
-                console.log("-----------------formated unit status ");
-                console.log(unit);
                 // inserting
                 if (unit.formated == true && unit.paid == true) {
 
@@ -374,7 +234,8 @@ exports.splitData = async function (rawData) {
                         dur: unit.dur,
                         stype: unit.stype,
                         room: unit.room,
-                        os: unit.os
+                        os: unit.os,
+                        price: unit.amountstr
                     }
 
                     var request = new Request(preparedData);
@@ -413,7 +274,6 @@ exports.splitData = async function (rawData) {
         data.from = "naver";
         rawlist = rawData.split("확정");
         rawlist.forEach(function (rl) {
-            console.log('-------------------rl------');
 
             var rlarray = rl.split("\n");
             console.log(rlarray);
@@ -459,9 +319,15 @@ exports.splitData = async function (rawData) {
                     unit.room = parseInt(roomstr) || 1;
 
                 }
-                unit.demandstr = rlarray[10];
-                unit.paystatus = rlarray[11];
-                unit.amountstr = rlarray[12];
+                // unit.demandstr = rlarray[9];
+                unit.paystatus = rlarray[10];
+                unit.amountstr =  extractNumbers(rlarray[11]) ;
+
+                console.log(rlarray);
+
+                console.log("-----------------가격 출력 ----------");
+                
+                console.log(unit.amountstr);
                 unit.check = "";
                 unit.stype = "RQ";
                 // unit.room = 1;
@@ -506,7 +372,8 @@ exports.splitData = async function (rawData) {
                         dur: unit.dur,
                         stype: unit.stype,
                         room: unit.room,
-                        os: unit.os
+                        os: unit.os,
+                        price: unit.amountstr
                     }
 
                     var request = new Request(preparedData);
@@ -608,7 +475,14 @@ exports.splitData = async function (rawData) {
 
                 unit.mobile = makeOnlyNumberString(x2.substring(0, 13));
                 var x3 = x2.substring(13);
-                unit.amountstr = x3.substring(0, x3.indexOf("0원") + 2);
+
+                console.log("---------------스클 서브");
+                console.log(x2);
+                console.log(x3);
+                unit.amountstr = extractNumbers( x3.substring(0, x3.indexOf("0원") + 2));
+
+                
+                console.log(unit.amountstr);
                 unit.os = "";
 
                 // console.log('---------------------formated unit ---------');
@@ -655,7 +529,8 @@ exports.splitData = async function (rawData) {
                         dur: unit.dur,
                         stype: unit.stype,
                         room: unit.room,
-                        os: unit.os
+                        os: unit.os,
+                        price: unit.amountstr
                     }
 
                     var request = new Request(preparedData);
