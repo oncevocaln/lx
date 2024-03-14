@@ -132,15 +132,35 @@ exports.splitData = async function (rawData) {
     } else if (rawData.includes("NAVER Corp. All Rights Reserved")) {
         from = "navertotal";
     } else if (rawData.includes("내 업체") && rawData.includes("이용일옵션보기")) {
-        from = "navermobile2";
+        from = "navermobile";
     } else if (rawData.includes("NSPACE")) {
         from = "spacetotal"
     } 
 
-    if (from == "navermobile2") {
+    if (from == "navermobile") {
         data.from = "naver";
-        rawlist = rawData.split("예약자");
+        // rawlist = rawData.split("예약자");
+        rawlist = rawData.split("확정");
         rawlist.forEach(function (rl) {
+            var visitor = "";
+
+            if(rl.includes("예약자")){
+                rl = rl.substring(rl.indexOf("예약자") + 4 , rl.length);
+            console.log('------------------------------------rl---------------')
+            console.log(rl);
+            if(rl.includes("방문자")) {
+                var i = rl.indexOf("방문자");
+                var j = rl.indexOf("예약번호");
+                var rl1 =  rl.substring(0,i);
+                var rl2 = rl.substring(i,j);
+                var rl3 = rl.substring(j, rl.length);
+
+                console.log("test---------------------------");
+                console.log(rl1);
+                console.log(rl2);
+                console.log(rl3);
+                rl = rl1 + rl3;
+            }
             var rlarray = rl.split("\n");
             console.log(rlarray);
             var unit = {
@@ -148,30 +168,29 @@ exports.splitData = async function (rawData) {
             };
             //휴대폰 번호가 없으면 처리불가능
             unit.mobile = "";
-
+            console.log('------------------------ mobile --------------')
+            console.log(rlarray[1]);
             unit.mobile = makeOnlyNumberString(rlarray[1]);
-
 
             if (unit.mobile && unit.mobile.indexOf("010") > -1) {
                 unit.formated = true;
-
                 unit.from = "naver";
                 unit.username = rlarray[0];
                 unit.rno = "n" + makeOnlyNumberString(rlarray[2]);
 
-                unit.timestr = rlarray[6] + "@" + rlarray[7];
+                unit.timestr = rlarray[5] + "@" + rlarray[6];
 
-                var timedata = convertTimeDataNaverMobile(rlarray[6], rlarray[7]);
+                var timedata = convertTimeDataNaverMobile(rlarray[5], rlarray[6]);
                 unit.startdate = timedata.startdate;
                 unit.enddate = timedata.enddate;
                 unit.dur = timedata.dur;
 
                 unit.placestr = rlarray[4];
-                unit.spacestr = rlarray[5];
+                unit.spacestr = rlarray[4];
 
                 unit.spacecount = 1;
 
-                unit.optionstr = "";
+                unit.optionstr = visitor;
                 unit.room = 1;
 
                 if (unit.optionstr.includes("방번호")) {
@@ -215,7 +234,10 @@ exports.splitData = async function (rawData) {
             data
                 .list
                 .push(unit);
-        })
+        }
+
+            }
+            )
 
         data
             .list
@@ -661,6 +683,9 @@ function convertTimeDataNaverMobile(datestr, timestr) {
 
     var data = {};
     // var dIndex = str.indexOf(")");
+
+    console.log("-------------------------------time str ---------------------");
+    console.log(timestr);
     var datestrArray = datestr.split(".");
     var yystr = makeOnlyNumberString(datestrArray[0].trim());
     var mmstr = makeOnlyNumberString(datestrArray[1].trim());

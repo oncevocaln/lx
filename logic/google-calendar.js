@@ -26,6 +26,7 @@ const rtypeArray = {
   option: "OPTION",
 };
 
+//캘린더 중복설정
 const calendarIds = {
   NY: {
     id: "3v45ttcu6h58kho5vtibohf7g4@group.calendar.google.com",
@@ -37,7 +38,7 @@ const calendarIds = {
   },
   HD: {
     id: "2losj7uf7v1nqvrgos17jmbfgs@group.calendar.google.com",
-    count: 1,
+    count: 2,
   },
   HM: {
     id: "1cji92facmh8jv5iv1d0ab5fa8@group.calendar.google.com",
