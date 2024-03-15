@@ -178,15 +178,15 @@ exports.splitData = async function (rawData) {
                 unit.username = rlarray[0];
                 unit.rno = "n" + makeOnlyNumberString(rlarray[2]);
 
-                unit.timestr = rlarray[5] + "@" + rlarray[6];
+                unit.timestr = rlarray[6] + "@" + rlarray[7];
 
-                var timedata = convertTimeDataNaverMobile(rlarray[5], rlarray[6]);
+                var timedata = convertTimeDataNaverMobile(rlarray[6], rlarray[7]);
                 unit.startdate = timedata.startdate;
                 unit.enddate = timedata.enddate;
                 unit.dur = timedata.dur;
 
                 unit.placestr = rlarray[4];
-                unit.spacestr = rlarray[4];
+                unit.spacestr = rlarray[5];
 
                 unit.spacecount = 1;
 
@@ -687,6 +687,10 @@ function convertTimeDataNaverMobile(datestr, timestr) {
     console.log("-------------------------------time str ---------------------");
     console.log(timestr);
     var datestrArray = datestr.split(".");
+    console.log(datestrArray[0]);
+    console.log(datestrArray[1]);
+    console.log(datestrArray[2]);
+    
     var yystr = makeOnlyNumberString(datestrArray[0].trim());
     var mmstr = makeOnlyNumberString(datestrArray[1].trim());
     var ddstr = makeOnlyNumberString(datestrArray[2].trim());
