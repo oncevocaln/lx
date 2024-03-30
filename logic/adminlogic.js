@@ -442,7 +442,8 @@ exports.splitData = async function (rawData) {
             var unit = {
                 stype: "RQ"
             };
-            if (rl.includes("예약번호") && rl.includes("010-") && rl.includes("0원")) {
+  
+            if ( rl != undefined && rl!=null && rl.includes("예약번호") && rl.includes("010-") && rl.includes("0원")) {
 
                 unit.from = "space";
                 unit.formated = true;
@@ -451,23 +452,25 @@ exports.splitData = async function (rawData) {
 
                 var firstIndex = rl.search(/20[0-9]+.[0-9]+.[0-9]+/g);
 
-                // var yearStringIndex = rl.search("2021.");
-                var yearStringIndex = rl.search("2022.") ;
+                console.log("-------------------where is first index");
+                console.log(firstIndex);
+                var yearStringIndex = rl.search(/2024./) ;
                 
                 if(yearStringIndex < 1) {
-                    yearStringIndex = rl.search("2023.");
+                    yearStringIndex = rl.search(/2025./);
                 }
-                
                 
                 if(yearStringIndex < 1) {
-                    yearStringIndex = rl.search("2024.");
+                    yearStringIndex = rl.search(/2026./);
                 }
                 
+                console.log(yearStringIndex);
+                var firstCommaIndex = rl.search(",");
+                var spacestr = rl.substring(firstCommaIndex, yearStringIndex).trim();
 
-                var spacestr = rl
-                    .substring(0, yearStringIndex)
-                    .trim();
                 unit.spacestr = spacestr;
+
+                console.log(spacestr);
 
                 stypelist.forEach(function (st) {
                     if (spacestr.includes(st)) {
@@ -483,9 +486,7 @@ exports.splitData = async function (rawData) {
 
                 //예약번호 넘김
 
-                var afterstr = rl
-                    .substring(yearStringIndex)
-                    .split("시간");
+                var afterstr = rl.substring(yearStringIndex).split("시간");
 
                 unit.username = makeNoSpaceString(
                     afterstr[1].substring(0, afterstr[1].indexOf("010")).trim()
@@ -498,26 +499,9 @@ exports.splitData = async function (rawData) {
                 unit.mobile = makeOnlyNumberString(x2.substring(0, 13));
                 var x3 = x2.substring(13);
 
-                console.log("---------------스클 서브");
-                console.log(x2);
-                console.log(x3);
                 unit.amountstr = extractNumbers( x3.substring(0, x3.indexOf("0원") + 2));
 
-                
-                console.log(unit.amountstr);
                 unit.os = "";
-
-                // console.log('---------------------formated unit ---------');
-                // console.log(unit.rno);
-                // console.log(unit.username);
-                // console.log(unit.mobile);
-                // console.log(unit.amountstr);
-                // console.log(unit.stype);
-                // console.log(unit.room);
-                // console.log(afterstr[0]);
-                // console.log(afterstr[1]);
-                // console.log("========================after 0 ")
-                // console.log(afterstr[0]);
 
                 var timedata = convertTimeDataSpace(afterstr[0]);
 
