@@ -569,7 +569,7 @@ function make_rtext(json) {
   
   if ( ["HA","HX","HR","HM","HP","HX","HD","HS","HV"].includes( json.stype)) {
     json.notice = json.notice + 
-    "\n주소 : 서울 마포구 와우산로23길 20-30 서교태권도 2층 \n비밀번호: 01235* , 와이파이 cats123@ \n주차불가\n";
+    "\n주소 : 서울 마포구 와우산로23길 20-30 서교태권도 2층 \n비밀번호: 01235* , 화장실비번: 0819*, 와이파이 cats123@ \n주차불가\n";
   }
   
 
