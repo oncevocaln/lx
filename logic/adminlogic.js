@@ -464,6 +464,11 @@ exports.splitData = async function (rawData) {
                     yearStringIndex = rl.search(/2026./);
                 }
                 
+                
+                if(yearStringIndex < 1) {
+                    yearStringIndex = rl.search(/2027./);
+                }
+                
                 console.log(yearStringIndex);
                 var firstCommaIndex = rl.search(",");
                 var spacestr = rl.substring(firstCommaIndex, yearStringIndex).trim();
