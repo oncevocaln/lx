@@ -60,14 +60,29 @@ app.use(cookieParser());
 
 
 
-//connect to db
-const connection = mongoose.connect(
-    process.env.DB_CONNECTION,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    () => {
-      console.log("connect to db");
-    }
-  );
+// connect to db
+mongoose.connect(
+  process.env.DB_CONNECTION,
+  { useNewUrlParser: true, useUnifiedTopology: true }
+)
+.then(() => {
+  console.log("✅ connect to db");
+})
+.catch((err) => {
+  console.error("❌ DB connection error:", err);
+});
+
+
+
+
+// //connect to db
+// const connection = mongoose.connect(
+//     process.env.DB_CONNECTION,
+//     { useNewUrlParser: true, useUnifiedTopology: true },
+//     () => {
+//       console.log("connect to db");
+//     }
+//   );
 
 
 
