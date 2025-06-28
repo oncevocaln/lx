@@ -8,7 +8,12 @@ exports.mailSend = function (mailData) {
     auth: {
       user: "oncevocaln@gmail.com", // gmail 계정 아이디를 입력
       //   pass: "Kwelcome30!%40", // gmail 계정의 비밀번호를 입력
-      pass: "Kwelcome30!@", // gmail 계정의 비밀번호를 입력
+      // pass: "Kwelcome30!@", // gmail 계정의 비밀번호를 입력
+
+      pass: "rtkj zkmx ueou oyxg", // gmail 계정의 비밀번호를 입력
+
+
+      
     },
   });
 
